@@ -2,8 +2,10 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import footerEn from './locales/en/footer.json';
 import headerEn from './locales/en/header.json';
+import authEn from './locales/en/auth.json';
 import footerVi from './locales/vi/footer.json';
 import headerVi from './locales/vi/header.json';
+import authVi from './locales/vi/auth.json';
 
 // Detect language from localStorage or browser
 const savedLanguage =
@@ -20,10 +22,12 @@ i18n.use(initReactI18next).init({
     en: {
       header: headerEn,
       footer: footerEn,
+      auth: authEn,
     },
     vi: {
       header: headerVi,
       footer: footerVi,
+      auth: authVi,
     },
   },
   lng: defaultLanguage,

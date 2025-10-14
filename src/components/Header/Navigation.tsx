@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import DropdownMenu from '../common/DropDownMenu';
-import type {
-  DropdownMenuConfig,
-  NavigationLinkConfig,
-} from './navigationConfig';
-import { getDropdownMenus, getNavigationLinks } from './navigationConfig';
+import {
+  getDropdownMenus,
+  getNavigationLinks,
+  type DropdownMenuConfig,
+  type NavigationLinkConfig,
+} from '../../config/Header/navigationConfig';
 
 export default function Navigation() {
   const { t } = useTranslation('header');

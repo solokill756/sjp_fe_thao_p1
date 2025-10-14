@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-50">
-      <div className="bg-purple-100 py-8 md:py-12">
+      <div className="bg-gray-50 py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4">
           {/* Desktop Layout */}
           <div className="hidden md:flex items-center justify-between">
