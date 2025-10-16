@@ -1,21 +1,32 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import toast from 'react-hot-toast';
+import {
+  useLazyGetUserByEmailQuery,
+  usePostUserMutation,
+} from '../../features/api/apiSlice';
+import { LoadingSpinner } from '../common/Loading';
+import { ServerErrorPage } from '../error';
 
 export default function RegisterForm() {
   const { t } = useTranslation('auth');
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'customer',
+    role: 'customer' as 'customer' | 'vendor',
     agreeTerms: false,
-    newsletter: false,
   });
-
+  const [
+    getUserByEmailTrigger,
+    { data: foundUser, isLoading: isFindingUser, isError: isFindUserError },
+  ] = useLazyGetUserByEmailQuery();
+  const [postUser, { isLoading: isRegistering }] = usePostUserMutation();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -23,13 +34,16 @@ export default function RegisterForm() {
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData({ ...formData, [name]: checked });
+    } else if (name === 'role') {
+      setFormData({ ...formData, [name]: value as 'customer' | 'vendor' });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Form Data:', formData);
     const emptyFields = Object.keys(formData).filter(
       (key) => !formData[key as keyof typeof formData]
     );
@@ -57,13 +71,61 @@ export default function RegisterForm() {
       toast.error(t('register.weakPassword'));
       return;
     }
+
+    try {
+      await getUserByEmailTrigger(formData.email).unwrap();
+
+      if (foundUser) {
+        toast.error(t('register.userExists'));
+        return;
+      }
+      const { confirmPassword, agreeTerms, ...userData } = formData;
+      await postUser(userData).unwrap();
+
+      // Show success message
+      toast.success(t('register.success'));
+
+      // Reset form
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        role: 'customer' as 'customer' | 'vendor',
+        agreeTerms: false,
+      });
+
+      // Navigate to login tab
+      navigate('/auth?tab=login');
+    } catch (error) {
+      toast.error(t('register.error'));
+    }
   };
+
+  if (isFindingUser) {
+    return (
+      <LoadingSpinner size="large" fullScreen text={t('register.loading')} />
+    );
+  }
+
+  if (isFindUserError) {
+    return <ServerErrorPage />;
+  }
+
+  if (isRegistering) {
+    return (
+      <LoadingSpinner
+        size="large"
+        fullScreen
+        text={t('register.registering')}
+      />
+    );
+  }
 
   return (
     <div className="px-2 sm:px-0">
       <p className="text-gray-600 mb-6 sm:mb-8 text-center text-sm sm:text-base">
-        There are many advantages to creating an account: the payment process is
-        faster, shipment tracking is possible and much more.
+        {t('register.intro')}
       </p>
       <form onSubmit={handleSubmit} className="w-full space-y-4 sm:space-y-6">
         <Input
@@ -140,7 +202,11 @@ export default function RegisterForm() {
         </p>
 
         <div className="pt-2">
-          <Button type="submit">{t('register.submitButton')}</Button>
+          <Button type="submit" disabled={isRegistering}>
+            {isRegistering
+              ? t('register.registering')
+              : t('register.submitButton')}
+          </Button>
         </div>
       </form>
     </div>

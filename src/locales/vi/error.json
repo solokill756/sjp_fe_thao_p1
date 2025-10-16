@@ -1,0 +1,33 @@
+{
+  "common": {
+    "title": "Đã xảy ra lỗi",
+    "defaultMessage": "Có lỗi không mong muốn xảy ra. Vui lòng thử lại sau.",
+    "backButton": "Quay lại",
+    "homeButton": "Trang chủ",
+    "reloadButton": "🔄 Tải lại",
+    "supportText": "Nếu vấn đề vẫn tiếp tục, vui lòng",
+    "contactSupport": "liên hệ hỗ trợ"
+  },
+  "404": {
+    "title": "Trang không tìm thấy",
+    "message": "Trang bạn muốn truy cập hiện không khả dụng"
+  },
+  "403": {
+    "title": "Truy cập bị từ chối",
+    "message": "Bạn không có quyền truy cập vào trang này."
+  },
+  "500": {
+    "title": "Lỗi máy chủ",
+    "message": "Máy chủ đang gặp sự cố. Vui lòng thử lại sau ít phút."
+  },
+  "network": {
+    "title": "Lỗi kết nối",
+    "message": "Không thể kết nối đến máy chủ. Vui lòng kiểm tra kết nối internet của bạn."
+  },
+  "codes": {
+    "404": "404",
+    "403": "403",
+    "500": "500",
+    "0": "0"
+  }
+}
