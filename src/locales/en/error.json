@@ -1,0 +1,33 @@
+{
+  "common": {
+    "title": "An error occurred",
+    "defaultMessage": "An unexpected error occurred. Please try again later.",
+    "backButton": "Back",
+    "homeButton": "Home Page",
+    "reloadButton": "🔄 Reload",
+    "supportText": "If the problem persists, please",
+    "contactSupport": "contact support"
+  },
+  "404": {
+    "title": "Page not found",
+    "message": "The page you want to go is not currently available"
+  },
+  "403": {
+    "title": "Access Denied",
+    "message": "You do not have permission to access this page."
+  },
+  "500": {
+    "title": "Server Error",
+    "message": "The server is experiencing issues. Please try again in a few minutes."
+  },
+  "network": {
+    "title": "Connection Error",
+    "message": "Unable to connect to the server. Please check your internet connection."
+  },
+  "codes": {
+    "404": "404",
+    "403": "403",
+    "500": "500",
+    "0": "0"
+  }
+}

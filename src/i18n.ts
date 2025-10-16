@@ -3,9 +3,13 @@ import { initReactI18next } from 'react-i18next';
 import footerEn from './locales/en/footer.json';
 import headerEn from './locales/en/header.json';
 import authEn from './locales/en/auth.json';
+import errorEn from './locales/en/error.json';
+import commonEn from './locales/en/common.json';
 import footerVi from './locales/vi/footer.json';
 import headerVi from './locales/vi/header.json';
 import authVi from './locales/vi/auth.json';
+import errorVi from './locales/vi/error.json';
+import commonVi from './locales/vi/common.json';
 
 // Detect language from localStorage or browser
 const savedLanguage =
@@ -23,11 +27,15 @@ i18n.use(initReactI18next).init({
       header: headerEn,
       footer: footerEn,
       auth: authEn,
+      error: errorEn,
+      common: commonEn,
     },
     vi: {
       header: headerVi,
       footer: footerVi,
       auth: authVi,
+      error: errorVi,
+      common: commonVi,
     },
   },
   lng: defaultLanguage,
