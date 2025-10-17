@@ -11,7 +11,8 @@
     "deliverTo": "Giao đến",
     "searchPlaceholder": "Tìm kiếm sản phẩm, danh mục hoặc thương hiệu...",
     "signIn": "Đăng nhập",
-    "account": "Tài khoản"
+    "account": "Tài khoản",
+    "logoutSuccess": "Bạn đã đăng xuất thành công."
   },
   "navigation": {
     "home": "Trang chủ",
