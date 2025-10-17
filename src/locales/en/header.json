@@ -11,7 +11,8 @@
     "deliverTo": "Deliver to",
     "searchPlaceholder": "Search for products, categories or brands...",
     "signIn": "Sign in",
-    "account": "Account"
+    "account": "Account",
+    "logoutSuccess": "You have been logged out successfully."
   },
   "navigation": {
     "home": "Home",

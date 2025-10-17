@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { User } from '../../models/userModel';
+import { getUserWithoutPassword, type User } from '../../models/userModel';
+import { setCredentials } from '../auth/authSlice';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -36,6 +37,28 @@ export const apiSlice = createApi({
         return response.length > 0 ? response[0] : null;
       },
     }),
+    login: builder.mutation<User | null, { email: string; password: string }>({
+      query: ({ email, password }) => ({
+        url: `/users?email=${email}&password=${password}`,
+      }),
+      transformResponse: (response: User[]) => {
+        return response.length > 0 ? response[0] : null;
+      },
+      async onQueryStarted(_arg, { queryFulfilled, dispatch }) {
+        try {
+          const { data } = await queryFulfilled;
+          if (data) {
+            const userToStore = getUserWithoutPassword(data);
+            localStorage.setItem('loggedInUser', JSON.stringify(userToStore));
+            dispatch(setCredentials(userToStore));
+          } else {
+            console.log('Đăng nhập thất bại: Sai email hoặc mật khẩu');
+          }
+        } catch (error) {
+          console.error('Lỗi khi đăng nhập:', error);
+        }
+      },
+    }),
   }),
 });
 
@@ -45,4 +68,5 @@ export const {
   usePostUserMutation,
   useGetUserByEmailQuery,
   useLazyGetUserByEmailQuery,
+  useLoginMutation,
 } = apiSlice;
