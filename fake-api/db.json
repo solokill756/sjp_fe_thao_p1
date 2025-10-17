@@ -52,9 +52,9 @@
       "role": "customer"
     },
     {
-      "id": "d33e",
-      "username": "ho.sy.thao",
-      "email": "khanhdang3152@gmail.com",
+      "id": "81e3",
+      "username": "Hồ Thư",
+      "email": "hothihuethu@gmail.com",
       "password": "123456789",
       "role": "customer"
     }
@@ -113,9 +113,7 @@
       "description": "Juicy strawberries from Dalat, with a sweet and refreshing taste.",
       "price": 120000,
       "originalPrice": null,
-      "images": [
-        "https://i.imgur.com/8zL5h4w.jpeg"
-      ],
+      "images": ["https://i.imgur.com/8zL5h4w.jpeg"],
       "categoryId": 4,
       "status": "In Stock",
       "rating": 4.9,
@@ -127,9 +125,7 @@
       "description": "Fresh broccoli, rich in nutrients for family meals.",
       "price": 15000,
       "originalPrice": null,
-      "images": [
-        "https://i.imgur.com/JPlk3kR.jpeg"
-      ],
+      "images": ["https://i.imgur.com/JPlk3kR.jpeg"],
       "categoryId": 5,
       "status": "Out of Stock",
       "rating": 4.5,
@@ -141,9 +137,7 @@
       "description": "Tender beef, suitable for steak or grilling.",
       "price": 250000,
       "originalPrice": 280000,
-      "images": [
-        "https://i.imgur.com/zJ9e4Zm.jpeg"
-      ],
+      "images": ["https://i.imgur.com/zJ9e4Zm.jpeg"],
       "categoryId": 2,
       "status": "In Stock",
       "rating": 4.7,
@@ -155,9 +149,7 @@
       "description": "100% pressed orange juice with no sugar and no preservatives.",
       "price": 35000,
       "originalPrice": null,
-      "images": [
-        "https://i.imgur.com/dAmYj6r.jpeg"
-      ],
+      "images": ["https://i.imgur.com/dAmYj6r.jpeg"],
       "categoryId": 3,
       "status": "In Stock",
       "rating": 4.6,
@@ -233,10 +225,7 @@
   "chats": [
     {
       "id": "1",
-      "participants": [
-        1,
-        2
-      ],
+      "participants": [1, 2],
       "messages": [
         {
           "senderId": 2,
