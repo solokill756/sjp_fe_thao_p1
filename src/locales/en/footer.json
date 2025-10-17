@@ -1,0 +1,77 @@
+{
+  "newsletter": {
+    "title": "Join our newsletter for £10 offs",
+    "description": "Register now to get latest updates on promotions & coupons. Don't worry, we not spam!",
+    "placeholder": "Enter your email address",
+    "button": "SEND",
+    "terms": "By subscribing you agree to our {{termsLink}} and {{policyLink}}",
+    "termsText": "Terms & Conditions",
+    "policyText": "Privacy & Cookies Policy"
+  },
+  "sections": {
+    "help": {
+      "title": "Do You Need Help ?",
+      "description": "Autoseligen syr. Nek diarrhea fringilla uns. Nec elit dápibus vivera, Phasellus itemque.",
+      "schedule": "Monday-Friday: 08am-9pm",
+      "phone": "0 800 300-353",
+      "emailTitle": "Need help with your order?",
+      "email": "info@example.com"
+    },
+    "makeMoney": {
+      "title": "Make Money with Us",
+      "links": {
+        "sellOnOrgani": "Sell on Organi",
+        "sellServices": "Sell Your Services on Organi",
+        "sellBusiness": "Sell on Organi Business",
+        "sellApps": "Sell Your Apps on Organi",
+        "becomeAffiliate": "Become an Affiliate",
+        "advertiseProducts": "Advertise Your Products",
+        "sellPublish": "Sell-Publish with Us",
+        "becomeVendor": "Become an Blowwe Vendor"
+      }
+    },
+    "letUsHelp": {
+      "title": "Let Us Help You",
+      "links": {
+        "accessibility": "Accessibility Statement",
+        "yourOrders": "Your Orders",
+        "returns": "Returns & Replacements",
+        "shipping": "Shipping Rates & Policies",
+        "refund": "Refund and Returns Policy",
+        "privacy": "Privacy Policy",
+        "terms": "Terms and Conditions",
+        "cookies": "Cookie Settings",
+        "helpCenter": "Help Center"
+      }
+    },
+    "getToKnow": {
+      "title": "Get to Know Us",
+      "links": {
+        "careers": "Careers for Organi",
+        "about": "About Organi",
+        "investor": "Investor Relations",
+        "devices": "Organi Devices",
+        "reviews": "Customer reviews",
+        "social": "Social Responsibility",
+        "stores": "Store Locations"
+      }
+    },
+    "downloadApp": {
+      "title": "Download our app",
+      "googlePlay": "Google Play",
+      "appStore": "App Store",
+      "getItOn": "GET IT ON",
+      "downloadOn": "Download on the",
+      "followUs": "Follow us on social media"
+    }
+  },
+  "bottom": {
+    "copyright": "Copyright 2022 © Shopstore WooCommerce WordPress Theme. All right reserved. Powered by {{link}}.",
+    "poweredBy": "Blueskies Themes",
+    "links": {
+      "terms": "Terms and Conditions",
+      "privacy": "Privacy Policy",
+      "orderTracking": "Order Tracking"
+    }
+  }
+}

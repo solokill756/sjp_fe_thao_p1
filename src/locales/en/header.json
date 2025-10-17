@@ -1,0 +1,27 @@
+{
+  "topBar": {
+    "aboutUs": "About Us",
+    "myAccount": "My account",
+    "wishlist": "Wishlist",
+    "deliveryTime": "We deliver to you every day from {{startTime}} to {{endTime}}",
+    "orderTracking": "Order Tracking"
+  },
+  "mainHeader": {
+    "logo": "ShopStore",
+    "deliverTo": "Deliver to",
+    "searchPlaceholder": "Search for products, categories or brands...",
+    "signIn": "Sign in",
+    "account": "Account"
+  },
+  "navigation": {
+    "home": "Home",
+    "shop": "Shop",
+    "fruitsVegetables": "Fruits & Vegetables",
+    "beverages": "Beverages",
+    "blog": "Blog",
+    "contact": "Contact",
+    "trendingProducts": "Trending Products",
+    "almostFinished": "Almost Finished",
+    "sale": "SALE"
+  }
+}

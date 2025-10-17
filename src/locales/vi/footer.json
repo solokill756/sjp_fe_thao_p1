@@ -1,0 +1,77 @@
+{
+  "newsletter": {
+    "title": "Đăng ký bản tin để được giảm £10",
+    "description": "Đăng ký ngay để nhận được cập nhật mới nhất về khuyến mãi và phiếu giảm giá. Đừng lo, chúng tôi không spam!",
+    "placeholder": "Nhập địa chỉ email của bạn",
+    "button": "GỬI",
+    "terms": "Bằng cách đăng ký, bạn đồng ý với {{termsLink}} và {{policyLink}} của chúng tôi",
+    "termsText": "Điều khoản & Điều kiện",
+    "policyText": "Chính sách Bảo mật & Cookie"
+  },
+  "sections": {
+    "help": {
+      "title": "Bạn có cần trợ giúp ?",
+      "description": "Autoseligen syr. Nek diarrhea fringilla uns. Nec elit dápibus vivera, Phasellus itemque.",
+      "schedule": "Thứ Hai-Thứ Sáu: 08:00-21:00",
+      "phone": "0 800 300-353",
+      "emailTitle": "Cần trợ giúp với đơn hàng?",
+      "email": "info@example.com"
+    },
+    "makeMoney": {
+      "title": "Kiếm tiền cùng chúng tôi",
+      "links": {
+        "sellOnOrgani": "Bán trên Organi",
+        "sellServices": "Bán dịch vụ trên Organi",
+        "sellBusiness": "Bán kinh doanh trên Organi",
+        "sellApps": "Bán ứng dụng trên Organi",
+        "becomeAffiliate": "Trở thành đối tác",
+        "advertiseProducts": "Quảng cáo sản phẩm",
+        "sellPublish": "Bán-Xuất bản cùng chúng tôi",
+        "becomeVendor": "Trở thành nhà cung cấp Blowwe"
+      }
+    },
+    "letUsHelp": {
+      "title": "Để chúng tôi giúp bạn",
+      "links": {
+        "accessibility": "Tuyên bố khả năng tiếp cận",
+        "yourOrders": "Đơn hàng của bạn",
+        "returns": "Đổi trả & Thay thế",
+        "shipping": "Chính sách vận chuyển & Giá",
+        "refund": "Chính sách hoàn tiền",
+        "privacy": "Chính sách bảo mật",
+        "terms": "Điều khoản và điều kiện",
+        "cookies": "Cài đặt Cookie",
+        "helpCenter": "Trung tâm trợ giúp"
+      }
+    },
+    "getToKnow": {
+      "title": "Tìm hiểu về chúng tôi",
+      "links": {
+        "careers": "Tuyển dụng tại Organi",
+        "about": "Về Organi",
+        "investor": "Quan hệ nhà đầu tư",
+        "devices": "Thiết bị Organi",
+        "reviews": "Đánh giá khách hàng",
+        "social": "Trách nhiệm xã hội",
+        "stores": "Vị trí cửa hàng"
+      }
+    },
+    "downloadApp": {
+      "title": "Tải ứng dụng của chúng tôi",
+      "googlePlay": "Google Play",
+      "appStore": "App Store",
+      "getItOn": "TẢI TRÊN",
+      "downloadOn": "Tải xuống trên",
+      "followUs": "Theo dõi chúng tôi trên mạng xã hội"
+    }
+  },
+  "bottom": {
+    "copyright": "Bản quyền 2022 © Shopstore WooCommerce WordPress Theme. Tất cả quyền được bảo lưu. Được hỗ trợ bởi {{link}}.",
+    "poweredBy": "Blueskies Themes",
+    "links": {
+      "terms": "Điều khoản và điều kiện",
+      "privacy": "Chính sách bảo mật",
+      "orderTracking": "Theo dõi đơn hàng"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "topBar": {
+    "aboutUs": "Về chúng tôi",
+    "myAccount": "Tài khoản của tôi",
+    "wishlist": "Danh sách yêu thích",
+    "deliveryTime": "Chúng tôi giao hàng cho bạn hàng ngày từ {{startTime}} đến {{endTime}}",
+    "orderTracking": "Theo dõi đơn hàng"
+  },
+  "mainHeader": {
+    "logo": "ShopStore",
+    "deliverTo": "Giao đến",
+    "searchPlaceholder": "Tìm kiếm sản phẩm, danh mục hoặc thương hiệu...",
+    "signIn": "Đăng nhập",
+    "account": "Tài khoản"
+  },
+  "navigation": {
+    "home": "Trang chủ",
+    "shop": "Cửa hàng",
+    "fruitsVegetables": "Trái cây & Rau củ",
+    "beverages": "Đồ uống",
+    "blog": "Blog",
+    "contact": "Liên hệ",
+    "trendingProducts": "Sản phẩm thịnh hành",
+    "almostFinished": "Sắp hết",
+    "sale": "KHUYẾN MÃI"
+  }
+}
