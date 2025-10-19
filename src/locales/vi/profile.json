@@ -1,0 +1,26 @@
+{
+  "welcome_back": "Chào mừng trở lại",
+  "dashboard": "Bảng điều khiển",
+  "orders": "Đơn hàng",
+  "account_details": "Chi tiết tài khoản",
+  "wishlist": "Danh sách yêu thích",
+  "log_out": "Đăng xuất",
+  "update_account_to_vendor": "Nâng cấp tài khoản thành người bán",
+  "first_name": "Tên",
+  "last_name": "Họ",
+  "shop_name": "Tên cửa hàng",
+  "shop_url": "URL cửa hàng",
+  "phone_number": "Số điện thoại",
+  "terms_conditions": "Tôi đã đọc và đồng ý với các điều khoản và điều kiện của trang web",
+  "become_a_vendor": "Trở thành người bán",
+  "please_accept_terms": "Vui lòng chấp nhận các điều khoản và điều kiện",
+  "shop_url_must_start_with_https": "URL cửa hàng phải bắt đầu bằng https://",
+  "home": "Trang chủ",
+  "my_account": "Tài khoản của tôi",
+  "update_profile": "Cập nhật hồ sơ",
+  "update_profile_details": "Cập nhật chi tiết hồ sơ",
+  "invalid_phone_number": "Số điện thoại phải có ít nhất 10 chữ số",
+  "register": {
+    "fillAllFields": "Vui lòng điền vào tất cả các trường"
+  }
+}

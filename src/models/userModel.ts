@@ -3,7 +3,7 @@ export interface User {
   username: string;
   email: string;
   password?: string | null;
-  role: 'customer' | 'vendor';
+  role: 'customer' | 'admin';
 }
 
 export function getUserWithoutPassword(user: User) {
