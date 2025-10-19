@@ -8,12 +8,13 @@ interface InputProps {
   label: string;
   type?: string;
   name: string;
-  value: string | boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
   options?: RadioOption[];
   checked?: boolean;
+  defaultValue?: string | boolean;
 }
 
 export default function Input({
@@ -25,7 +26,33 @@ export default function Input({
   placeholder = '',
   required = false,
   options = [],
+  defaultValue,
 }: InputProps) {
+  if (
+    onchange == undefined &&
+    value == undefined &&
+    defaultValue != undefined
+  ) {
+    return (
+      <div className="w-full mb-4 sm:mb-6">
+        <label
+          htmlFor={name}
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          {label} {required && <span className="text-red-500">*</span>}
+        </label>
+        <input
+          type={type}
+          id={name}
+          name={name}
+          defaultValue={defaultValue as string}
+          placeholder={placeholder}
+          className="shadow-sm appearance-none border rounded-lg w-full py-3 sm:py-4 px-3 sm:px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
+          required={required}
+        />
+      </div>
+    );
+  }
   if (type === 'radio' && options.length > 0) {
     return (
       <div className="w-full mb-4 sm:mb-6">
