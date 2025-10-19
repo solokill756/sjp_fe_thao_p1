@@ -3,6 +3,7 @@ import Home from '../pages/Home';
 
 import Auth from '../pages/auth';
 import App from '../App';
+import Profile from '../pages/Profile';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: 'auth',
         element: <Auth />,
+      },
+      {
+        path: 'profile',
+        element: <Profile />,
       },
     ],
   },

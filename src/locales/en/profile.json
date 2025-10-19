@@ -1,0 +1,26 @@
+{
+  "welcome_back": "Welcome back",
+  "dashboard": "Dashboard",
+  "orders": "Orders",
+  "account_details": "Account Details",
+  "wishlist": "Wishlist",
+  "log_out": "Log out",
+  "update_account_to_vendor": "Update Account to Vendor",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "shop_name": "Shop Name",
+  "shop_url": "Shop URL",
+  "phone_number": "Phone Number",
+  "terms_conditions": "I have read and agree to the website terms and conditions",
+  "become_a_vendor": "Become a Vendor",
+  "please_accept_terms": "Please accept the terms and conditions",
+  "shop_url_must_start_with_https": "Shop URL must start with https://",
+  "home": "Home",
+  "my_account": "My account",
+  "update_profile": "Update Profile",
+  "update_profile_details": "Update Profile Details",
+  "invalid_phone_number": "Phone number must be at least 10 digits",
+  "register": {
+    "fillAllFields": "Please fill in all fields"
+  }
+}
