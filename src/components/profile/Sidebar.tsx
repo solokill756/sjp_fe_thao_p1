@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Sidebar() {
   const { t } = useTranslation('profile');
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) => state.auth.user);
   return (
     <aside className="lg:col-span-1">
       <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -16,7 +16,9 @@ export default function Sidebar() {
           </div>
           <div>
             <p className="text-sm text-gray-500">{t('welcome_back')}</p>
-            <p className="font-semibold text-gray-800">{user.username}</p>
+            <p className="font-semibold text-gray-800">
+              {user ? user.username : 'Guest'}
+            </p>
           </div>
         </div>
         <nav className="mt-6 space-y-1">
