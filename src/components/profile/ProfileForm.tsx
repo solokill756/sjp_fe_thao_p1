@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Input from '../common/Input';
 import Button from '../common/Button';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../app/store';
+import {
+  useGetUserIdQuery,
+  usePutUserMutation,
+} from '../../features/api/apiSlice';
+import { LoadingSpinner } from '../common/Loading';
+import { NotFoundPage, ServerErrorPage } from '../error';
 
 interface VendorFormData {
   firstName: string;
   lastName: string;
-  shopName: string;
-  shopURL: string;
   phoneNumber: string;
-  termsAccepted: boolean;
 }
 
 export default function ProfileForm() {
@@ -18,11 +23,25 @@ export default function ProfileForm() {
   const [formData, setFormData] = useState<VendorFormData>({
     firstName: '',
     lastName: '',
-    shopName: '',
-    shopURL: '',
     phoneNumber: '',
-    termsAccepted: false,
   });
+  const id = useSelector((state: RootState) => state.auth.user!.id);
+  const [putUser, { isLoading, isError }] = usePutUserMutation();
+  const {
+    data: userData,
+    isLoading: isUserLoading,
+    isError: isUserError,
+  } = useGetUserIdQuery(id);
+
+  useEffect(() => {
+    if (userData) {
+      setFormData({
+        firstName: userData.firstName || '',
+        lastName: userData.lastName || '',
+        phoneNumber: userData.phoneNumber || '',
+      });
+    }
+  }, [userData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -32,7 +51,7 @@ export default function ProfileForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const emptyFields = Object.keys(formData).filter(
@@ -47,7 +66,39 @@ export default function ProfileForm() {
       toast.error(t('invalid_phone_number'));
       return;
     }
+
+    if (formData.phoneNumber.length < 10) {
+      toast.error(t('phone_number_invalid'));
+      return;
+    }
+
+    try {
+      await putUser({ id, ...userData, ...formData }).unwrap();
+      toast.success(t('update_success'));
+    } catch (error) {
+      toast.error(t('update_failed'));
+    }
   };
+
+  if (isLoading) {
+    return (
+      <LoadingSpinner size="large" fullScreen text={t('updating_profile')} />
+    );
+  }
+
+  if (isError) {
+    return <ServerErrorPage />;
+  }
+
+  if (isUserLoading) {
+    return (
+      <LoadingSpinner size="large" fullScreen text={t('loading_profile')} />
+    );
+  }
+
+  if (isUserError) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className="lg:col-span-3">

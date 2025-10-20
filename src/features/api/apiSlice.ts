@@ -7,6 +7,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || 'http://localhost:3000',
   }),
+
   tagTypes: ['User'],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
@@ -59,6 +60,37 @@ export const apiSlice = createApi({
         }
       },
     }),
+    putUser: builder.mutation<User | null, Partial<User> & { id: string }>({
+      query: ({ id, ...body }) => ({
+        url: `/users/${id}`,
+        method: 'PUT',
+        body,
+      }),
+
+      async onQueryStarted({ id, ...patch }, { queryFulfilled, dispatch }) {
+        try {
+          const { data } = await queryFulfilled;
+          if (data) {
+            const userToStore = getUserWithoutPassword(data);
+            const storedUser = localStorage.getItem('loggedInUser');
+            if (storedUser) {
+              const parsedStoredUser = JSON.parse(storedUser);
+              if (parsedStoredUser.id === id) {
+                localStorage.setItem(
+                  'loggedInUser',
+                  JSON.stringify(userToStore)
+                );
+                dispatch(setCredentials(userToStore));
+              }
+            }
+          }
+        } catch (error) {
+          console.error('Lỗi khi cập nhật người dùng:', error);
+        }
+      },
+
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'User', id }],
+    }),
   }),
 });
 
@@ -69,4 +101,5 @@ export const {
   useGetUserByEmailQuery,
   useLazyGetUserByEmailQuery,
   useLoginMutation,
+  usePutUserMutation,
 } = apiSlice;

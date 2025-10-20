@@ -39,6 +39,7 @@ export default function LoginForm() {
         password: formData.password,
       }).unwrap();
 
+      console.log('Login result:', result);
       if (!result) {
         toast.error(t('login.invalidCredentials'));
         return;

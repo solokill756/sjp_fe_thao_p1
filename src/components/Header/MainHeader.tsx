@@ -39,7 +39,6 @@ export default function MainHeader() {
 
   const handleLogout = () => {
     dispatch(logOut());
-    localStorage.removeItem('loggedInUser');
     toast.success(t('mainHeader.logoutSuccess'));
     navigate('/auth?tab=login');
   };
