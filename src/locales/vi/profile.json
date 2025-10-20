@@ -23,5 +23,15 @@
   "register": {
     "fillAllFields": "Vui lòng điền vào tất cả các trường"
   },
-  "guest": "Khách"
+  "guest": "Khách",
+  "phone_number_invalid": "Số điện thoại không hợp lệ",
+  "update_success": "Cập nhật hồ sơ thành công",
+  "update_failed": "Cập nhật hồ sơ thất bại",
+  "updating_profile": "Đang cập nhật hồ sơ...",
+  "loading_profile": "Đang tải hồ sơ...",
+  "profile_information": "Thông tin hồ sơ",
+  "personal_details": "Chi tiết cá nhân",
+  "contact_information": "Thông tin liên hệ",
+  "save_changes": "Lưu thay đổi",
+  "cancel": "Hủy"
 }
