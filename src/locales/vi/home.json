@@ -1,0 +1,87 @@
+{
+  "promotionalBanners": {
+    "1": {
+      "preTitle": "Chỉ tuần này",
+      "title": "Chúng tôi cung cấp cho bạn sản phẩm chất lượng tốt nhất",
+      "subtitle": "Nơi mua sắm cho gia đình"
+    },
+    "2": {
+      "preTitle": "Chỉ tuần này",
+      "title": "Chúng tôi làm cho việc mua sắm thực phẩm của bạn thú vị hơn",
+      "subtitle": "Tỏa sáng buổi sáng..."
+    },
+    "3": {
+      "preTitle": "Chỉ tuần này",
+      "title": "Siêu thị giúp bạn tiết kiệm tiền",
+      "subtitle": "Bữa sáng tuyệt vời hơn"
+    }
+  },
+  "bannerCard": {
+    "grocery": {
+      "preTitle": "Chỉ tuần này",
+      "title": "Mua sắm thực phẩm dễ dàng với chúng tôi",
+      "subtitle": "Hãy nuôi dưỡng gia đình bạn bằng những gì tốt nhất"
+    },
+    "needs": {
+      "preTitle": "Chỉ tuần này",
+      "title": "Đáp ứng mọi nhu cầu hàng ngày tại đây",
+      "subtitle": "Một kiểu cửa hàng tạp hóa khác biệt"
+    }
+  },
+  "heroSection": {
+    "slide1": {
+      "preTitle": "Giảm giá cuối tuần",
+      "title": "Mua sắm với chúng tôi cho chất lượng tốt hơn và giá tốt nhất",
+      "subtitle": "Chúng tôi đã chuẩn bị các ưu đãi đặc biệt cho bạn trên các sản phẩm tạp hóa. Đừng bỏ lỡ những cơ hội này..."
+    },
+    "slide2": {
+      "preTitle": "Thực phẩm tươi sống",
+      "title": "Nhận các nhu yếu phẩm hàng ngày giao tận nơi cho bạn",
+      "subtitle": "Chất lượng tốt nhất, được chọn lọc mỗi ngày cho gia đình bạn."
+    }
+  },
+  "featuredProducts": "Sản phẩm nổi bật",
+  "bestSellers": "Bán chạy nhất",
+  "editorsPick": "Lựa chọn của biên tập viên",
+  "viewAll": "Xem tất cả",
+  "shopNow": "Mua ngay",
+  "healthSafety": "Tại cửa hàng hoặc online, sức khỏe & an toàn của bạn là ưu tiên hàng đầu",
+  "healthSafetyDesc": "Mỗi nhân viên đều được trả thêm để đảm bảo an toàn khi làm việc trong mùa dịch",
+  "dontMiss": "Đừng bỏ lỡ các ưu đãi hiện tại đến hết tháng này.",
+  "getSomeProducts": "Nhận các sản phẩm với ưu đãi đặc biệt",
+  "loading": "Đang tải...",
+  "error": "Lỗi",
+  "categoryProducts": "Sản phẩm theo danh mục",
+  "specialDiscount": "Giảm giá đặc biệt",
+  "heroTitle": "Mua sắm với chúng tôi\ncho chất lượng tốt hơn và\ngiá tốt nhất",
+  "heroSubtitle": "Chúng tôi đã chuẩn bị các ưu đãi đặc biệt cho bạn trên các sản phẩm tạp hóa. Đừng bỏ lỡ những cơ hội này...",
+  "sale": "GIẢM GIÁ",
+  "organic": "Hữu cơ",
+  "addToCart": "Thêm vào giỏ hàng",
+  "available": "Còn lại",
+  "ourNews": "Tin tức",
+  "latestNews": "Nhận tin tức và ưu đãi mới nhất",
+  "bannerTag": "Chỉ tuần này",
+  "bannerTitle": "Chúng tôi cung cấp cho bạn sản phẩm chất lượng tốt nhất",
+  "bannerSubtitle": "Nơi mua sắm cho gia đình",
+  "category": {
+    "1": "Rau củ & Trái cây",
+    "2": "Sữa & Thai sản",
+    "3": "Đồ uống",
+    "4": "Thịt & Hải sản",
+    "5": "Bánh quy & Đồ ăn vặt",
+    "6": "Bánh mì & Bánh ngọt",
+    "7": "Bữa sáng & Sữa",
+    "8": "Đồ đông lạnh",
+    "9": "Tạp hóa & Thiết yếu"
+  },
+  "salePercentage": "Giảm {{sale}}%",
+  "reviewCount": "{{count}} đánh giá",
+  "price": "{{price}}₫",
+  "originalPrice": "{{price}}₫",
+  "inStock": "Còn hàng",
+  "outOfStock": "Hết hàng",
+  "bestSellersSubTitle": "Sản phẩm bán chạy nhất của chúng tôi trong tuần",
+  "editorsPickSubTitle": "Sản phẩm được biên tập viên lựa chọn",
+  "featuredProductsSubTitle": "Khám phá các sản phẩm nổi bật của chúng tôi"
+}

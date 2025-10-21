@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Profile() {
   const { t } = useTranslation('profile');
+
   return (
     <ProtectedRoute>
       <div className="bg-white min-h-screen">
@@ -13,7 +14,7 @@ export default function Profile() {
             <ol className="inline-flex items-center space-x-1 md:space-x-3 text-sm">
               <li className="inline-flex items-center">
                 <a
-                  href="#"
+                  href="/"
                   className="text-gray-500 hover:text-gray-700 transition-colors"
                 >
                   {t('home')}
