@@ -1,0 +1,22 @@
+{
+  "title": "Shop Store",
+  "subtitle": "Find the best products at the best prices.",
+  "filterResults": "Filter Results",
+  "noProducts": "No products found",
+  "tryAdjustingFilters": "Try adjusting your filters to find what you're looking for.",
+  "showingResults": "Showing all {{count}} results",
+  "defaultSorting": "Default sorting",
+  "sortPriceAsc": "Sort by price: low to high",
+  "sortPriceDesc": "Sort by price: high to low",
+  "sortRatingDesc": "Sort by rating",
+  "showN": "Show {{count}}",
+  "filters": "Filters",
+  "filterByPrice": "Filter by Price",
+  "price": "Price",
+  "productCategories": "Product Categories",
+  "productStatus": "Product Status",
+  "inStock": "In Stock",
+  "onSale": "On Sale",
+  "previous": "Previous",
+  "next": "Next"
+}

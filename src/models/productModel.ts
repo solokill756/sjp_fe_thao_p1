@@ -9,4 +9,6 @@ export interface Product {
   originalPrice?: number;
   inStock: boolean;
   tags?: string[];
+  description?: string;
+  categoryId: string;
 }

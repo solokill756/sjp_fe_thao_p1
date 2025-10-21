@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import footerEn from './locales/en/footer.json';
+import shopEn from './locales/en/shop.json';
 import headerEn from './locales/en/header.json';
 import authEn from './locales/en/auth.json';
 import errorEn from './locales/en/error.json';
@@ -8,6 +9,7 @@ import commonEn from './locales/en/common.json';
 import profileEn from './locales/en/profile.json';
 import homeEn from './locales/en/home.json';
 import footerVi from './locales/vi/footer.json';
+import shopVi from './locales/vi/shop.json';
 import headerVi from './locales/vi/header.json';
 import authVi from './locales/vi/auth.json';
 import errorVi from './locales/vi/error.json';
@@ -38,6 +40,7 @@ i18n.use(initReactI18next).init({
       home: homeEn,
       profile: profileEn,
       home: homeEn,
+      shop: shopEn,
     },
     vi: {
       header: headerVi,
@@ -48,6 +51,7 @@ i18n.use(initReactI18next).init({
       home: homeVi,
       profile: profileVi,
       home: homeVi,
+      shop: shopVi,
     },
   },
   lng: defaultLanguage,

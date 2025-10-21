@@ -22,7 +22,7 @@ export const getDropdownMenus = (t: any): DropdownMenuConfig[] => [
     key: 'shop',
     selectedValue: t('navigation.shop'),
     values: ['All Products', 'Featured Items', 'New Arrivals'],
-    links: ['#', '#', '#'],
+    links: ['/shop', '#', '#'],
   },
 ];
 
