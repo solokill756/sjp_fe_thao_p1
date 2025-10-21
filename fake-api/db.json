@@ -55,105 +55,195 @@
     {
       "id": "1",
       "name": "Fruits & Vegetables",
-      "parentId": null,
-      "image": "https://i.imgur.com/sY21O2A.jpeg"
+      "imageUrl": "/list02.png"
     },
     {
       "id": "2",
-      "name": "Meat & Seafood",
-      "parentId": null,
-      "image": "https://i.imgur.com/zJ9e4Zm.jpeg"
+      "name": "Dairy & Pregnancy",
+      "imageUrl": "/list05.png"
     },
+
     {
       "id": "3",
       "name": "Beverages",
-      "parentId": null,
-      "image": "https://i.imgur.com/dAmYj6r.jpeg"
+      "imageUrl": "/list08.png"
     },
     {
       "id": "4",
-      "name": "Fresh Fruits",
-      "parentId": 1,
-      "image": "https://i.imgur.com/8zL5h4w.jpeg"
+      "name": "Meats & Seafood",
+      "imageUrl": "/list11.png"
     },
+
     {
       "id": "5",
-      "name": "Fresh Vegetables",
-      "parentId": 1,
-      "image": "https://i.imgur.com/JPlk3kR.jpeg"
+      "name": "Biscuits & Snacks",
+      "imageUrl": "/list14.png"
+    },
+    {
+      "id": "6",
+      "name": "Breads & Bakery",
+      "imageUrl": "/list17.png"
+    },
+
+    {
+      "id": "7",
+      "name": "Breakfast & Dairy",
+      "imageUrl": "/list20.png"
+    },
+    {
+      "id": "8",
+      "name": "Frozen Foods",
+      "imageUrl": "/list23.png"
+    },
+    {
+      "id": "9",
+      "name": "Grocery & Staples",
+      "imageUrl": "/list26.png"
     }
   ],
   "products": [
     {
-      "id": "101",
-      "name": "Fresh Organic Bananas",
-      "description": "Fresh and delicious organic bananas, grown to safety standards.",
-      "price": 25000,
-      "originalPrice": 30000,
-      "images": [
-        "https://i.imgur.com/r8pA9aZ.jpeg",
-        "https://i.imgur.com/ODi2S5m.jpeg"
-      ],
-      "categoryId": 4,
-      "status": "In Stock",
-      "rating": 4.8,
-      "stockQuantity": 150
+      "id": "1",
+      "name": "Great Value Rising Crust Frozen Supreme",
+      "imageUrl": "/Great Value Rising Crust Frozen Supreme.jpeg",
+      "salePercentage": 31,
+      "rating": 5,
+      "reviewCount": 120,
+      "price": 8.99,
+      "originalPrice": 12.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
     },
     {
-      "id": "102",
-      "name": "Dalat Strawberries",
-      "description": "Juicy strawberries from Dalat, with a sweet and refreshing taste.",
-      "price": 120000,
-      "originalPrice": null,
-      "images": [
-        "https://i.imgur.com/8zL5h4w.jpeg"
-      ],
-      "categoryId": 4,
-      "status": "In Stock",
-      "rating": 4.9,
-      "stockQuantity": 80
+      "id": "2",
+      "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
+      "imageUrl": "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
+      "salePercentage": 12,
+      "rating": 5,
+      "reviewCount": 85,
+      "price": 21.9,
+      "originalPrice": 24.99,
+      "inStock": true,
+      "categoryId": "1",
+      "tags": ["featured", "bestseller"]
     },
     {
-      "id": "103",
-      "name": "Broccoli",
-      "description": "Fresh broccoli, rich in nutrients for family meals.",
-      "price": 15000,
-      "originalPrice": null,
-      "images": [
-        "https://i.imgur.com/JPlk3kR.jpeg"
-      ],
-      "categoryId": 5,
-      "status": "Out of Stock",
-      "rating": 4.5,
-      "stockQuantity": 0
+      "id": "3",
+      "name": "Red Baron Frozen Hand Tossed 4-Meat Pizza",
+      "imageUrl": "/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg",
+      "salePercentage": 21,
+      "rating": 5,
+      "reviewCount": 95,
+      "price": 14.99,
+      "originalPrice": 18.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
     },
     {
-      "id": "104",
-      "name": "Imported Beef Tenderloin",
-      "description": "Tender beef, suitable for steak or grilling.",
-      "price": 250000,
-      "originalPrice": 280000,
-      "images": [
-        "https://i.imgur.com/zJ9e4Zm.jpeg"
-      ],
-      "categoryId": 2,
-      "status": "In Stock",
-      "rating": 4.7,
-      "stockQuantity": 50
+      "id": "4",
+      "name": "100 Percent Apple Juice - 64 fl oz Bottle",
+      "imageUrl": "/413.png",
+      "salePercentage": 92,
+      "rating": 5,
+      "reviewCount": 450,
+      "price": 0.5,
+      "originalPrice": 5.99,
+      "inStock": true,
+      "categoryId": "3",
+      "tags": ["featured", "bestseller"]
     },
     {
-      "id": "105",
-      "name": "Pure Orange Juice",
-      "description": "100% pressed orange juice with no sugar and no preservatives.",
-      "price": 35000,
-      "originalPrice": null,
-      "images": [
-        "https://i.imgur.com/dAmYj6r.jpeg"
-      ],
-      "categoryId": 3,
-      "status": "In Stock",
-      "rating": 4.6,
-      "stockQuantity": 120
+      "id": "5",
+      "name": "Angel Soft Toilet Paper, 9Mega Rolls",
+      "imageUrl": "/372.png",
+      "salePercentage": 10,
+      "rating": 5,
+      "reviewCount": 320,
+      "price": 8.99,
+      "originalPrice": 9.99,
+      "inStock": true,
+      "categoryId": "9",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "6",
+      "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
+      "imageUrl": "/357.png",
+      "salePercentage": 17,
+      "rating": 5,
+      "reviewCount": 180,
+      "price": 14.99,
+      "originalPrice": 17.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "7",
+      "name": "Cantaloupe Melon Fresh Organic Cut",
+      "imageUrl": "/365.png",
+      "salePercentage": 42,
+      "rating": 4,
+      "reviewCount": 140,
+      "price": 2.45,
+      "originalPrice": 4.19,
+      "inStock": true,
+      "categoryId": "1",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "8",
+      "name": "Alcohol Grapefruit Plasma Sparkling Vodka Cocktail",
+      "imageUrl": "/440.png",
+      "salePercentage": 10,
+      "rating": 5,
+      "reviewCount": 95,
+      "price": 8.99,
+      "originalPrice": 9.99,
+      "inStock": true,
+      "categoryId": "9",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "9",
+      "name": "Vitamineramic aam sugar lyopheat electroyte",
+      "imageUrl": "/444.png",
+      "salePercentage": 44,
+      "rating": 4,
+      "reviewCount": 210,
+      "price": 4.99,
+      "originalPrice": 8.99,
+      "inStock": true,
+      "categoryId": "2",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "10",
+      "name": "Great Value Rising Crust Frozen Pizza, Supreme",
+      "imageUrl": "/Great Value Rising Crust Frozen Pizza, Supreme.jpeg",
+      "salePercentage": 31,
+      "rating": 5,
+      "reviewCount": 75,
+      "price": 8.99,
+      "originalPrice": 12.99,
+      "inStock": true,
+      "categoryId": "8",
+      "tags": ["featured", "bestseller"]
+    },
+    {
+      "id": "11",
+      "name": "Ocean Spray Pulp Free Orange Juice - 52 fl oz",
+      "imageUrl": "/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg",
+      "salePercentage": 22,
+      "rating": 4,
+      "reviewCount": 110,
+      "price": 14.12,
+      "originalPrice": 18.2,
+      "inStock": true,
+      "categoryId": "3",
+      "tags": ["featured", "bestseller"]
     }
   ],
   "reviews": [
@@ -225,10 +315,7 @@
   "chats": [
     {
       "id": "1",
-      "participants": [
-        1,
-        2
-      ],
+      "participants": [1, 2],
       "messages": [
         {
           "senderId": 2,
