@@ -8,16 +8,19 @@ interface ProductGridProps {
   title: string;
   products: Product[];
   showViewAll?: boolean;
+  viewMode: 'grid' | 'list';
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   title,
   products,
   showViewAll = true,
+  viewMode,
 }) => {
   const { t } = useTranslation('home');
+
   return (
-    <div className="mb-8">
+    <div className="mb-8 w-full">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900">{t(title, title)}</h2>
         {showViewAll && (
@@ -29,9 +32,16 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           </Button>
         )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+
+      <div
+        className={
+          viewMode === 'grid'
+            ? 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'
+            : 'flex flex-col gap-4'
+        }
+      >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} viewMode={viewMode} />
         ))}
       </div>
     </div>
