@@ -2,6 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import i18n from '../../i18n';
 import { getUserWithoutPassword, type User } from '../../models/userModel';
 import { setCredentials } from '../auth/authSlice';
+import type { Product } from '../../models/productModel';
+import type { Category } from '../../models/categoryModel';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -9,7 +11,7 @@ export const apiSlice = createApi({
     baseUrl: import.meta.env.VITE_BASE_URL || 'http://localhost:3000',
   }),
 
-  tagTypes: ['User'],
+  tagTypes: ['User', 'Product', 'Category'],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
       query: () => '/users',
@@ -106,6 +108,12 @@ export const apiSlice = createApi({
 
       invalidatesTags: (_result, _error, { id }) => [{ type: 'User', id }],
     }),
+    getProducts: builder.query<Product[], void>({
+      query: () => '/products',
+    }),
+    getCategories: builder.query<Category[], void>({
+      query: () => '/categories',
+    }),
   }),
 });
 
@@ -117,4 +125,6 @@ export const {
   useLazyGetUserByEmailQuery,
   useLoginMutation,
   usePutUserMutation,
+  useGetProductsQuery,
+  useGetCategoriesQuery,
 } = apiSlice;
