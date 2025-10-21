@@ -9,7 +9,7 @@ import {
 } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import type { RootState, AppDispatch } from '../../app/store';
@@ -74,9 +74,12 @@ export default function MainHeader() {
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex items-center mr-6">
-              <div className="bg-orange-500 p-2 rounded-lg mr-2">
-                <HiShoppingBag className="w-6 h-6 text-white" />
-              </div>
+              <Link to="/" className="text-decoration-none cursor-pointer">
+                {' '}
+                <div className="bg-orange-500 p-2 rounded-lg mr-2">
+                  <HiShoppingBag className="w-6 h-6 text-white" />
+                </div>
+              </Link>
               <span className="text-2xl font-bold text-gray-800">
                 {t('mainHeader.logo')}
               </span>

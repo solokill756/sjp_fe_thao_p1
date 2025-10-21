@@ -6,6 +6,7 @@ import authEn from './locales/en/auth.json';
 import errorEn from './locales/en/error.json';
 import commonEn from './locales/en/common.json';
 import profileEn from './locales/en/profile.json';
+import homeEn from './locales/en/home.json';
 import footerVi from './locales/vi/footer.json';
 import headerVi from './locales/vi/header.json';
 import authVi from './locales/vi/auth.json';
@@ -14,6 +15,7 @@ import commonVi from './locales/vi/common.json';
 import homeEn from './locales/en/home.json';
 import homeVi from './locales/vi/home.json';
 import profileVi from './locales/vi/profile.json';
+import homeVi from './locales/vi/home.json';
 
 // Detect language from localStorage or browser
 const savedLanguage =
@@ -35,6 +37,7 @@ i18n.use(initReactI18next).init({
       common: commonEn,
       home: homeEn,
       profile: profileEn,
+      home: homeEn,
     },
     vi: {
       header: headerVi,
@@ -44,6 +47,7 @@ i18n.use(initReactI18next).init({
       common: commonVi,
       home: homeVi,
       profile: profileVi,
+      home: homeVi,
     },
   },
   lng: defaultLanguage,
