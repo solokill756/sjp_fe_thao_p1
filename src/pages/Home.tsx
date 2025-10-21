@@ -1,22 +1,55 @@
 import ProtectedRoute from '../components/common/ProtectedRoute';
-import FeaturedSection from '../components/home/FeaturedSection';
 import HeroSection from '../components/home/HeroSection';
 import CategorySection from '../components/home/CategorySection';
-import BestSellersSection from '../components/home/BestSellersSection';
-import EditorPickSection from '../components/home/EditorPickSection';
+import ProductGrid from '../components/home/ProductGrid';
+
 import PromotionalBanners from '../components/home/PromotionalBanners';
-import { categories, products } from '../components/data/data';
+import { useTranslation } from 'react-i18next';
+import {
+  useGetCategoriesQuery,
+  useGetProductsQuery,
+} from '../features/api/apiSlice';
+import { LoadingSpinner } from '../components/common/Loading';
+import { ServerErrorPage } from '../components/error';
+import { BestSellersSection, EditorPickSection } from '../components/home';
+import FeaturedSection from '../components/home/FeaturedSection';
 
 export default function Home() {
-  const featuredProducts = products
-    .filter((p) => p.tags.includes('featured'))
-    .slice(0, 6);
-  const bestSellerProducts = products
-    .filter((p) => p.tags.includes('bestseller'))
-    .slice(0, 6);
-  const editorPickProducts = products
-    .filter((p) => p.tags.includes('editors-pick'))
-    .slice(0, 5);
+  const { t } = useTranslation('home');
+  const {
+    data: categoriesData,
+    isLoading: isLoadingCategories,
+    isError: isErrorCategories,
+  } = useGetCategoriesQuery();
+  const {
+    data: productsData,
+    isLoading: isLoadingProducts,
+    isError: isErrorProducts,
+  } = useGetProductsQuery();
+
+  if (isLoadingProducts || isLoadingCategories) {
+    return <LoadingSpinner />;
+  }
+
+  if (isErrorProducts || isErrorCategories) {
+    return <ServerErrorPage />;
+  }
+
+  const featuredProducts = productsData
+    ? productsData.filter((product) => product.tags?.includes('featured') || [])
+    : [];
+
+  const bestSellerProducts = productsData
+    ? productsData.filter(
+        (product) => product.tags?.includes('bestseller') || []
+      )
+    : [];
+
+  const editorPickProducts = productsData
+    ? productsData.filter(
+        (product) => product.tags?.includes('editorPicks') || []
+      )
+    : [];
 
   return (
     <ProtectedRoute>
@@ -24,12 +57,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           {/* Hero Section */}
           <HeroSection />
-
-          {/* Category Icons */}
-          <CategorySection categories={categories} />
-
-          {/* Featured Products */}
-          <FeaturedSection featuredProducts={featuredProducts} />
+          <CategorySection categories={categoriesData || []} />
+          {featuredProducts.length > 0 && (
+            <FeaturedSection featuredProducts={featuredProducts} />
+          )}
 
           {/* BestSellers Section */}
           {bestSellerProducts.length > 0 && (
