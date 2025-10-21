@@ -6,4 +6,3 @@ export { default as BestSellersSection } from './BestSellersSection';
 export { default as EditorPickSection } from './EditorPickSection';
 export { default as SafetyBanner } from './SafetyBanner';
 export { default as PromotionalBanners } from './PromotionalBanners';
-export { default as NewsSection } from './NewsSection';
