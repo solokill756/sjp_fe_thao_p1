@@ -1,0 +1,254 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Van",
+      "lastName": "Nguyen",
+      "email": "admin@example.com",
+      "password": "adminpassword",
+      "role": "admin",
+      "phone": "0987654321",
+      "address": {
+        "street": "123 ABC Street",
+        "city": "Quy Nhon",
+        "zipCode": "590000",
+        "country": "Vietnam"
+      }
+    },
+    {
+      "id": "2",
+      "firstName": "Thi",
+      "lastName": "Tran",
+      "email": "customer1@example.com",
+      "password": "customerpassword",
+      "role": "customer",
+      "phone": "0123456789",
+      "address": {
+        "street": "456 XYZ Street",
+        "city": "Quy Nhon",
+        "zipCode": "590000",
+        "country": "Vietnam"
+      }
+    },
+    {
+      "id": "0f94",
+      "username": "hosithao",
+      "email": "hosithao1622004@gmail.com",
+      "password": "123456789",
+      "role": "customer"
+    },
+    {
+      "id": "eb81",
+      "username": "admin",
+      "email": "hosithao162200411@gmail.com",
+      "password": "123456789",
+      "role": "customer"
+    },
+    {
+      "id": "617d",
+      "username": "hồ Sỹ Thảo",
+      "email": "hosithao1622004111@gmail.com",
+      "password": "123456789",
+      "role": "customer"
+    },
+    {
+      "id": "d33e",
+      "username": "ho.sy.thao",
+      "email": "khanhdang3152@gmail.com",
+      "password": "123456789",
+      "role": "customer"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Fruits & Vegetables",
+      "parentId": null,
+      "image": "https://i.imgur.com/sY21O2A.jpeg"
+    },
+    {
+      "id": "2",
+      "name": "Meat & Seafood",
+      "parentId": null,
+      "image": "https://i.imgur.com/zJ9e4Zm.jpeg"
+    },
+    {
+      "id": "3",
+      "name": "Beverages",
+      "parentId": null,
+      "image": "https://i.imgur.com/dAmYj6r.jpeg"
+    },
+    {
+      "id": "4",
+      "name": "Fresh Fruits",
+      "parentId": 1,
+      "image": "https://i.imgur.com/8zL5h4w.jpeg"
+    },
+    {
+      "id": "5",
+      "name": "Fresh Vegetables",
+      "parentId": 1,
+      "image": "https://i.imgur.com/JPlk3kR.jpeg"
+    }
+  ],
+  "products": [
+    {
+      "id": "101",
+      "name": "Fresh Organic Bananas",
+      "description": "Fresh and delicious organic bananas, grown to safety standards.",
+      "price": 25000,
+      "originalPrice": 30000,
+      "images": [
+        "https://i.imgur.com/r8pA9aZ.jpeg",
+        "https://i.imgur.com/ODi2S5m.jpeg"
+      ],
+      "categoryId": 4,
+      "status": "In Stock",
+      "rating": 4.8,
+      "stockQuantity": 150
+    },
+    {
+      "id": "102",
+      "name": "Dalat Strawberries",
+      "description": "Juicy strawberries from Dalat, with a sweet and refreshing taste.",
+      "price": 120000,
+      "originalPrice": null,
+      "images": [
+        "https://i.imgur.com/8zL5h4w.jpeg"
+      ],
+      "categoryId": 4,
+      "status": "In Stock",
+      "rating": 4.9,
+      "stockQuantity": 80
+    },
+    {
+      "id": "103",
+      "name": "Broccoli",
+      "description": "Fresh broccoli, rich in nutrients for family meals.",
+      "price": 15000,
+      "originalPrice": null,
+      "images": [
+        "https://i.imgur.com/JPlk3kR.jpeg"
+      ],
+      "categoryId": 5,
+      "status": "Out of Stock",
+      "rating": 4.5,
+      "stockQuantity": 0
+    },
+    {
+      "id": "104",
+      "name": "Imported Beef Tenderloin",
+      "description": "Tender beef, suitable for steak or grilling.",
+      "price": 250000,
+      "originalPrice": 280000,
+      "images": [
+        "https://i.imgur.com/zJ9e4Zm.jpeg"
+      ],
+      "categoryId": 2,
+      "status": "In Stock",
+      "rating": 4.7,
+      "stockQuantity": 50
+    },
+    {
+      "id": "105",
+      "name": "Pure Orange Juice",
+      "description": "100% pressed orange juice with no sugar and no preservatives.",
+      "price": 35000,
+      "originalPrice": null,
+      "images": [
+        "https://i.imgur.com/dAmYj6r.jpeg"
+      ],
+      "categoryId": 3,
+      "status": "In Stock",
+      "rating": 4.6,
+      "stockQuantity": 120
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "productId": 101,
+      "userId": 2,
+      "rating": 5,
+      "comment": "The bananas are very delicious and fresh. I will continue to support the shop!",
+      "createdAt": "2025-10-12T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "productId": 102,
+      "userId": 2,
+      "rating": 4,
+      "comment": "The strawberries are a bit small but very sweet.",
+      "createdAt": "2025-10-13T14:30:00Z"
+    }
+  ],
+  "cart": [
+    {
+      "id": "2",
+      "userId": 2,
+      "items": [
+        {
+          "productId": 101,
+          "quantity": 2
+        },
+        {
+          "productId": 105,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": 2,
+      "items": [
+        {
+          "productId": 102,
+          "name": "Dalat Strawberries",
+          "quantity": 1,
+          "price": 120000
+        }
+      ],
+      "totalAmount": 135000,
+      "status": "Completed",
+      "shippingAddress": {
+        "street": "456 XYZ Street",
+        "city": "Quy Nhon",
+        "zipCode": "590000",
+        "country": "Vietnam"
+      },
+      "createdAt": "2025-10-10T09:00:00Z"
+    }
+  ],
+  "productSuggestions": [
+    {
+      "id": "1",
+      "userId": 2,
+      "suggestion": "The shop should import Dak Lak avocados.",
+      "status": "Pending",
+      "createdAt": "2025-10-14T11:20:00Z"
+    }
+  ],
+  "chats": [
+    {
+      "id": "1",
+      "participants": [
+        1,
+        2
+      ],
+      "messages": [
+        {
+          "senderId": 2,
+          "text": "Hello, can you advise me on the strawberry product?",
+          "timestamp": "2025-10-14T09:00:00Z"
+        },
+        {
+          "senderId": 1,
+          "text": "Hello, our strawberries are grade A, freshness guaranteed.",
+          "timestamp": "2025-10-14T09:01:00Z"
+        }
+      ]
+    }
+  ]
+}
