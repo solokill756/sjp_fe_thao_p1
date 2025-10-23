@@ -1,7 +1,9 @@
+import type { Review } from './review';
+
 export interface Product {
   id: string;
   name: string;
-  imageUrl: string;
+  imageUrls: string[];
   salePercentage?: number;
   rating: number;
   reviewCount: number;
@@ -11,4 +13,5 @@ export interface Product {
   tags?: string[];
   description?: string;
   categoryId: string;
+  reviews?: Review[];
 }

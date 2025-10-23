@@ -1,3 +1,5 @@
+import type { Product } from '../models/productModel';
+
 export const heroData = {
   title: 'Shopping with us for better quality and the best price',
   subtitle:
@@ -88,11 +90,57 @@ export const promotionalBanners = [
   },
 ];
 
-export const products = [
+function getRandomImages(mainImage: string, count: number = 3) {
+  const images = [
+    '132.png',
+    '342.png',
+    '349.png',
+    '353.png',
+    '357.png',
+    '365.png',
+    '372.png',
+    '384.png',
+    '388.png',
+    '396.png',
+    '400.png',
+    '403.png',
+    '404.png',
+    '408.png',
+    '413.png',
+    '424.png',
+    '432.png',
+    '436.png',
+    '440.png',
+    '444.png',
+    '500.jpg',
+    'banner-18.jpg.png',
+    'banner-19.jpg.png',
+    'banner-20.jpg.png',
+    'banner-21.jpg.png',
+    'bg.png',
+    'list02.png',
+    'list05.png',
+    'list08.png',
+    'list11.png',
+    'list14.png',
+    'list17.png',
+    'list20.png',
+    'list23.png',
+    'list26.png',
+  ];
+  const filtered = images.filter((img) => !mainImage.includes(img));
+  const randoms = Array.from(
+    { length: count },
+    () => filtered[Math.floor(Math.random() * filtered.length)]
+  );
+  return [mainImage, ...randoms.map((img) => `/${img}`)];
+}
+
+export const products: Product[] = [
   {
     id: '1',
     name: 'Great Value Rising Crust Frozen Supreme',
-    imageUrl: '/Great Value Rising Crust Frozen Supreme.jpeg',
+    imageUrls: getRandomImages('/Great Value Rising Crust Frozen Supreme.jpeg'),
     salePercentage: 31,
     rating: 5,
     reviewCount: 120,
@@ -105,7 +153,9 @@ export const products = [
   {
     id: '2',
     name: 'Simple Kitchen Fit Sliced Strawberries - 10oz',
-    imageUrl: '/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg',
+    imageUrls: getRandomImages(
+      '/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg'
+    ),
     salePercentage: 12,
     rating: 5,
     reviewCount: 85,
@@ -118,7 +168,9 @@ export const products = [
   {
     id: '3',
     name: 'Red Baron Frozen Hand Tossed 4-Meat Pizza',
-    imageUrl: '/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg',
+    imageUrls: getRandomImages(
+      '/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg'
+    ),
     salePercentage: 21,
     rating: 5,
     reviewCount: 95,
@@ -131,7 +183,7 @@ export const products = [
   {
     id: '4',
     name: '100 Percent Apple Juice - 64 fl oz Bottle',
-    imageUrl: '/413.png',
+    imageUrls: getRandomImages('/413.png'),
     salePercentage: 92,
     rating: 5,
     reviewCount: 450,
@@ -144,7 +196,7 @@ export const products = [
   {
     id: '5',
     name: 'Angel Soft Toilet Paper, 9Mega Rolls',
-    imageUrl: '/372.png',
+    imageUrls: getRandomImages('/372.png'),
     salePercentage: 10,
     rating: 5,
     reviewCount: 320,
@@ -157,7 +209,7 @@ export const products = [
   {
     id: '6',
     name: 'California Pizza Kitchen Margherita, Crispy Thin Crust',
-    imageUrl: '/357.png',
+    imageUrls: getRandomImages('/357.png'),
     salePercentage: 17,
     rating: 5,
     reviewCount: 180,
@@ -170,7 +222,7 @@ export const products = [
   {
     id: '7',
     name: 'Cantaloupe Melon Fresh Organic Cut',
-    imageUrl: '/365.png',
+    imageUrls: getRandomImages('/365.png'),
     salePercentage: 42,
     rating: 4,
     reviewCount: 140,
@@ -183,7 +235,7 @@ export const products = [
   {
     id: '8',
     name: 'Alcohol Grapefruit Plasma Sparkling Vodka Cocktail',
-    imageUrl: '/440.png',
+    imageUrls: getRandomImages('/440.png'),
     salePercentage: 10,
     rating: 5,
     reviewCount: 95,
@@ -196,7 +248,7 @@ export const products = [
   {
     id: '9',
     name: 'Vitamineramic aam sugar lyopheat electroyte',
-    imageUrl: '/444.png',
+    imageUrls: getRandomImages('/444.png'),
     salePercentage: 44,
     rating: 4,
     reviewCount: 210,
@@ -209,7 +261,9 @@ export const products = [
   {
     id: '10',
     name: 'Great Value Rising Crust Frozen Pizza, Supreme',
-    imageUrl: '/Great Value Rising Crust Frozen Pizza, Supreme.jpeg',
+    imageUrls: getRandomImages(
+      '/Great Value Rising Crust Frozen Pizza, Supreme.jpeg'
+    ),
     salePercentage: 31,
     rating: 5,
     reviewCount: 75,
@@ -222,7 +276,9 @@ export const products = [
   {
     id: '11',
     name: 'Ocean Spray Pulp Free Orange Juice - 52 fl oz',
-    imageUrl: '/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg',
+    imageUrls: getRandomImages(
+      '/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg'
+    ),
     salePercentage: 22,
     rating: 4,
     reviewCount: 110,

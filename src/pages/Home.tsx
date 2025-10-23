@@ -50,7 +50,7 @@ export default function Home() {
         (product) => product.tags?.includes('editorPicks') || []
       )
     : [];
-
+  console.log('productsData:', productsData);
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
@@ -62,6 +62,7 @@ export default function Home() {
             <ProductGrid
               title={t('featuredProducts')}
               products={featuredProducts}
+              viewMode={'grid'}
             />
           )}
 

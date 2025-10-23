@@ -1,8 +1,9 @@
 import type { Product } from '../../models/productModel';
 import { useTranslation } from 'react-i18next';
-import { FaHeart, FaStar, FaRegStar, FaShoppingCart } from 'react-icons/fa';
+import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import Button from '../common/Button';
 import clsx from 'clsx';
+import StarRating from '../common/StarRating';
 
 interface ProductCardProps {
   product: Product;
@@ -11,16 +12,6 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
   const { t } = useTranslation('home');
-
-  const renderStars = () => {
-    return Array.from({ length: 5 }, (_, i) =>
-      i + 1 <= product.rating ? (
-        <FaStar key={i} className="w-4 h-4 text-yellow-400" />
-      ) : (
-        <FaRegStar key={i} className="w-4 h-4 text-gray-300" />
-      )
-    );
-  };
 
   return (
     <div
@@ -50,7 +41,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
         </button>
 
         <img
-          src={product.imageUrl}
+          src={product.imageUrls[0]}
           alt={product.name}
           className={clsx(
             'object-contain transition-transform duration-300 group-hover:scale-105',
@@ -76,7 +67,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
           </h3>
 
           <div className="flex items-center mb-2">
-            <div className="flex mr-2 gap-0.5">{renderStars()}</div>
+            <div className="flex mr-2 gap-0.5">
+              <StarRating rating={product.rating} />
+            </div>
 
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-semibold text-gray-800">
