@@ -8,6 +8,7 @@ import errorEn from './locales/en/error.json';
 import commonEn from './locales/en/common.json';
 import profileEn from './locales/en/profile.json';
 import homeEn from './locales/en/home.json';
+import productDetailEn from './locales/en/productDetail.json';
 import footerVi from './locales/vi/footer.json';
 import shopVi from './locales/vi/shop.json';
 import headerVi from './locales/vi/header.json';
@@ -16,6 +17,7 @@ import errorVi from './locales/vi/error.json';
 import commonVi from './locales/vi/common.json';
 import profileVi from './locales/vi/profile.json';
 import homeVi from './locales/vi/home.json';
+import productDetailVi from './locales/vi/productDetail.json';
 
 // Detect language from localStorage or browser
 const savedLanguage =
@@ -38,6 +40,7 @@ i18n.use(initReactI18next).init({
       profile: profileEn,
       home: homeEn,
       shop: shopEn,
+      productDetail: productDetailEn,
     },
     vi: {
       header: headerVi,
@@ -48,6 +51,7 @@ i18n.use(initReactI18next).init({
       profile: profileVi,
       home: homeVi,
       shop: shopVi,
+      productDetail: productDetailVi,
     },
   },
   lng: defaultLanguage,

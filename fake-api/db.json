@@ -105,7 +105,12 @@
     {
       "id": "1",
       "name": "Great Value Rising Crust Frozen Supreme",
-      "imageUrl": "/Great Value Rising Crust Frozen Supreme.jpeg",
+      "imageUrls": [
+        "/Great Value Rising Crust Frozen Supreme.jpeg",
+        "/365.png",
+        "/372.png",
+        "/349.png"
+      ],
       "salePercentage": 31,
       "rating": 5,
       "reviewCount": 120,
@@ -118,7 +123,12 @@
     {
       "id": "2",
       "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
-      "imageUrl": "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
+      "imageUrls": [
+        "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
+        "/353.png",
+        "/400.png",
+        "/424.png"
+      ],
       "salePercentage": 12,
       "rating": 5,
       "reviewCount": 85,
@@ -131,7 +141,12 @@
     {
       "id": "3",
       "name": "Red Baron Frozen Hand Tossed 4-Meat Pizza",
-      "imageUrl": "/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg",
+      "imageUrls": [
+        "/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg",
+        "/388.png",
+        "/440.png",
+        "/403.png"
+      ],
       "salePercentage": 21,
       "rating": 5,
       "reviewCount": 95,
@@ -144,7 +159,7 @@
     {
       "id": "4",
       "name": "100 Percent Apple Juice - 64 fl oz Bottle",
-      "imageUrl": "/413.png",
+      "imageUrls": ["/413.png", "/384.png", "/404.png", "/500.jpg"],
       "salePercentage": 92,
       "rating": 5,
       "reviewCount": 450,
@@ -157,7 +172,7 @@
     {
       "id": "5",
       "name": "Angel Soft Toilet Paper, 9Mega Rolls",
-      "imageUrl": "/372.png",
+      "imageUrls": ["/372.png", "/396.png", "/408.png", "/432.png"],
       "salePercentage": 10,
       "rating": 5,
       "reviewCount": 320,
@@ -170,7 +185,7 @@
     {
       "id": "6",
       "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
-      "imageUrl": "/357.png",
+      "imageUrls": ["/357.png", "/436.png", "/444.png", "/132.png"],
       "salePercentage": 17,
       "rating": 5,
       "reviewCount": 180,
@@ -183,7 +198,7 @@
     {
       "id": "7",
       "name": "Cantaloupe Melon Fresh Organic Cut",
-      "imageUrl": "/365.png",
+      "imageUrls": ["/365.png", "/342.png", "/388.png", "/404.png"],
       "salePercentage": 42,
       "rating": 4,
       "reviewCount": 140,
@@ -196,7 +211,7 @@
     {
       "id": "8",
       "name": "Alcohol Grapefruit Plasma Sparkling Vodka Cocktail",
-      "imageUrl": "/440.png",
+      "imageUrls": ["/440.png", "/349.png", "/424.png", "/403.png"],
       "salePercentage": 10,
       "rating": 5,
       "reviewCount": 95,
@@ -209,7 +224,7 @@
     {
       "id": "9",
       "name": "Vitamineramic aam sugar lyopheat electroyte",
-      "imageUrl": "/444.png",
+      "imageUrls": ["/444.png", "/372.png", "/365.png", "/400.png"],
       "salePercentage": 44,
       "rating": 4,
       "reviewCount": 210,
@@ -222,7 +237,12 @@
     {
       "id": "10",
       "name": "Great Value Rising Crust Frozen Pizza, Supreme",
-      "imageUrl": "/Great Value Rising Crust Frozen Pizza, Supreme.jpeg",
+      "imageUrls": [
+        "/Great Value Rising Crust Frozen Pizza, Supreme.jpeg",
+        "/353.png",
+        "/384.png",
+        "/424.png"
+      ],
       "salePercentage": 31,
       "rating": 5,
       "reviewCount": 75,
@@ -235,7 +255,12 @@
     {
       "id": "11",
       "name": "Ocean Spray Pulp Free Orange Juice - 52 fl oz",
-      "imageUrl": "/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg",
+      "imageUrls": [
+        "/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg",
+        "/349.png",
+        "/388.png",
+        "/404.png"
+      ],
       "salePercentage": 22,
       "rating": 4,
       "reviewCount": 110,
