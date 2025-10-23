@@ -30,9 +30,6 @@ export default function TopBar() {
               {t('topBar.aboutUs')}
             </a>
             <a href="#" className="hover:text-blue-600 transition-colors">
-              {t('topBar.myAccount')}
-            </a>
-            <a href="#" className="hover:text-blue-600 transition-colors">
               {t('topBar.wishlist')}
             </a>
             <span>

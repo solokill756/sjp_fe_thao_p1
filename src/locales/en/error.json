@@ -22,12 +22,19 @@
   },
   "network": {
     "title": "Connection Error",
-    "message": "Unable to connect to the server. Please check your internet connection."
+    "message": "Network error. Unable to connect to the server. Please check your internet connection."
   },
   "codes": {
     "404": "404",
     "403": "403",
     "500": "500",
     "0": "0"
+  },
+  "login": {
+    "missingEmailOrPassword": "Please enter both email and password.",
+    "invalidEmailFormat": "Please enter a valid email address.",
+    "invalidCredentials": "Invalid email or password. Please try again.",
+    "unexpectedResponse": "Unexpected server response. Please try again.",
+    "loginFailed": "Login failed. Please try again."
   }
 }

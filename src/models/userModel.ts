@@ -5,3 +5,8 @@ export interface User {
   password?: string | null;
   role: 'customer' | 'vendor';
 }
+
+export function getUserWithoutPassword(user: User) {
+  const { password, ...userWithoutPassword } = user;
+  return userWithoutPassword;
+}
