@@ -96,6 +96,13 @@ export const apiSlice = createApi({
     getProducts: builder.query<Product[], void>({
       query: () => '/products',
     }),
+    getProductById: builder.query<Product, string>({
+      query: (id: string) => `/products/${id}?_embed=reviews`,
+      providesTags: (_result, _error, id) => [{ type: 'Product', id }],
+    }),
+    getProductsByCategory: builder.query<Product[], string>({
+      query: (categoryId: string) => `/products?categoryId=${categoryId}`,
+    }),
     getCategories: builder.query<Category[], void>({
       query: () => '/categories',
     }),
@@ -103,6 +110,8 @@ export const apiSlice = createApi({
 });
 
 export const {
+  useGetProductByIdQuery,
+  useGetProductsByCategoryQuery,
   useGetUsersQuery,
   useGetUserIdQuery,
   usePostUserMutation,
