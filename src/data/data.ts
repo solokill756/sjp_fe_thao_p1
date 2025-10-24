@@ -1,3 +1,42 @@
+// ...existing code...
+
+// Đặt sau cùng file, sau export products
+import type { CartItem } from '../models/CartModel';
+import type { User } from '../models/userModel';
+
+export const users: User[] = [
+  {
+    id: 'u1',
+    username: 'alice',
+    email: 'alice@example.com',
+    role: 'customer',
+    firstName: 'Alice',
+    lastName: 'Smith',
+    phoneNumber: '123456789',
+    address: '123 Main St',
+  },
+  {
+    id: 'u2',
+    username: 'bob',
+    email: 'bob@example.com',
+    role: 'customer',
+    firstName: 'Bob',
+    lastName: 'Brown',
+    phoneNumber: '987654321',
+    address: '456 Oak St',
+  },
+  {
+    id: 'u3',
+    username: 'carol',
+    email: 'carol@example.com',
+    role: 'customer',
+    firstName: 'Carol',
+    lastName: 'White',
+    phoneNumber: '555666777',
+    address: '789 Pine St',
+  },
+];
+
 import type { Product } from '../models/productModel';
 
 export const heroData = {
@@ -287,5 +326,78 @@ export const products: Product[] = [
     inStock: true,
     categoryId: '3',
     tags: ['featured', 'bestseller'],
+  },
+];
+
+export const cartData: CartItem[] = [
+  {
+    id: 'c1',
+    product: products[0],
+    quantity: 2,
+    user: users[0],
+    added_at: new Date('2025-10-01T10:00:00'),
+  },
+  {
+    id: 'c2',
+    product: products[1],
+    quantity: 1,
+    user: users[1],
+    added_at: new Date('2025-10-02T11:00:00'),
+  },
+  {
+    id: 'c3',
+    product: products[2],
+    quantity: 3,
+    user: users[2],
+    added_at: new Date('2025-10-03T12:00:00'),
+  },
+  {
+    id: 'c4',
+    product: products[3],
+    quantity: 1,
+    user: users[0],
+    added_at: new Date('2025-10-04T13:00:00'),
+  },
+  {
+    id: 'c5',
+    product: products[4],
+    quantity: 2,
+    user: users[1],
+    added_at: new Date('2025-10-05T14:00:00'),
+  },
+  {
+    id: 'c6',
+    product: products[5],
+    quantity: 1,
+    user: users[2],
+    added_at: new Date('2025-10-06T15:00:00'),
+  },
+  {
+    id: 'c7',
+    product: products[6],
+    quantity: 4,
+    user: users[0],
+    added_at: new Date('2025-10-07T16:00:00'),
+  },
+  {
+    id: 'c8',
+    product: products[7],
+    quantity: 2,
+    user: users[1],
+    added_at: new Date('2025-10-08T17:00:00'),
+  },
+  {
+    id: 'c9',
+    product: products[8],
+    quantity: 1,
+    user: users[2],
+    added_at: new Date('2025-10-09T18:00:00'),
+  },
+  {
+    id: 'c10',
+    product: products[9],
+    quantity: 3,
+    user: users[0],
+    added_at: new Date('2025-10-10T19:00:00'),
   },
 ];

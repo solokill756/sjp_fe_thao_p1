@@ -1,0 +1,16 @@
+{
+  "emptyCart": "Giỏ hàng của bạn hiện đang trống.",
+  "returnToShop": "Quay lại cửa hàng",
+  "back": "Quay lại",
+  "cartTotals": "Tổng giỏ hàng",
+  "subtotal": "Tạm tính",
+  "shipping": "Phí vận chuyển",
+  "total": "Tổng cộng",
+  "checkout": "Tiến hành thanh toán",
+  "product": "Sản phẩm",
+  "price": "Giá",
+  "quantity": "Số lượng",
+  "remove": "Xóa",
+  "decrease": "Giảm số lượng",
+  "increase": "Tăng số lượng"
+}

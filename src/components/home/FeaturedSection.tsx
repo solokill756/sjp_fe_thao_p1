@@ -37,6 +37,7 @@ const FeaturedSection: React.FC<FeaturedSectionProps> = ({
           title={''}
           products={featuredProducts}
           showViewAll={false}
+          viewMode={'grid'}
         />
         <div className="bg-orange-100 rounded-lg p-6 md:p-10 flex flex-col md:flex-row justify-between items-center bg-opacity-60 overflow-hidden relative">
           <CircleDashed

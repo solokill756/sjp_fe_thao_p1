@@ -16,7 +16,7 @@ export const getDropdownMenus = (t: any): DropdownMenuConfig[] => [
     key: 'home',
     selectedValue: t('navigation.home'),
     values: ['Cart', 'Checkout', 'My Account'],
-    links: ['#', '#', '/profile'],
+    links: ['/cart', '#', '/profile'],
   },
   {
     key: 'shop',
