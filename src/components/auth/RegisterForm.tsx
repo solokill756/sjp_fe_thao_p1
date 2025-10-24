@@ -19,7 +19,7 @@ export default function RegisterForm() {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'customer' as 'customer' | 'vendor',
+    role: 'customer' as 'customer' | 'admin',
     agreeTerms: false,
   });
   const [
@@ -35,7 +35,7 @@ export default function RegisterForm() {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData({ ...formData, [name]: checked });
     } else if (name === 'role') {
-      setFormData({ ...formData, [name]: value as 'customer' | 'vendor' });
+      setFormData({ ...formData, [name]: value as 'customer' | 'admin' });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -91,7 +91,7 @@ export default function RegisterForm() {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'customer' as 'customer' | 'vendor',
+        role: 'customer' as 'customer' | 'admin',
         agreeTerms: false,
       });
 
