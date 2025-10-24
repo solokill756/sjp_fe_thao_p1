@@ -56,7 +56,11 @@ export default function ProductDetail() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div>
-            <ImageGallery images={productDetailData.imageUrls} />
+            <ImageGallery
+              images={productDetailData.imageUrls}
+              discountPercentage={productDetailData.salePercentage}
+              inStock={productDetailData.inStock}
+            />
           </div>
 
           <div>

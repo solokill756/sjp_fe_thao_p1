@@ -1,10 +1,8 @@
 import ProtectedRoute from '../components/common/ProtectedRoute';
 import HeroSection from '../components/home/HeroSection';
 import CategorySection from '../components/home/CategorySection';
-import ProductGrid from '../components/home/ProductGrid';
 
 import PromotionalBanners from '../components/home/PromotionalBanners';
-import { useTranslation } from 'react-i18next';
 import {
   useGetCategoriesQuery,
   useGetProductsQuery,
@@ -15,7 +13,6 @@ import { BestSellersSection, EditorPickSection } from '../components/home';
 import FeaturedSection from '../components/home/FeaturedSection';
 
 export default function Home() {
-  const { t } = useTranslation('home');
   const {
     data: categoriesData,
     isLoading: isLoadingCategories,

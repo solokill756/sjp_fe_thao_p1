@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaLeaf } from 'react-icons/fa';
 import { BiFullscreen } from 'react-icons/bi';
 import { useTranslation } from 'react-i18next';
@@ -8,13 +8,13 @@ import Button from '../common/Button';
 interface ImageGalleryProps {
   images: string[];
   discountPercentage?: number;
-  isOrganic?: boolean;
+  inStock?: boolean;
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({
   images,
   discountPercentage,
-  isOrganic,
+  inStock,
 }) => {
   const { t } = useTranslation('productDetail');
   const [mainImage, setMainImage] = useState<string>(images[0]);
@@ -25,6 +25,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  useEffect(() => {
+    setMainImage(images[0]);
+  }, [images]);
   return (
     <div className="flex flex-col gap-4">
       <div className="relative border border-gray-200 rounded-lg overflow-hidden">
@@ -41,10 +44,17 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
           </div>
         )}
 
-        {isOrganic && (
+        {inStock && (
           <div className="absolute top-10 left-3 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded flex items-center gap-1">
             <FaLeaf className="w-3 h-3" />
-            {t('organic', 'ORGANIC')}
+            {t('inStock', 'IN STOCK')}
+          </div>
+        )}
+
+        {inStock === false && (
+          <div className="absolute top-10 left-3 bg-gray-600 text-white text-xs font-semibold px-2 py-1 rounded">
+            <FaLeaf className="w-3 h-3 inline-block mr-1" />
+            {t('outOfStock', 'OUT OF STOCK')}
           </div>
         )}
 
