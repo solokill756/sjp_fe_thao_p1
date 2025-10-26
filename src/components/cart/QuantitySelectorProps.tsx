@@ -1,6 +1,6 @@
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/common/Button';
+import Button from '../common/Button';
 
 interface QuantitySelectorProps {
   quantity: number;

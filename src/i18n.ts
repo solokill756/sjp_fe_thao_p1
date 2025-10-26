@@ -10,6 +10,8 @@ import commonEn from './locales/en/common.json';
 import profileEn from './locales/en/profile.json';
 import homeEn from './locales/en/home.json';
 import productDetailEn from './locales/en/productDetail.json';
+import orderDetailEn from './locales/en/orderDetail.json';
+import orderHistoryEn from './locales/en/orderHistory.json';
 import footerVi from './locales/vi/footer.json';
 import cartVi from './locales/vi/cart.json';
 import shopVi from './locales/vi/shop.json';
@@ -20,6 +22,8 @@ import commonVi from './locales/vi/common.json';
 import profileVi from './locales/vi/profile.json';
 import homeVi from './locales/vi/home.json';
 import productDetailVi from './locales/vi/productDetail.json';
+import orderDetailVi from './locales/vi/orderDetail.json';
+import orderHistoryVi from './locales/vi/orderHistory.json';
 import checkoutEn from './locales/en/checkout.json';
 import checkoutVi from './locales/vi/checkout.json';
 
@@ -47,6 +51,8 @@ i18n.use(initReactI18next).init({
       productDetail: productDetailEn,
       cart: cartEn,
       checkout: checkoutEn,
+      orderDetail: orderDetailEn,
+      orderHistory: orderHistoryEn,
     },
     vi: {
       header: headerVi,
@@ -60,6 +66,8 @@ i18n.use(initReactI18next).init({
       productDetail: productDetailVi,
       cart: cartVi,
       checkout: checkoutVi,
+      orderDetail: orderDetailVi,
+      orderHistory: orderHistoryVi,
     },
   },
   lng: defaultLanguage,

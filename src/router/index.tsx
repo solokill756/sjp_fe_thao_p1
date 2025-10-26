@@ -1,13 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../pages/Home';
 
-import Auth from '../pages/auth';
 import App from '../App';
 import Profile from '../pages/Profile';
 import Shop from '../pages/shop';
 import ProductDetail from '../pages/productDetail';
-import Cart from '../pages/cart';
-import Checkout from '../pages/checkout';
+import Cart from '../pages/Cart';
+import Checkout from '../pages/Checkout';
+import OrderDetail from '../pages/OrderDetail';
+import OrderHistory from '../pages/OrderHistory';
+import Auth from '../pages/auth';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: 'checkout',
         element: <Checkout />,
+      },
+      {
+        path: 'order-history',
+        element: <OrderHistory />,
+      },
+      {
+        path: 'order-history/:orderId',
+        element: <OrderDetail />,
       },
     ],
   },

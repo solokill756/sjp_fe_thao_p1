@@ -1,7 +1,6 @@
 import { FiShoppingCart } from 'react-icons/fi';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/common/Button';
-
+import Button from '../common/Button';
 const EmptyCart: React.FC<{ onReturn: () => void }> = ({ onReturn }) => {
   const { t } = useTranslation('cart');
   return (

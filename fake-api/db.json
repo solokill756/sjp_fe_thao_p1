@@ -133,7 +133,7 @@
       "reviewCount": 85,
       "price": 21.9,
       "originalPrice": 24.99,
-      "stockCurrent": 24,
+      "stockCurrent": 21,
       "categoryId": 1,
       "tags": [
         "featured",
@@ -176,7 +176,7 @@
       "reviewCount": 450,
       "price": 0.5,
       "originalPrice": 5.99,
-      "inStock": true,
+      "stockCurrent": 30,
       "categoryId": 3,
       "tags": [
         "featured",
@@ -369,6 +369,18 @@
       "productId": 1,
       "added_at": "2025-10-24T14:50:41.515Z",
       "id": 4
+    },
+    {
+      "productId": 4,
+      "quantity": 6,
+      "userId": 4,
+      "id": 5
+    },
+    {
+      "productId": 2,
+      "quantity": 1,
+      "userId": 3,
+      "id": 6
     }
   ],
   "orders": [
@@ -434,6 +446,39 @@
       ],
       "orderNotes": "",
       "id": 1
+    },
+    {
+      "userId": 4,
+      "createdAt": "2025-10-26T16:00:59.227Z",
+      "status": "Processing",
+      "subtotal": 65.69999999999999,
+      "shippingCost": 15,
+      "total": 80.69999999999999,
+      "paymentMethod": "bank",
+      "shippingMethod": "flat_rate",
+      "contactEmail": "hosithao1622004111@gmail.com",
+      "contactPhone": "0838664246",
+      "billingAddress": {
+        "firstName": "Hồ Sỹ ",
+        "lastName": "Thảo",
+        "companyName": "",
+        "streetAddress": "Khu phố 2 Đông Thanh",
+        "apartment": "",
+        "townCity": "Đông Hà ",
+        "state": "DN",
+        "zipCode": "12312313",
+        "country": "US"
+      },
+      "items": [
+        {
+          "productId": 2,
+          "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
+          "price": 21.9,
+          "quantity": 3
+        }
+      ],
+      "orderNotes": "",
+      "id": 2
     }
   ],
   "productSuggestions": [

@@ -21,7 +21,6 @@ import {
 import toast from 'react-hot-toast';
 import { logOut } from '../../features/auth/authSlice';
 import { useGetCartsQuery } from '../../features/api/apiSlice';
-
 interface MenuItem {
   label: string;
   onClick: () => void;
