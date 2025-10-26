@@ -1,6 +1,6 @@
-import type { CartItem } from '../../models/CartModel';
 import { useTranslation } from 'react-i18next';
 import CartItemRow from './CartItemRow';
+import type { CartItem } from '../../models/CartModel';
 
 interface CartItemsListProps {
   items: CartItem[];

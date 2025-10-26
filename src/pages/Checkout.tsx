@@ -137,9 +137,9 @@ export default function Checkout() {
       userId: user?.id || 0,
       createdAt: new Date().toISOString(),
       status: 'Processing',
-      subtotal: 0,
+      subtotal: subtotal,
       shippingCost: formData.shippingMethod === 'flat_rate' ? 15.0 : 0,
-      total: 0,
+      total: total,
       paymentMethod: formData.paymentMethod,
       shippingMethod: formData.shippingMethod,
       contactEmail: formData.email,
@@ -169,6 +169,7 @@ export default function Checkout() {
           }
         : undefined,
       items: productOrders,
+
       orderNotes: formData.orderNotes,
     };
     try {
@@ -186,7 +187,7 @@ export default function Checkout() {
       );
       await clearCart(user?.id || 0).unwrap();
       toast.success(t('order_success', 'Order placed successfully!'));
-      navigate('/', { replace: true });
+      navigate('/order-history', { replace: true });
     } catch (error) {
       console.error('Failed to place order:', error);
       toast.error(t('order_error', 'Failed to place order. Please try again.'));

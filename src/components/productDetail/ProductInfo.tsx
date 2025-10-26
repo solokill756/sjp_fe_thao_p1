@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store';
 import Loading from '../common/Loading';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductInfoProps {
   product: Product;
@@ -37,7 +38,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const [addToCart, { isLoading }] = useAddCartItemMutation();
   const [updateCart, { isLoading: isUpdateLoading }] =
     useUpdateCartItemMutation();
-
+  const navigate = useNavigate();
   const {
     data: cartItems,
     isLoading: isCartLoading,
@@ -76,6 +77,26 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       toast.error(t('addToCartError', 'Failed to add item to cart.'));
     }
   };
+
+  const handleBuyNow = async () => {
+    try {
+      if (!userId || product.stockCurrent < quantity) {
+        toast.error(t('buyNowError', 'Failed to buy item.'));
+        return;
+      }
+      await addToCart({
+        productId: product.id,
+        quantity: quantity,
+        userId: userId!,
+      }).unwrap();
+      navigate('/checkout');
+      toast.success(t('buyNowSuccess', 'Item bought successfully!'));
+    } catch (error) {
+      console.error('Failed to buy item:', error);
+      toast.error(t('buyNowError', 'Failed to buy item.'));
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-semibold text-gray-800">{product.name}</h1>
@@ -154,6 +175,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
         <Button
           variant="custom"
+          onClick={handleBuyNow}
           className="flex-1 w-full sm:w-auto bg-gray-800 text-white font-semibold py-3 px-6 rounded-md hover:bg-gray-900 transition-colors duration-200"
         >
           {t('buyNow', 'Buy Now')}

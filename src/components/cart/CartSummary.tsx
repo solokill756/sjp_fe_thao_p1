@@ -1,17 +1,43 @@
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/common/Button';
 
 import { useNavigate } from 'react-router-dom';
+import Button from '../common/Button';
+import { useGetProductsQuery } from '../../features/api/apiSlice';
+import type { CartItem } from '../../models/CartModel';
+import toast from 'react-hot-toast';
 
 interface CartSummaryProps {
   subtotal: number;
+  productCarts: CartItem[];
 }
 
-const CartSummary: React.FC<CartSummaryProps> = ({ subtotal }) => {
+const CartSummary: React.FC<CartSummaryProps> = ({
+  subtotal,
+  productCarts,
+}) => {
   const { t } = useTranslation('cart');
   const navigate = useNavigate();
-
+  const {
+    data: products,
+    isLoading,
+    isError,
+  } = useGetProductsQuery({
+    tag: undefined,
+  });
   const handleCheckout = () => {
+    for (const cartItem of productCarts) {
+      const product = products?.find((p) => p.id === cartItem.productId);
+      if (product && cartItem.quantity > product.stockCurrent) {
+        toast.error(
+          t(
+            'insufficient_stock',
+            'Insufficient stock for product: {{productName}}',
+            { productName: product.name }
+          )
+        );
+        return;
+      }
+    }
     navigate('/checkout');
   };
   return (
@@ -29,6 +55,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ subtotal }) => {
         <Button
           className="w-full px-6 py-4 mt-8 text-lg"
           variant="primary"
+          disabled={isLoading || isError}
           onClick={handleCheckout}
         >
           {t('checkout', 'Proceed to checkout')}

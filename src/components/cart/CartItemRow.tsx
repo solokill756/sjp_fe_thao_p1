@@ -1,8 +1,8 @@
-import type { CartItem } from '../../models/CartModel';
 import QuantitySelector from './QuantitySelectorProps';
 import { MdClose } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
-import Button from '../../components/common/Button';
+import type { CartItem } from '../../models/CartModel';
+import Button from '../common/Button';
 
 interface CartItemRowProps {
   item: CartItem;

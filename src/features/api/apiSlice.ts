@@ -307,6 +307,12 @@ export const apiSlice = createApi({
     }),
     getOrdersByUser: builder.query<Order[], number>({
       query: (userId: number) => `/orders?userId=${userId}`,
+      transformResponse: (response: Order[]) => {
+        if (!Array.isArray(response)) {
+          return [];
+        }
+        return response;
+      },
       providesTags: (result, _error, userId) =>
         result
           ? [
@@ -315,10 +321,17 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'Order', id: `LIST-${userId}` }],
     }),
+    getOrderById: builder.query<Order, number>({
+      query: (orderId: number) => `/orders/${orderId}`,
+      providesTags: (_result, _error, orderId) => [
+        { type: 'Order', id: orderId },
+      ],
+    }),
   }),
 });
 
 export const {
+  useGetOrderByIdQuery,
   useUpdateProductMutation,
   useGetOrdersByUserQuery,
   useAddOrderMutation,

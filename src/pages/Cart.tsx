@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import EmptyCart from '../components/cart/EmptyCart';
 
 import { Link, useNavigate } from 'react-router-dom';
-import CartSummary from '../components/cart/CartSummary';
-import CartItemsList from '../components/cart/CartItemsList';
+
 import ProtectedRoute from '../components/common/ProtectedRoute';
 import {
   useDeleteCartItemMutation,
@@ -16,6 +14,9 @@ import type { RootState } from '../app/store';
 import toast from 'react-hot-toast';
 import type { NewCartItem } from '../models/CartModel';
 import { ServerErrorPage } from '../components/error';
+import CartItemsList from '../components/cart/CartItemsList';
+import EmptyCart from '../components/cart/EmptyCart';
+import CartSummary from '../components/cart/CartSummary';
 
 export default function Cart() {
   const userId = useSelector((state: RootState) => state.auth.user?.id);
@@ -101,7 +102,7 @@ export default function Cart() {
                 onQuantityChange={handleQuantityChange}
                 onRemove={handleRemoveItem}
               />
-              <CartSummary subtotal={subtotal} />
+              <CartSummary subtotal={subtotal} productCarts={items} />
             </div>
           )}
         </main>

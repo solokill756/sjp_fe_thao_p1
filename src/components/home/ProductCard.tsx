@@ -35,9 +35,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
   });
   const handleAddToCart = async () => {
     try {
+      console.log('Adding to cart:', product);
+      if (product.stockCurrent <= 0 || !userId) {
+        toast.error(t('addToCartError', 'Failed to add item to cart.'));
+        return;
+      }
       const checkExisting = items?.find(
         (item) => item.productId === product.id
       );
+
       if (checkExisting) {
         await updateCartItem({
           id: checkExisting.id,
