@@ -2,15 +2,26 @@ import { useTranslation } from 'react-i18next';
 import type { FormState } from '../../config/checkout/checkoutConfig';
 import Button from '../common/Button';
 import Input from '../common/Input';
+import type { CartItem } from '../../models/CartModel';
 
 interface OrderSummaryProps {
   formData: FormState;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  cartItems: CartItem[] | undefined;
+  isLoading: boolean;
+  subtotal: number;
+  isError: boolean;
+  total: number;
 }
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({
   formData,
   handleChange,
+  cartItems: productsCart,
+  isLoading,
+  isError,
+  subtotal,
+  total,
 }) => {
   const { t } = useTranslation('checkout');
   return (
@@ -27,18 +38,39 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
             <span>{t('subtotal', 'Subtotal')}</span>
           </div>
 
-          <div className="flex justify-between text-sm text-gray-600 border-t border-gray-200 pt-4">
-            <span>
-              {t('productName', 'Marketside Fresh Organic Bananas, Bunch × 1')}
-            </span>
-            <span className="font-medium text-gray-800">
-              {t('productPrice', '$0.89')}
-            </span>
+          <div className="border-t border-gray-200 pt-4">
+            {isLoading ? (
+              <p>{t('loading', 'Loading...')}</p>
+            ) : isError ? (
+              <p>{t('errorLoadingCart', 'Error loading cart')}</p>
+            ) : productsCart && productsCart.length > 0 ? (
+              <div className="space-y-3">
+                {' '}
+                {productsCart.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex justify-between text-sm text-gray-600"
+                  >
+                    <span className="flex-1 pr-4">
+                      {item.product?.name ?? 'No name'} x {item.quantity}
+                    </span>
+
+                    <span className="font-medium text-gray-900 flex-shrink-0">
+                      ${((item.product?.price ?? 0) * item.quantity).toFixed(2)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-gray-600">
+                {t('emptyCart', 'Your cart is empty')}
+              </p>
+            )}
           </div>
 
           <div className="flex justify-between text-gray-800 font-medium border-t border-gray-200 pt-4">
             <span>{t('subtotal', 'Subtotal')}</span>
-            <span className="font-medium">{t('subtotalPrice', '$0.89')}</span>
+            <span className="font-medium">${subtotal.toFixed(2)}</span>
           </div>
 
           {/* Shipping */}
@@ -72,11 +104,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
 
           <div className="flex justify-between text-xl font-bold text-gray-900 border-t border-gray-200 pt-4">
             <span>{t('total', 'Total')}</span>
-            <span>
-              {formData.shippingMethod === 'flat_rate'
-                ? t('totalFlatRate', '$15.89')
-                : t('totalLocalPickup', '$0.89')}
-            </span>
+            <span>${total.toFixed(2)}</span>
           </div>
         </div>
 

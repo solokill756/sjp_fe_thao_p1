@@ -5,13 +5,14 @@ import type { Product } from '../../models/productModel';
 import type { Category } from '../../models/categoryModel';
 import type { CartItem, NewCartItem } from '../../models/CartModel';
 import type { Review } from '../../models/review';
+import type { Order } from '../../models/checkoutModel';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || 'http://localhost:3000',
   }),
-  tagTypes: ['User', 'Product', 'Category', 'Cart', 'Review'],
+  tagTypes: ['User', 'Product', 'Category', 'Cart', 'Review', 'Order'],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void>({
       query: () => '/users',
@@ -119,6 +120,26 @@ export const apiSlice = createApi({
               { type: 'Product', id: 'LIST' },
             ]
           : [{ type: 'Product', id: 'LIST' }],
+
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          if (!Array.isArray(data)) {
+            throw new Error('Invalid products response format');
+          }
+          data.forEach((product) => {
+            if (
+              typeof product !== 'object' ||
+              typeof product.id !== 'number' ||
+              typeof product.name !== 'string'
+            ) {
+              throw new Error('Product validation failed');
+            }
+          });
+        } catch (error) {
+          console.error('Validation error in getProducts:', error);
+        }
+      },
     }),
     getProductById: builder.query<Product, number>({
       query: (id: number) => `/products/${id}`,
@@ -127,6 +148,16 @@ export const apiSlice = createApi({
     getProductsByCategory: builder.query<Product[], number>({
       query: (categoryId: number) => `/products?categoryId=${categoryId}`,
     }),
+    updateProduct: builder.mutation<Product, Partial<Product> & { id: number }>(
+      {
+        query: ({ id, ...body }) => ({
+          url: `/products/${id}`,
+          method: 'PUT',
+          body,
+        }),
+        invalidatesTags: (_result, _error, { id }) => [{ type: 'Product', id }],
+      }
+    ),
     getCategories: builder.query<Category[], void>({
       query: () => '/categories',
     }),
@@ -199,6 +230,41 @@ export const apiSlice = createApi({
         { type: 'Cart', id: `LIST-${userId}` },
       ],
     }),
+
+    clearCart: builder.mutation<void, number>({
+      async queryFn(userId, _queryApi, _extraOptions, fetchWithBQ) {
+        try {
+          if (!userId) {
+            return { error: undefined, data: undefined };
+          }
+          const cartItemsResponse = await fetchWithBQ(
+            `/cartItems?userId=${userId}`
+          );
+          if (cartItemsResponse.error) {
+            return { error: cartItemsResponse.error, data: undefined };
+          }
+
+          const cartItems: CartItem[] = cartItemsResponse.data as CartItem[];
+
+          for (const item of cartItems) {
+            const deleteResponse = await fetchWithBQ({
+              url: `/cartItems/${item.id}`,
+              method: 'DELETE',
+            });
+            if (deleteResponse.error) {
+              return { error: deleteResponse.error, data: undefined };
+            }
+          }
+
+          return { data: undefined };
+        } catch (error) {
+          return { error: undefined, data: undefined };
+        }
+      },
+      invalidatesTags: (_result, _error, userId) => [
+        { type: 'Cart', id: `LIST-${userId}` },
+      ],
+    }),
     getReviewsByProduct: builder.query<Review[], number>({
       query: (productId: number) =>
         `/reviews?productId=${productId}&_expand=user`,
@@ -216,10 +282,32 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'Review', id: `LIST-${productId}` }],
     }),
+    addOrder: builder.mutation<void, Partial<Order>>({
+      query: (body) => ({
+        url: '/orders',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: [{ type: 'Order', id: 'LIST' }],
+    }),
+    getOrdersByUser: builder.query<Order[], number>({
+      query: (userId: number) => `/orders?userId=${userId}`,
+      providesTags: (result, _error, userId) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Order' as const, id })),
+              { type: 'Order', id: `LIST-${userId}` },
+            ]
+          : [{ type: 'Order', id: `LIST-${userId}` }],
+    }),
   }),
 });
 
 export const {
+  useUpdateProductMutation,
+  useGetOrdersByUserQuery,
+  useAddOrderMutation,
+  useClearCartMutation,
   useGetReviewsByProductQuery,
   useGetCartsQuery,
   useDeleteCartItemMutation,

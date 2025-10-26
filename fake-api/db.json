@@ -41,14 +41,14 @@
       "role": "customer"
     },
     {
-      "id": 4,
       "firstName": "Hồ Sỹ ",
-      "lastName": "Thảo đẹp trai",
+      "lastName": "Thảo",
       "phoneNumber": "0838664246",
       "username": "hồ Sỹ Thảo",
       "email": "hosithao1622004111@gmail.com",
       "password": "123456789",
-      "role": "customer"
+      "role": "customer",
+      "id": 4
     }
   ],
   "categories": [
@@ -100,7 +100,6 @@
   ],
   "products": [
     {
-      "id": 1,
       "name": "Great Value Rising Crust Frozen Supreme",
       "imageUrls": [
         "/Great Value Rising Crust Frozen Supreme.jpeg",
@@ -113,15 +112,15 @@
       "reviewCount": 120,
       "price": 8.99,
       "originalPrice": 12.99,
-      "stockCurrent": 25,
+      "stockCurrent": 24,
       "categoryId": 8,
       "tags": [
         "featured",
         "bestseller"
-      ]
+      ],
+      "id": 1
     },
     {
-      "id": 2,
       "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
       "imageUrls": [
         "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
@@ -134,12 +133,13 @@
       "reviewCount": 85,
       "price": 21.9,
       "originalPrice": 24.99,
-      "stockCurrent": 25,
+      "stockCurrent": 24,
       "categoryId": 1,
       "tags": [
         "featured",
         "bestseller"
-      ]
+      ],
+      "id": 2
     },
     {
       "id": 3,
@@ -369,67 +369,71 @@
       "productId": 1,
       "added_at": "2025-10-24T14:50:41.515Z",
       "id": 4
-    },
-    {
-      "quantity": 25,
-      "userId": 4,
-      "productId": 6,
-      "added_at": "2025-10-26T04:15:47.668Z",
-      "id": 9
-    },
-    {
-      "quantity": 2,
-      "userId": 4,
-      "productId": 9,
-      "added_at": "2025-10-25T06:01:54.588Z",
-      "id": 12
-    },
-    {
-      "productId": 2,
-      "quantity": 2,
-      "userId": 4,
-      "id": 13
-    },
-    {
-      "productId": 1,
-      "quantity": 1,
-      "userId": 4,
-      "id": 14
-    },
-    {
-      "productId": 4,
-      "quantity": 2,
-      "userId": 4,
-      "id": 15
-    },
-    {
-      "productId": 3,
-      "quantity": 1,
-      "userId": 4,
-      "id": 16
     }
   ],
   "orders": [
     {
-      "id": 1,
-      "userId": 2,
+      "userId": 4,
+      "createdAt": "2025-10-26T12:18:07.802Z",
+      "status": "Processing",
+      "subtotal": 0,
+      "shippingCost": 15,
+      "total": 0,
+      "paymentMethod": "bank",
+      "shippingMethod": "flat_rate",
+      "contactEmail": "hosithao1622004111@gmail.com",
+      "contactPhone": "0838664246",
+      "billingAddress": {
+        "firstName": "Hồ Sỹ ",
+        "lastName": "Thảo",
+        "companyName": "",
+        "streetAddress": "Khu phố 2 Đông Thanh",
+        "apartment": "",
+        "townCity": "Đông Hà ",
+        "state": "CA",
+        "zipCode": "12312313",
+        "country": "US"
+      },
       "items": [
         {
+          "productId": 6,
+          "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
+          "price": 14.99,
+          "quantity": 25
+        },
+        {
+          "productId": 9,
+          "name": "Vitamineramic aam sugar lyopheat electroyte",
+          "price": 4.99,
+          "quantity": 2
+        },
+        {
           "productId": 2,
-          "name": "Dalat Strawberries",
-          "quantity": 1,
-          "price": 120000
+          "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
+          "price": 21.9,
+          "quantity": 2
+        },
+        {
+          "productId": 1,
+          "name": "Great Value Rising Crust Frozen Supreme",
+          "price": 8.99,
+          "quantity": 1
+        },
+        {
+          "productId": 4,
+          "name": "100 Percent Apple Juice - 64 fl oz Bottle",
+          "price": 0.5,
+          "quantity": 2
+        },
+        {
+          "productId": 3,
+          "name": "Red Baron Frozen Hand Tossed 4-Meat Pizza",
+          "price": 14.99,
+          "quantity": 1
         }
       ],
-      "totalAmount": 135000,
-      "status": "Completed",
-      "shippingAddress": {
-        "street": "456 XYZ Street",
-        "city": "Quy Nhon",
-        "zipCode": "590000",
-        "country": "Vietnam"
-      },
-      "createdAt": "2025-10-10T09:00:00Z"
+      "orderNotes": "",
+      "id": 1
     }
   ],
   "productSuggestions": [
