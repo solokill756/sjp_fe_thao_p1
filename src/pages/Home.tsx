@@ -23,7 +23,6 @@ export default function Home() {
     isError: isErrorProducts,
   } = useGetProductsQuery(
     {
-      categoryId: undefined,
       tag: undefined,
     },
     {

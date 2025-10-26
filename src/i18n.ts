@@ -20,6 +20,8 @@ import commonVi from './locales/vi/common.json';
 import profileVi from './locales/vi/profile.json';
 import homeVi from './locales/vi/home.json';
 import productDetailVi from './locales/vi/productDetail.json';
+import checkoutEn from './locales/en/checkout.json';
+import checkoutVi from './locales/vi/checkout.json';
 
 // Detect language from localStorage or browser
 const savedLanguage =
@@ -44,6 +46,7 @@ i18n.use(initReactI18next).init({
       shop: shopEn,
       productDetail: productDetailEn,
       cart: cartEn,
+      checkout: checkoutEn,
     },
     vi: {
       header: headerVi,
@@ -56,6 +59,7 @@ i18n.use(initReactI18next).init({
       shop: shopVi,
       productDetail: productDetailVi,
       cart: cartVi,
+      checkout: checkoutVi,
     },
   },
   lng: defaultLanguage,
