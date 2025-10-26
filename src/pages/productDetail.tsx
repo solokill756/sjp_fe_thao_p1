@@ -64,7 +64,7 @@ export default function ProductDetail() {
             <ImageGallery
               images={productDetailData.imageUrls}
               discountPercentage={productDetailData.salePercentage}
-              inStock={productDetailData.inStock}
+              inStock={productDetailData.stockCurrent > 0}
             />
           </div>
 
