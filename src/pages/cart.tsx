@@ -1,30 +1,77 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import type { CartItem } from '../models/CartModel';
 import EmptyCart from '../components/cart/EmptyCart';
 
 import { Link, useNavigate } from 'react-router-dom';
 import CartSummary from '../components/cart/CartSummary';
 import CartItemsList from '../components/cart/CartItemsList';
-import { cartData } from '../data/data';
 import ProtectedRoute from '../components/common/ProtectedRoute';
+import {
+  useDeleteCartItemMutation,
+  useGetCartsQuery,
+  useUpdateCartItemMutation,
+} from '../features/api/apiSlice';
+import { LoadingSpinner } from '../components/common/Loading';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../app/store';
+import toast from 'react-hot-toast';
+import type { NewCartItem } from '../models/CartModel';
+import { ServerErrorPage } from '../components/error';
 
 export default function Cart() {
-  const [items, setItems] = useState<CartItem[]>(cartData);
+  const userId = useSelector((state: RootState) => state.auth.user?.id);
+  const [updateItemInCart, { isLoading: isUpdating }] =
+    useUpdateCartItemMutation();
+  const [deleteItemFromCart, { isLoading: isDeleting }] =
+    useDeleteCartItemMutation();
+  const {
+    data: items,
+    isLoading,
+    isError,
+  } = useGetCartsQuery(userId!, {
+    skip: !userId,
+  });
   const navigate = useNavigate();
   const { t } = useTranslation('cart');
-  const handleQuantityChange = (id: string, newQuantity: number) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
+  const handleQuantityChange = async (
+    id: number,
+    newQuantity: number,
+    productId: number
+  ) => {
+    try {
+      const dataRequest: NewCartItem = {
+        quantity: newQuantity,
+        userId: userId!,
+        productId: productId,
+        added_at: new Date(),
+      };
+      await updateItemInCart({ ...dataRequest, id }).unwrap();
+      toast.success(
+        t('update_quantity_success', 'Quantity updated successfully.')
+      );
+    } catch (error) {
+      console.error('Failed to update cart item quantity:', error);
+      toast.error(t('update_quantity_error', 'Failed to update quantity.'));
+    }
   };
-  const handleRemoveItem = (id: string) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const handleRemoveItem = async (id: number) => {
+    try {
+      await deleteItemFromCart({ id, userId: userId! }).unwrap();
+      toast.success(t('remove_item_success', 'Item removed successfully.'));
+    } catch (error) {
+      console.error('Failed to remove cart item:', error);
+      toast.error(t('remove_item_error', 'Failed to remove item from cart.'));
+    }
   };
+  if (isUpdating || isDeleting || isLoading || items === undefined) {
+    return <LoadingSpinner fullScreen />;
+  }
+
+  if (isError) {
+    return <ServerErrorPage />;
+  }
+
   const subtotal = items.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
+    (acc, item) => acc + (item.product?.price ?? 0) * item.quantity,
     0
   );
   return (

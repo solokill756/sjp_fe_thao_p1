@@ -10,6 +10,15 @@ import {
   FaCreditCard,
   FaShieldAlt,
 } from 'react-icons/fa';
+import {
+  useAddCartItemMutation,
+  useGetCartsQuery,
+  useUpdateCartItemMutation,
+} from '../../features/api/apiSlice';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../app/store';
+import Loading from '../common/Loading';
+import toast from 'react-hot-toast';
 
 interface ProductInfoProps {
   product: Product;
@@ -18,9 +27,56 @@ interface ProductInfoProps {
 const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const { t } = useTranslation('productDetail');
   const [quantity, setQuantity] = useState<number>(1);
-  const increaseQuantity = () => setQuantity((prev: number) => prev + 1);
+  const increaseQuantity = () =>
+    setQuantity((prev: number) =>
+      prev == product.stockCurrent ? prev : prev + 1
+    );
   const decreaseQuantity = () =>
     setQuantity((prev: number) => (prev > 1 ? prev - 1 : 1));
+  const userId = useSelector((state: RootState) => state.auth.user?.id);
+  const [addToCart, { isLoading }] = useAddCartItemMutation();
+  const [updateCart, { isLoading: isUpdateLoading }] =
+    useUpdateCartItemMutation();
+  const {
+    data: cartItems,
+    isLoading: isCartLoading,
+    isError: isCartError,
+  } = useGetCartsQuery(userId ?? 0, {
+    skip: !userId,
+  });
+
+  if (isCartLoading) {
+    return <Loading size="medium" />;
+  }
+
+  const handleAddToCart = async () => {
+    try {
+      const existingItem = cartItems?.find(
+        (item) => item.productId === product.id
+      );
+      if (existingItem) {
+        await updateCart({
+          id: existingItem.id,
+          productId: product.id,
+          quantity: existingItem.quantity + quantity,
+          userId: userId!,
+        }).unwrap();
+        toast.success(
+          t('addToCartSuccess', 'Item added to cart successfully!')
+        );
+        return;
+      }
+      await addToCart({
+        productId: product.id,
+        quantity: quantity,
+        userId: userId!,
+      }).unwrap();
+      toast.success(t('addToCartSuccess', 'Item added to cart successfully!'));
+    } catch (error) {
+      console.error('Failed to add item to cart:', error);
+      toast.error(t('addToCartError', 'Failed to add item to cart.'));
+    }
+  };
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-3xl font-semibold text-gray-800">{product.name}</h1>
@@ -50,9 +106,17 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
       <Button
         variant="custom"
+        disabled={isLoading || isCartError || isUpdateLoading}
+        onClick={handleAddToCart}
         className="w-full bg-green-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-600 transition-colors duration-200 my-2"
       >
-        {t('orderWhatsapp', 'Order on WhatsApp')}
+        {isCartError ? (
+          t('addToCart', 'Add to cart')
+        ) : isLoading || isUpdateLoading ? (
+          <Loading size="small" />
+        ) : (
+          t('addToCart', 'Add to cart')
+        )}
       </Button>
 
       <div className="flex flex-col sm:flex-row items-center gap-4 my-4">
@@ -76,9 +140,17 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
         <Button
           variant="custom"
+          disabled={isLoading || isCartError || isUpdateLoading}
+          onClick={handleAddToCart}
           className="flex-1 w-full sm:w-auto bg-green-600 text-white font-semibold py-3 px-6 rounded-md hover:bg-green-700 transition-colors duration-200"
         >
-          {t('addToCart', 'Add to cart')}
+          {isCartError ? (
+            t('addToCartError', 'Failed to add item to cart.')
+          ) : isLoading || isUpdateLoading ? (
+            <Loading size="small" />
+          ) : (
+            t('addToCart', 'Add to cart')
+          )}
         </Button>
 
         <Button

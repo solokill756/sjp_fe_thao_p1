@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom';
 interface HeaderSectionProps {
   title: string;
   subTitle: string;
+  tag?: string;
 }
 
-const HeaderSection: React.FC<HeaderSectionProps> = ({ title, subTitle }) => {
+const HeaderSection: React.FC<HeaderSectionProps> = ({
+  title,
+  subTitle,
+  tag,
+}) => {
   const { t } = useTranslation('home');
   return (
     <div className="flex justify-between items-baseline">
@@ -18,7 +23,7 @@ const HeaderSection: React.FC<HeaderSectionProps> = ({ title, subTitle }) => {
         <p className="text-sm text-gray-600">{subTitle}</p>
       </div>
       <Link
-        to="#"
+        to={tag ? `/shop?tag=${tag}` : '#'}
         className="text-sm font-semibold text-blue-600 hover:text-blue-800 flex items-center"
       >
         {t('viewAll', 'View All')}

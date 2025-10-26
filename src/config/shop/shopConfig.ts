@@ -3,7 +3,7 @@ export interface Filters {
     min: number | null;
     max: number | null;
   };
-  categories: string[];
+  categories: number[];
   status: {
     inStock: boolean;
     onSale: boolean;

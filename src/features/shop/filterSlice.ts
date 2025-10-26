@@ -19,8 +19,17 @@ const shopSlice = createSlice({
     resetFilters: () => {
       return initialState;
     },
+    addCategoryFilter: (state, action: PayloadAction<number>) => {
+      if (!state.categories) {
+        state.categories = [];
+      }
+      if (!state.categories.includes(action.payload)) {
+        state.categories.push(action.payload);
+      }
+    },
   },
 });
 
-export const { setFilters, resetFilters } = shopSlice.actions;
+export const { setFilters, resetFilters, addCategoryFilter } =
+  shopSlice.actions;
 export default shopSlice.reducer;

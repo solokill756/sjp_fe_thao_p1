@@ -49,10 +49,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   };
   const handleCheckboxChange = (
     filterType: keyof Omit<Filters, 'price' | 'status'>,
-    value: string
+    value: number
   ) => {
-    const currentValues = filters[filterType] as string[];
-    let updatedValues: string[];
+    const currentValues = filters[filterType] as number[];
+    let updatedValues: number[];
     if (currentValues.includes(value)) {
       updatedValues = currentValues.filter((v) => v !== value);
     } else {

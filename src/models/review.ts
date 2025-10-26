@@ -6,4 +6,6 @@ export interface Review {
   rating: number;
   comment: string;
   date: string;
+  userId: number;
+  productId: number;
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../common/Button';
 import { slides } from '../../config/home/HeroSectionConfig';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   const { t } = useTranslation('home');
@@ -44,12 +45,14 @@ const HeroSection: React.FC = () => {
                       {t(slide.subtitle)}
                     </p>
                     <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
-                      <Button
-                        variant="custom"
-                        className={`${slide.buttonColor} ${slide.buttonHoverColor} text-white px-8 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
-                      >
-                        {t('shopNow', 'Shop Now')}
-                      </Button>
+                      <Link to="/shop">
+                        <Button
+                          variant="custom"
+                          className={`${slide.buttonColor} ${slide.buttonHoverColor} text-white px-8 py-3 rounded-lg font-medium transition-colors w-full sm:w-auto shadow-lg hover:shadow-xl transform hover:-translate-y-1`}
+                        >
+                          {t('shopNow', 'Shop Now')}
+                        </Button>
+                      </Link>
                     </div>
                   </div>
 

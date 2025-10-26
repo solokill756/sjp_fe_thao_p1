@@ -13,6 +13,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ description, reviews }) => {
   const [activeTab, setActiveTab] = useState<'description' | 'reviews'>(
     'description'
   );
+  console.log('Reviews in ProductTabs:', reviews);
   return (
     <div className="w-full my-10">
       {/* Tab Headers */}
@@ -56,21 +57,31 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ description, reviews }) => {
               {t('customerReviews', 'Customer Reviews')}
             </h3>
             {reviews && reviews.length > 0 ? (
-              reviews.map((review) => (
-                <div key={review.id} className="border-b border-gray-100 pb-4">
-                  <div className="flex items-center mb-2">
-                    <span className="font-semibold text-gray-800">
-                      {review.user.firstName && review.user.lastName
-                        ? `${review.user.firstName} ${review.user.lastName}`
-                        : review.user.username}
-                    </span>
-                    <span className="text-gray-400 mx-2">-</span>
-                    <span className="text-sm text-gray-500">{review.date}</span>
+              reviews.map((review) => {
+                const user = review.user || {};
+                const displayName =
+                  user.firstName && user.lastName
+                    ? `${user.firstName} ${user.lastName}`
+                    : user.username || t('anonymous', 'Anonymous');
+                return (
+                  <div
+                    key={review.id}
+                    className="border-b border-gray-100 pb-4"
+                  >
+                    <div className="flex items-center mb-2">
+                      <span className="font-semibold text-gray-800">
+                        {displayName}
+                      </span>
+                      <span className="text-gray-400 mx-2">-</span>
+                      <span className="text-sm text-gray-500">
+                        {review.date}
+                      </span>
+                      <StarRating rating={review.rating} />
+                    </div>
+                    <p className="text-gray-600 mt-2">{review.comment}</p>
                   </div>
-                  <StarRating rating={review.rating} />
-                  <p className="text-gray-600 mt-2">{review.comment}</p>
-                </div>
-              ))
+                );
+              })
             ) : (
               <p className="text-gray-500">
                 {t('noReviews', 'There are no reviews yet.')}

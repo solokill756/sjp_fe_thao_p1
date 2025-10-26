@@ -3,7 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import Button from '../common/Button';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import StarRating from '../common/StarRating';
+import {
+  useAddCartItemMutation,
+  useGetCartsQuery,
+  useUpdateCartItemMutation,
+} from '../../features/api/apiSlice';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../app/store';
+import toast from 'react-hot-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -12,7 +21,45 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
   const { t } = useTranslation('home');
-
+  const [addCartItem, { isLoading: isAdding }] = useAddCartItemMutation();
+  const [updateCartItem, { isLoading: isUpdating }] =
+    useUpdateCartItemMutation();
+  const userId = useSelector((state: RootState) => state.auth.user?.id);
+  const {
+    data: items,
+    isLoading,
+    isError,
+  } = useGetCartsQuery(userId ?? 0, {
+    skip: !userId,
+  });
+  const handleAddToCart = async () => {
+    try {
+      const checkExisting = items?.find(
+        (item) => item.productId === product.id
+      );
+      if (checkExisting) {
+        await updateCartItem({
+          id: checkExisting.id,
+          productId: product.id,
+          quantity: checkExisting.quantity + 1,
+          userId: userId!,
+        }).unwrap();
+        toast.success(
+          t('addToCartSuccess', 'Item added to cart successfully!')
+        );
+        return;
+      }
+      await addCartItem({
+        productId: product.id,
+        quantity: 1,
+        userId: userId!,
+      }).unwrap();
+      toast.success(t('addToCartSuccess', 'Item added to cart successfully!'));
+    } catch (error) {
+      console.error('Failed to add item to cart:', error);
+      toast.error(t('addToCartError', 'Failed to add item to cart.'));
+    }
+  };
   return (
     <div
       className={clsx(
@@ -22,13 +69,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
           : 'flex flex-row gap-4 items-start w-full'
       )}
     >
-      <div
+      <Link
+        to={`/product/${product.id}`}
         className={clsx(
-          'relative',
+          'relative block',
           viewMode === 'grid'
             ? 'mb-4 w-full aspect-square flex items-center justify-center'
             : 'flex-shrink-0 w-40 h-40'
         )}
+        tabIndex={-1}
       >
         {product.salePercentage && (
           <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1.5 rounded-full z-10">
@@ -48,7 +97,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
             viewMode === 'grid' ? 'w-full h-full' : 'w-full h-full rounded-md'
           )}
         />
-      </div>
+      </Link>
 
       <div
         className={clsx(
@@ -57,14 +106,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
         )}
       >
         <div>
-          <h3
-            className={clsx(
-              'text-gray-800 font-semibold line-clamp-2',
-              viewMode === 'grid' ? 'text-base mb-2 h-12' : 'text-lg mb-2'
-            )}
-          >
-            {product.name}
-          </h3>
+          <Link to={`/product/${product.id}`} tabIndex={-1} className="block">
+            <h3
+              className={clsx(
+                'text-gray-800 font-semibold line-clamp-2',
+                viewMode === 'grid' ? 'text-base mb-2 h-12' : 'text-lg mb-2'
+              )}
+            >
+              {product.name}
+            </h3>
+          </Link>
 
           <div className="flex items-center mb-2">
             <div className="flex mr-2 gap-0.5">
@@ -117,6 +168,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
             <>
               <Button
                 variant="custom"
+                onClick={handleAddToCart}
                 className="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors shadow-md hover:shadow-lg"
               >
                 <FaShoppingCart className="w-6 h-6" />
@@ -124,10 +176,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
               <span
                 className={clsx(
                   'text-sm font-bold',
-                  product.inStock ? 'text-green-600' : 'text-red-600'
+                  product.stockCurrent > 0 ? 'text-green-600' : 'text-red-600'
                 )}
               >
-                {product.inStock
+                {product.stockCurrent > 0
                   ? t('inStock', 'IN STOCK')
                   : t('outOfStock', 'OUT OF STOCK')}
               </span>
@@ -137,16 +189,24 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, viewMode }) => {
               <span
                 className={clsx(
                   'text-sm font-bold',
-                  product.inStock ? 'text-green-600' : 'text-red-600'
+                  product.stockCurrent > 0 ? 'text-green-600' : 'text-red-600'
                 )}
               >
-                {product.inStock
+                {product.stockCurrent > 0
                   ? t('inStock', 'IN STOCK')
                   : t('outOfStock', 'OUT OF STOCK')}
               </span>
               <Button
                 variant="custom"
                 className="px-4 py-2 bg-green-500 text-white rounded-lg flex items-center gap-2 hover:bg-green-600 transition-colors shadow-sm"
+                disabled={
+                  !product.stockCurrent ||
+                  isAdding ||
+                  isLoading ||
+                  isError ||
+                  isUpdating
+                }
+                onClick={handleAddToCart}
               >
                 <FaShoppingCart className="w-5 h-5" />
                 <span>{t('addToCart', 'Add to Cart')}</span>

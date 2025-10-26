@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import {
   useGetProductByIdQuery,
   useGetProductsByCategoryQuery,
+  useGetReviewsByProductQuery,
 } from '../features/api/apiSlice';
 import { LoadingSpinner } from '../components/common/Loading';
 
@@ -19,16 +20,20 @@ export default function ProductDetail() {
     data: productDetailData,
     isLoading: isLoadingProductDetail,
     isError: isErrorProductDetail,
-  } = useGetProductByIdQuery(id ?? '', {
+  } = useGetProductByIdQuery(id ? Number(id) : 0, {
     skip: !id,
   });
   const {
     data: relatedProductsData,
     isLoading: isLoadingRelatedProducts,
     isError: isErrorRelatedProducts,
-  } = useGetProductsByCategoryQuery(productDetailData?.categoryId ?? '', {
+  } = useGetProductsByCategoryQuery(productDetailData?.categoryId ?? 0, {
     skip: !productDetailData?.categoryId,
   });
+  const { data: reviewsData, isLoading: isLoadingReviews } =
+    useGetReviewsByProductQuery(productDetailData?.id ?? 0, {
+      skip: !productDetailData?.id,
+    });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -37,11 +42,11 @@ export default function ProductDetail() {
     return <NotFoundPage />;
   }
 
-  if (isErrorProductDetail || isErrorRelatedProducts) {
+  if (isErrorProductDetail) {
     return <ServerErrorPage />;
   }
 
-  if (isLoadingProductDetail || isLoadingRelatedProducts) {
+  if (isLoadingProductDetail || isLoadingReviews || isLoadingRelatedProducts) {
     return <LoadingSpinner fullScreen={true} />;
   }
 
@@ -71,11 +76,11 @@ export default function ProductDetail() {
         {/* Component Tabs (Description & Reviews) */}
         <ProductTabs
           description={productDetailData.description}
-          reviews={productDetailData.reviews}
+          reviews={reviewsData}
         />
 
         {/* Component Sản phẩm liên quan */}
-        {relatedProductsData && (
+        {relatedProductsData && !isErrorRelatedProducts && (
           <ProductGrid
             products={relatedProductsData}
             title={t('relatedProducts', 'Related Products')}
