@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormState } from '../config/checkout/checkoutConfig';
 import BillingDetails from '../components/checkout/BillingDetails';
 import OrderSummary from '../components/checkout/OrderSummary';
@@ -6,6 +6,18 @@ import CheckoutHeader from '../components/checkout/CheckoutHeader';
 import ProtectedRoute from '../components/common/ProtectedRoute';
 import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../app/store';
+import type { User } from '../models/userModel';
+import type { Order, OrderItem } from '../models/checkoutModel';
+import {
+  useAddOrderMutation,
+  useClearCartMutation,
+  useGetCartsQuery,
+  useUpdateProductMutation,
+} from '../features/api/apiSlice';
+import Loading from '../components/common/Loading';
+import { useNavigate } from 'react-router-dom';
 
 export default function Checkout() {
   const { t } = useTranslation('checkout');
@@ -28,6 +40,37 @@ export default function Checkout() {
     paymentMethod: 'bank',
     agreeTerms: false,
   });
+  const user: User | null = useSelector((state: RootState) => state.auth.user);
+  const {
+    data: productsCart,
+    isLoading,
+    isError,
+  } = useGetCartsQuery(user?.id ?? 0, {
+    skip: !user?.id,
+  });
+  const [addOrder, { isLoading: isAddingOrder }] = useAddOrderMutation();
+  const [clearCart, { isLoading: isClearingCart }] = useClearCartMutation();
+  const [updateProduct, { isLoading: isUpdatingProduct }] =
+    useUpdateProductMutation();
+  const subtotal =
+    productsCart?.reduce(
+      (acc, item) => acc + (item.product?.price ?? 0) * item.quantity,
+      0
+    ) ?? 0;
+  const shippingCost = formData.shippingMethod === 'flat_rate' ? 15.0 : 0;
+  const total = subtotal + shippingCost;
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({
+        ...prev,
+        firstName: user.firstName || '',
+        lastName: user.lastName || '',
+        email: user.email || '',
+        phone: user.phoneNumber || '',
+      }));
+    }
+  }, [user]);
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -61,15 +104,9 @@ export default function Checkout() {
       }));
     }
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const emptyFields = Object.keys(formData).filter(
-      (key) => !formData[key as keyof typeof formData]
-    );
-    if (emptyFields.length > 0) {
-      toast.error(t('error.fillAllFields'));
-      return;
-    }
+
     if (formData.zipCode.length < 5) {
       toast.error(t('error.invalidZipCode'));
       return;
@@ -86,7 +123,79 @@ export default function Checkout() {
       toast.error(t('error.invalidEmail'));
       return;
     }
+
+    const productOrders: OrderItem[] =
+      productsCart?.map((item) => ({
+        productId: item.product?.id || 0,
+        name: item.product?.name || '',
+        price: item.product?.price || 0,
+        quantity: item.quantity,
+      })) || [];
+    const products = productsCart?.map((item) => item.product!) || [];
+
+    const orderData: Order = {
+      userId: user?.id || 0,
+      createdAt: new Date().toISOString(),
+      status: 'Processing',
+      subtotal: 0,
+      shippingCost: formData.shippingMethod === 'flat_rate' ? 15.0 : 0,
+      total: 0,
+      paymentMethod: formData.paymentMethod,
+      shippingMethod: formData.shippingMethod,
+      contactEmail: formData.email,
+      contactPhone: formData.phone,
+      billingAddress: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        companyName: formData.companyName,
+        streetAddress: formData.streetAddress,
+        apartment: formData.apartment,
+        townCity: formData.townCity,
+        state: formData.state,
+        zipCode: formData.zipCode,
+        country: formData.country,
+      },
+      shippingAddress: formData.shipToDifferentAddress
+        ? {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            companyName: formData.companyName,
+            streetAddress: formData.streetAddress,
+            apartment: formData.apartment,
+            townCity: formData.townCity,
+            state: formData.state,
+            zipCode: formData.zipCode,
+            country: formData.country,
+          }
+        : undefined,
+      items: productOrders,
+      orderNotes: formData.orderNotes,
+    };
+    try {
+      await addOrder(orderData).unwrap();
+      await Promise.all(
+        products.map((product) =>
+          updateProduct({
+            ...product,
+            stockCurrent:
+              product.stockCurrent -
+              productsCart?.find((item) => item.productId === product.id)
+                ?.quantity!,
+          })
+        )
+      );
+      await clearCart(user?.id || 0).unwrap();
+      toast.success(t('order_success', 'Order placed successfully!'));
+      navigate('/', { replace: true });
+    } catch (error) {
+      console.error('Failed to place order:', error);
+      toast.error(t('order_error', 'Failed to place order. Please try again.'));
+    }
   };
+
+  if (isAddingOrder || isClearingCart || isUpdatingProduct) {
+    <Loading fullScreen text={t('loading', 'Loading...')} />;
+  }
 
   return (
     <ProtectedRoute>
@@ -97,7 +206,15 @@ export default function Checkout() {
           <form onSubmit={handleSubmit} className="grid lg:grid-cols-5 gap-12">
             <BillingDetails formData={formData} handleChange={handleChange} />
 
-            <OrderSummary formData={formData} handleChange={handleChange} />
+            <OrderSummary
+              formData={formData}
+              handleChange={handleChange}
+              cartItems={productsCart}
+              isLoading={isLoading}
+              isError={isError}
+              subtotal={subtotal}
+              total={total}
+            />
           </form>
         </div>
       </div>

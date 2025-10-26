@@ -37,6 +37,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
   const [addToCart, { isLoading }] = useAddCartItemMutation();
   const [updateCart, { isLoading: isUpdateLoading }] =
     useUpdateCartItemMutation();
+
   const {
     data: cartItems,
     isLoading: isCartLoading,
@@ -61,16 +62,14 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
           quantity: existingItem.quantity + quantity,
           userId: userId!,
         }).unwrap();
-        toast.success(
-          t('addToCartSuccess', 'Item added to cart successfully!')
-        );
-        return;
+      } else {
+        await addToCart({
+          productId: product.id,
+          quantity: quantity,
+          userId: userId!,
+        }).unwrap();
       }
-      await addToCart({
-        productId: product.id,
-        quantity: quantity,
-        userId: userId!,
-      }).unwrap();
+
       toast.success(t('addToCartSuccess', 'Item added to cart successfully!'));
     } catch (error) {
       console.error('Failed to add item to cart:', error);
