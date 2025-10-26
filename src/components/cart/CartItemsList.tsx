@@ -4,8 +4,12 @@ import CartItemRow from './CartItemRow';
 
 interface CartItemsListProps {
   items: CartItem[];
-  onQuantityChange: (id: string, newQuantity: number) => void;
-  onRemove: (id: string) => void;
+  onQuantityChange: (
+    id: number,
+    newQuantity: number,
+    productId: number
+  ) => void;
+  onRemove: (id: number) => void;
 }
 
 const CartItemsList: React.FC<CartItemsListProps> = ({

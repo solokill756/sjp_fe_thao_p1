@@ -11,7 +11,6 @@ import { LoadingSpinner } from '../components/common/Loading';
 import { ServerErrorPage } from '../components/error';
 import { BestSellersSection, EditorPickSection } from '../components/home';
 import FeaturedSection from '../components/home/FeaturedSection';
-
 export default function Home() {
   const {
     data: categoriesData,
@@ -22,7 +21,16 @@ export default function Home() {
     data: productsData,
     isLoading: isLoadingProducts,
     isError: isErrorProducts,
-  } = useGetProductsQuery();
+  } = useGetProductsQuery(
+    {
+      categoryId: undefined,
+      tag: undefined,
+    },
+    {
+      refetchOnFocus: false,
+      refetchOnReconnect: false,
+    }
+  );
 
   if (isLoadingProducts || isLoadingCategories) {
     return <LoadingSpinner />;
@@ -33,21 +41,17 @@ export default function Home() {
   }
 
   const featuredProducts = productsData
-    ? productsData.filter((product) => product.tags?.includes('featured') || [])
+    ? productsData.filter((product) => product.tags?.includes('featured'))
     : [];
 
   const bestSellerProducts = productsData
-    ? productsData.filter(
-        (product) => product.tags?.includes('bestseller') || []
-      )
+    ? productsData.filter((product) => product.tags?.includes('bestseller'))
     : [];
 
   const editorPickProducts = productsData
-    ? productsData.filter(
-        (product) => product.tags?.includes('editorPicks') || []
-      )
+    ? productsData.filter((product) => product.tags?.includes('editorPicks'))
     : [];
-  console.log('productsData:', productsData);
+  console.log('productsData:', editorPickProducts);
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">

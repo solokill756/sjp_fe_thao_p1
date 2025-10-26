@@ -20,9 +20,15 @@ const BestSellersSection: React.FC<BestSellersProps> = ({ products }) => {
             'bestSellersSubTitle',
             'Our best selling products this week'
           )}
+          tag="bestseller"
         />
 
-        <ProductGrid products={products} title={''} viewMode={'grid'} />
+        <ProductGrid
+          products={products}
+          title={''}
+          viewMode={'grid'}
+          showViewAll={false}
+        />
       </div>
     </div>
   );

@@ -6,16 +6,23 @@ import {
   useGetCategoriesQuery,
   useGetProductsQuery,
 } from '../features/api/apiSlice';
-import { shallowEqual, useSelector } from 'react-redux';
-import type { RootState } from '../app/store';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../app/store';
 import { ProductGrid } from '../components/home';
 import Pagination from '../components/shop/Pagination';
 import { LoadingSpinner } from '../components/common/Loading';
 import { ServerErrorPage } from '../components/error';
 import Sidebar from '../components/shop/Sidebar';
+import { useParams } from 'react-router-dom';
+import { addCategoryFilter, resetFilters } from '../features/shop/filterSlice';
 
 export default function Shop() {
   const { t } = useTranslation('shop');
+  const { tag, categoryId } = useParams<{
+    tag?: string;
+    categoryId?: string;
+  }>();
+  const dispatch = useDispatch<AppDispatch>();
   const [sortOption, setSortOption] = useState<SortOption>('default');
   const [itemsPerPage, setItemsPerPage] = useState<number>(9);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -25,10 +32,13 @@ export default function Shop() {
     data: products,
     isLoading,
     isError,
-  } = useGetProductsQuery(undefined, {
-    refetchOnFocus: false,
-    refetchOnReconnect: false,
-  });
+  } = useGetProductsQuery(
+    { tag },
+    {
+      refetchOnFocus: false,
+      refetchOnReconnect: false,
+    }
+  );
   const {
     data: categories,
     isLoading: isLoadingCategories,
@@ -72,7 +82,8 @@ export default function Shop() {
         !categories.includes(p.categoryId)
       )
         return false;
-      if (status != undefined && status.inStock && !p.inStock) return false;
+      if (status != undefined && status.inStock && p.stockCurrent <= 0)
+        return false;
       if (status != undefined && status.onSale && !p.salePercentage)
         return false;
       return true;
@@ -140,6 +151,12 @@ export default function Shop() {
     filters.status?.onSale,
     itemsPerPage,
   ]);
+  useEffect(() => {
+    dispatch(resetFilters());
+    if (categoryId) {
+      dispatch(addCategoryFilter(Number(categoryId)));
+    }
+  }, [categoryId, dispatch]);
 
   if (isLoading || isLoadingCategories) {
     return <LoadingSpinner />;

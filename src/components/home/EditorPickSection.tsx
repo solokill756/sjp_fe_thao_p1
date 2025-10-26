@@ -19,8 +19,14 @@ const EditorPickSection: React.FC<EditorPickProps> = ({ products }) => {
             'editorsPickSubTitle',
             'Products handpicked by our editors'
           )}
+          tag="editorPick"
         />
-        <ProductGrid products={products} title={''} viewMode={'grid'} />
+        <ProductGrid
+          products={products}
+          title={''}
+          viewMode={'grid'}
+          showViewAll={false}
+        />
       </div>
     </div>
   );

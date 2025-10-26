@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "firstName": "Van",
       "lastName": "Nguyen",
       "email": "admin@example.com",
@@ -16,7 +16,7 @@
       }
     },
     {
-      "id": "2",
+      "id": 2,
       "firstName": "Thi",
       "lastName": "Tran",
       "email": "customer1@example.com",
@@ -31,79 +31,76 @@
       }
     },
     {
+      "id": 3,
       "firstName": "Hồ Sỹ ",
       "lastName": "Thảo",
       "phoneNumber": "0838664246",
       "username": "admin",
       "email": "hosithao162200411@gmail.com",
       "password": "123456789",
-      "role": "customer",
-      "id": "eb81"
+      "role": "customer"
     },
     {
+      "id": 4,
       "firstName": "Hồ Sỹ ",
       "lastName": "Thảo đẹp trai",
       "phoneNumber": "0838664246",
       "username": "hồ Sỹ Thảo",
       "email": "hosithao1622004111@gmail.com",
       "password": "123456789",
-      "role": "customer",
-      "id": "617d"
+      "role": "customer"
     }
   ],
   "categories": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Fruits & Vegetables",
       "imageUrl": "/list02.png"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Dairy & Pregnancy",
       "imageUrl": "/list05.png"
     },
-
     {
-      "id": "3",
+      "id": 3,
       "name": "Beverages",
       "imageUrl": "/list08.png"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Meats & Seafood",
       "imageUrl": "/list11.png"
     },
-
     {
-      "id": "5",
+      "id": 5,
       "name": "Biscuits & Snacks",
       "imageUrl": "/list14.png"
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "Breads & Bakery",
       "imageUrl": "/list17.png"
     },
-
     {
-      "id": "7",
+      "id": 7,
       "name": "Breakfast & Dairy",
       "imageUrl": "/list20.png"
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Frozen Foods",
       "imageUrl": "/list23.png"
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "Grocery & Staples",
       "imageUrl": "/list26.png"
     }
   ],
   "products": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Great Value Rising Crust Frozen Supreme",
       "imageUrls": [
         "/Great Value Rising Crust Frozen Supreme.jpeg",
@@ -116,12 +113,15 @@
       "reviewCount": 120,
       "price": 8.99,
       "originalPrice": 12.99,
-      "inStock": true,
-      "categoryId": "8",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 8,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
       "imageUrls": [
         "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
@@ -134,12 +134,15 @@
       "reviewCount": 85,
       "price": 21.9,
       "originalPrice": 24.99,
-      "inStock": true,
-      "categoryId": "1",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 1,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Red Baron Frozen Hand Tossed 4-Meat Pizza",
       "imageUrls": [
         "/Red Baron Frozen Hand Tossed 4-Meat Pizza.jpeg",
@@ -152,90 +155,141 @@
       "reviewCount": 95,
       "price": 14.99,
       "originalPrice": 18.99,
-      "inStock": true,
-      "categoryId": "8",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 8,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "100 Percent Apple Juice - 64 fl oz Bottle",
-      "imageUrls": ["/413.png", "/384.png", "/404.png", "/500.jpg"],
+      "imageUrls": [
+        "/413.png",
+        "/384.png",
+        "/404.png",
+        "/500.jpg"
+      ],
       "salePercentage": 92,
       "rating": 5,
       "reviewCount": 450,
       "price": 0.5,
       "originalPrice": 5.99,
       "inStock": true,
-      "categoryId": "3",
-      "tags": ["featured", "bestseller"]
+      "categoryId": 3,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "Angel Soft Toilet Paper, 9Mega Rolls",
-      "imageUrls": ["/372.png", "/396.png", "/408.png", "/432.png"],
+      "imageUrls": [
+        "/372.png",
+        "/396.png",
+        "/408.png",
+        "/432.png"
+      ],
       "salePercentage": 10,
       "rating": 5,
       "reviewCount": 320,
       "price": 8.99,
       "originalPrice": 9.99,
-      "inStock": true,
-      "categoryId": "9",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 9,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "6",
+      "id": 6,
       "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
-      "imageUrls": ["/357.png", "/436.png", "/444.png", "/132.png"],
+      "imageUrls": [
+        "/357.png",
+        "/436.png",
+        "/444.png",
+        "/132.png"
+      ],
       "salePercentage": 17,
       "rating": 5,
       "reviewCount": 180,
       "price": 14.99,
       "originalPrice": 17.99,
-      "inStock": true,
-      "categoryId": "8",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 8,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "7",
+      "id": 7,
       "name": "Cantaloupe Melon Fresh Organic Cut",
-      "imageUrls": ["/365.png", "/342.png", "/388.png", "/404.png"],
+      "imageUrls": [
+        "/365.png",
+        "/342.png",
+        "/388.png",
+        "/404.png"
+      ],
       "salePercentage": 42,
       "rating": 4,
       "reviewCount": 140,
       "price": 2.45,
       "originalPrice": 4.19,
-      "inStock": true,
-      "categoryId": "1",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 1,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "8",
+      "id": 8,
       "name": "Alcohol Grapefruit Plasma Sparkling Vodka Cocktail",
-      "imageUrls": ["/440.png", "/349.png", "/424.png", "/403.png"],
+      "imageUrls": [
+        "/440.png",
+        "/349.png",
+        "/424.png",
+        "/403.png"
+      ],
       "salePercentage": 10,
       "rating": 5,
       "reviewCount": 95,
       "price": 8.99,
       "originalPrice": 9.99,
-      "inStock": true,
-      "categoryId": "9",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 9,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "9",
+      "id": 9,
       "name": "Vitamineramic aam sugar lyopheat electroyte",
-      "imageUrls": ["/444.png", "/372.png", "/365.png", "/400.png"],
+      "imageUrls": [
+        "/444.png",
+        "/372.png",
+        "/365.png",
+        "/400.png"
+      ],
       "salePercentage": 44,
       "rating": 4,
       "reviewCount": 210,
       "price": 4.99,
       "originalPrice": 8.99,
-      "inStock": true,
-      "categoryId": "2",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 2,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "10",
+      "id": 10,
       "name": "Great Value Rising Crust Frozen Pizza, Supreme",
       "imageUrls": [
         "/Great Value Rising Crust Frozen Pizza, Supreme.jpeg",
@@ -248,12 +302,15 @@
       "reviewCount": 75,
       "price": 8.99,
       "originalPrice": 12.99,
-      "inStock": true,
-      "categoryId": "8",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 8,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     },
     {
-      "id": "11",
+      "id": 11,
       "name": "Ocean Spray Pulp Free Orange Juice - 52 fl oz",
       "imageUrls": [
         "/Ocean Spray Pulp Free Orange Juice - 52 fl oz.jpeg",
@@ -266,52 +323,99 @@
       "reviewCount": 110,
       "price": 14.12,
       "originalPrice": 18.2,
-      "inStock": true,
-      "categoryId": "3",
-      "tags": ["featured", "bestseller"]
+      "stockCurrent": 25,
+      "categoryId": 3,
+      "tags": [
+        "featured",
+        "bestseller"
+      ]
     }
   ],
   "reviews": [
     {
-      "id": "1",
-      "productId": 101,
+      "id": 1,
+      "productId": 1,
       "userId": 2,
       "rating": 5,
       "comment": "The bananas are very delicious and fresh. I will continue to support the shop!",
       "createdAt": "2025-10-12T10:00:00Z"
     },
     {
-      "id": "2",
-      "productId": 102,
+      "id": 2,
+      "productId": 2,
       "userId": 2,
       "rating": 4,
       "comment": "The strawberries are a bit small but very sweet.",
       "createdAt": "2025-10-13T14:30:00Z"
     }
   ],
-  "cart": [
+  "cartItems": [
     {
-      "id": "2",
+      "id": 1,
       "userId": 2,
-      "items": [
-        {
-          "productId": 101,
-          "quantity": 2
-        },
-        {
-          "productId": 105,
-          "quantity": 1
-        }
-      ]
+      "productId": 1,
+      "quantity": 1,
+      "added_at": "2025-10-24T09:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "productId": 4,
+      "quantity": 3,
+      "added_at": "2025-10-24T09:35:00Z"
+    },
+    {
+      "quantity": 2,
+      "productId": 1,
+      "added_at": "2025-10-24T14:50:41.515Z",
+      "id": 4
+    },
+    {
+      "quantity": 25,
+      "userId": 4,
+      "productId": 6,
+      "added_at": "2025-10-26T04:15:47.668Z",
+      "id": 9
+    },
+    {
+      "quantity": 2,
+      "userId": 4,
+      "productId": 9,
+      "added_at": "2025-10-25T06:01:54.588Z",
+      "id": 12
+    },
+    {
+      "productId": 2,
+      "quantity": 2,
+      "userId": 4,
+      "id": 13
+    },
+    {
+      "productId": 1,
+      "quantity": 1,
+      "userId": 4,
+      "id": 14
+    },
+    {
+      "productId": 4,
+      "quantity": 2,
+      "userId": 4,
+      "id": 15
+    },
+    {
+      "productId": 3,
+      "quantity": 1,
+      "userId": 4,
+      "id": 16
     }
   ],
   "orders": [
     {
-      "id": "1",
+      "id": 1,
       "userId": 2,
       "items": [
         {
-          "productId": 102,
+          "productId": 2,
           "name": "Dalat Strawberries",
           "quantity": 1,
           "price": 120000
@@ -330,7 +434,7 @@
   ],
   "productSuggestions": [
     {
-      "id": "1",
+      "id": 1,
       "userId": 2,
       "suggestion": "The shop should import Dak Lak avocados.",
       "status": "Pending",
@@ -339,8 +443,11 @@
   ],
   "chats": [
     {
-      "id": "1",
-      "participants": [1, 2],
+      "id": 1,
+      "participants": [
+        1,
+        2
+      ],
       "messages": [
         {
           "senderId": 2,

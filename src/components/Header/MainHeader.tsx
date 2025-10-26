@@ -20,6 +20,7 @@ import {
 } from '../../config/Header/mainHeaderConfig';
 import toast from 'react-hot-toast';
 import { logOut } from '../../features/auth/authSlice';
+import { useGetCartsQuery } from '../../features/api/apiSlice';
 
 interface MenuItem {
   label: string;
@@ -36,6 +37,13 @@ export default function MainHeader() {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
+  const {
+    data: cartItems,
+    isLoading: isLoadingCart,
+    isError: isErrorCart,
+  } = useGetCartsQuery(user?.id!, {
+    skip: !user?.id,
+  });
 
   const handleLogout = () => {
     if (!isAuthenticated) return;
@@ -164,19 +172,30 @@ export default function MainHeader() {
               </Transition>
             </Menu>
 
-            <button className="relative">
-              <HiHeart className="w-6 h-6" />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            {isAuthenticated && (
+              <button className="relative">
+                <HiHeart className="w-6 h-6" />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  0
+                </span>
+              </button>
+            )}
 
-            <button className="relative">
-              <HiShoppingCart className="w-6 h-6" />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            {isAuthenticated && (
+              <button className="relative">
+                <HiShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {isLoadingCart
+                    ? '...'
+                    : isErrorCart
+                    ? '!'
+                    : cartItems?.reduce(
+                        (total, item) => total + item.quantity,
+                        0
+                      ) ?? 0}
+                </span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -237,19 +256,30 @@ export default function MainHeader() {
                 </Transition>
               </Menu>
 
-              <button className="relative">
-                <HiHeart className="w-5 h-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  0
-                </span>
-              </button>
+              {isAuthenticated && (
+                <button className="relative">
+                  <HiHeart className="w-5 h-5 text-gray-600" />
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    0
+                  </span>
+                </button>
+              )}
 
-              <button className="relative">
-                <HiShoppingCart className="w-5 h-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  0
-                </span>
-              </button>
+              {isAuthenticated && (
+                <button className="relative">
+                  <HiShoppingCart className="w-5 h-5 text-gray-600" />
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    {isLoadingCart
+                      ? '...'
+                      : isErrorCart
+                      ? '!'
+                      : cartItems?.reduce(
+                          (total, item) => total + item.quantity,
+                          0
+                        ) ?? 0}
+                  </span>
+                </button>
+              )}
             </div>
           </div>
           {/* Search Bar */}

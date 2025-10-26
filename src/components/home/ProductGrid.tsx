@@ -3,7 +3,6 @@ import ProductCard from './ProductCard';
 import Button from '../common/Button';
 import type { Product } from '../../models/productModel';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 interface ProductGridProps {
   title: string;
@@ -42,9 +41,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         }
       >
         {products.map((product) => (
-          <Link to={`/product/${product.id}`} key={product.id}>
-            <ProductCard product={product} viewMode={viewMode} />
-          </Link>
+          <ProductCard product={product} viewMode={viewMode} key={product.id} />
         ))}
       </div>
     </div>
