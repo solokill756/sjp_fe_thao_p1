@@ -1,0 +1,22 @@
+{
+  "loading": "Loading...",
+  "order_not_found": "Order not found.",
+  "order_status_updated": "Order status updated.",
+  "order_status_update_failed": "Failed to update order status.",
+  "search_placeholder": "Search by name...",
+  "actions": "Actions",
+  "all_orders": "All Orders",
+  "sort_by_date": "Sort by date",
+  "sort_by_total": "Sort by total",
+  "sort_by_name": "Sort by name",
+  "sort_by_status": "Sort by status",
+  "id": "ID",
+  "name": "Name",
+  "date": "Date",
+  "total": "Total",
+  "status": "Status",
+  "unknown_user": "Unknown user",
+  "view_order_details": "View order details",
+  "accept_order": "Accept order",
+  "cancel_order": "Cancel order"
+}

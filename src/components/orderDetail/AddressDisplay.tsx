@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import type { OrderAddress } from '../../pages/checkoutModel';
+import type { OrderAddress } from '../../models/checkoutModel';
 
 interface AddressDisplayProps {
   address: OrderAddress | string;

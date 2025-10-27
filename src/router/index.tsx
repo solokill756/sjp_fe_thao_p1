@@ -13,6 +13,8 @@ import Auth from '../pages/auth';
 import Dashboard from '../pages/admin/Dashboard';
 import AdminProtectedRoute from '../components/admin/common/AdminProtectedRoute';
 import AdminLayout from '../components/admin/layouts/AdminLayout';
+import Orders from '../pages/admin/Orders';
+import AdminOrderDetail from '../pages/admin/OrderDetail';
 
 const router = createBrowserRouter([
   {
@@ -76,6 +78,14 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Dashboard />,
+          },
+          {
+            path: 'orders',
+            element: <Orders />,
+          },
+          {
+            path: 'orders/:orderId',
+            element: <AdminOrderDetail />,
           },
           // {
           //   path: 'users',

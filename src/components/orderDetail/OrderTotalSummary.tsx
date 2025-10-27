@@ -1,4 +1,4 @@
-import type { Order } from '../../pages/checkoutModel';
+import type { Order } from '../../models/checkoutModel';
 import { currencyFormatterUSD } from '../../utils/currencyFormatter';
 
 interface OrderDetailHeaderProps {

@@ -45,12 +45,14 @@ const RecentProductsWidget: React.FC<RecentProductsWidgetProps> = ({
                 <td className="py-3 px-3">
                   <span
                     className={`px-2 py-1 text-xs rounded-full ${
-                      product.currentStock
+                      product.currentStock > 0
                         ? 'bg-green-100 text-green-700'
                         : 'bg-red-100 text-red-700'
                     }`}
                   >
-                    {product.currentStock ? t('in_stock') : t('out_of_stock')}
+                    {product.currentStock > 0
+                      ? t('in_stock')
+                      : t('out_of_stock')}
                   </span>
                 </td>
                 <td className="py-3 px-3 text-sm text-gray-700">

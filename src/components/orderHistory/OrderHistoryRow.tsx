@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import type { OrderStatus } from '../../config/historyCheckout/historyCheckoutConfig';
-import type { Order } from '../../pages/checkoutModel';
+import type { Order } from '../../models/checkoutModel';
 import { currencyFormatterUSD } from '../../utils/currencyFormatter';
 import Button from '../common/Button';
 import StatusBadge from './StatusBadge';

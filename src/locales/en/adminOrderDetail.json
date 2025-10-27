@@ -1,0 +1,19 @@
+{
+  "loading": "Loading order details...",
+  "back_to_orders": "Back to orders",
+  "order": "Order",
+  "order_date": "Order date",
+  "item": "Item",
+  "price": "Price",
+  "quantity": "Quantity",
+  "total": "Total",
+  "order_summary": "Order summary",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "customer_info": "Customer info",
+  "anonymous": "Anonymous",
+  "phone": "Phone",
+  "shipping_address": "Shipping address",
+  "billing_address": "Billing address",
+  "out_of_stock": "Out of stock"
+}

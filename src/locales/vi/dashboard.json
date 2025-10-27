@@ -27,5 +27,15 @@
   "users": "Người dùng",
   "authentication": "Xác thực",
   "error_pages": "Trang lỗi",
-  "settings": "Cài đặt"
+  "settings": "Cài đặt",
+  "products_added_today": "Sản phẩm thêm hôm nay",
+  "photo": "Ảnh",
+  "name": "Tên",
+  "stock": "Kho",
+  "price": "Giá",
+  "actions": "Thao tác",
+  "in_stock": "Còn hàng",
+  "out_of_stock": "Hết hàng",
+  "recent_reviews": "Đánh giá gần đây",
+  "over_last_month": "so với tháng trước"
 }

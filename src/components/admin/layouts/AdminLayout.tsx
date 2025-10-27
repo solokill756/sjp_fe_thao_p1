@@ -6,6 +6,7 @@ import Footer from './Footer';
 
 const AdminLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="flex h-screen bg-gray-100 font-sans">
       {/* Sidebar */}

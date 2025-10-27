@@ -10,11 +10,7 @@ import {
   useGetReviewsQuery,
 } from '../../features/api/apiSlice';
 import Loading from '../../components/common/Loading';
-import { ServerErrorPage } from '../../components/error';
-import {
-  type productsSoldDataType,
-  type salesChartDataType,
-} from '../../config/admin/dashboard/dashboardConfig';
+import { type salesChartDataType } from '../../config/admin/dashboard/dashboardConfig';
 import StatCard from '../../components/admin/dashboard/StatCard';
 import { useTranslation } from 'react-i18next';
 import { CreditCard, ShoppingCart } from 'lucide-react';
@@ -52,9 +48,14 @@ export default function Dashboard() {
     );
   }
 
+  // Chỉ tính các order có status là Delivered hoặc Shipping
+  const filteredOrders = orders.filter(
+    (order) => order.status === 'Delivered' || order.status === 'Shipping'
+  );
+
   const salesChartDataMap: Record<string, { Sales: number; Order: number }> =
     {};
-  orders.forEach((order) => {
+  filteredOrders.forEach((order) => {
     const dayLabel = new Date(order.createdAt).toLocaleDateString();
     if (!salesChartDataMap[dayLabel]) {
       salesChartDataMap[dayLabel] = { Sales: 0, Order: 0 };
@@ -69,16 +70,6 @@ export default function Dashboard() {
     Sales: value.Sales,
     Order: value.Order,
   }));
-
-  const productsSoldData: productsSoldDataType[] = orders.flatMap((order) =>
-    order.items.map((item) => ({
-      id: item.productId,
-      name: item.name,
-      sold: item.quantity,
-      imageUrl:
-        products.find((p) => p.id === item.productId)?.imageUrls[0] || '',
-    }))
-  );
 
   const recentProductsData = [...products]
     .sort(
@@ -96,11 +87,11 @@ export default function Dashboard() {
     }));
   const currentMonth = new Date().getMonth();
   const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-  const currentMonthSales = orders
+  const currentMonthSales = filteredOrders
     .filter((order) => new Date(order.createdAt).getMonth() === currentMonth)
     .reduce((acc, order) => acc + order.total, 0);
 
-  const lastMonthSales = orders
+  const lastMonthSales = filteredOrders
     .filter((order) => new Date(order.createdAt).getMonth() === lastMonth)
     .reduce((acc, order) => acc + order.total, 0);
 

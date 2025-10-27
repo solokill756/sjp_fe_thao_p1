@@ -1,3 +1,5 @@
+import type { User } from './userModel';
+
 interface OrderItem {
   productId: string | number;
   name: string;
@@ -18,7 +20,7 @@ interface OrderAddress {
 }
 
 interface Order {
-  id?: string;
+  id?: number;
   userId: string | number;
   createdAt: string;
   status: 'Processing' | 'Shipping' | 'Delivered' | 'Cancelled';

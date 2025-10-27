@@ -1,5 +1,5 @@
 import type { OrderStatus } from '../../config/historyCheckout/historyCheckoutConfig';
-import type { Order } from '../../pages/checkoutModel';
+import type { Order } from '../../models/checkoutModel';
 import StatusBadge from '../orderHistory/StatusBadge';
 
 interface OrderDetailHeaderProps {

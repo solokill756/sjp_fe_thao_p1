@@ -1,17 +1,21 @@
 import { ChevronDown, ChevronRight, Package } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '../../../app/store';
+import { logOut } from '../../../features/auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface NavItemProps {
   icon: React.ElementType;
-  label: string;
+  itemKey: string;
   active?: boolean;
   badge?: string;
   isSub?: boolean;
 }
 const NavItem: React.FC<NavItemProps> = ({
   icon: Icon,
-  label,
+  itemKey,
   active,
   badge,
   isSub,
@@ -21,12 +25,32 @@ const NavItem: React.FC<NavItemProps> = ({
 
   const displayBadge = badge === 'New' ? t('new') : badge;
 
-  const hasSub = !isSub && (label === t('products') || label === t('buyer'));
-
+  const hasSub = !isSub && (itemKey === 'products' || itemKey === 'buyer');
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   return (
     <>
       <button
-        onClick={() => hasSub && setIsOpen(!isOpen)}
+        onClick={() => {
+          if (itemKey === 'authentication') {
+            dispatch(logOut());
+            console.log('Logging out user');
+            hasSub && setIsOpen(!isOpen);
+            return;
+          }
+          if (itemKey === 'orders') {
+            console.log('Navigating to orders page');
+            navigate('/admin/orders');
+            hasSub && setIsOpen(!isOpen);
+            return;
+          }
+          if (itemKey === 'dashboard') {
+            console.log('Navigating to dashboard page');
+            navigate('/admin');
+            hasSub && setIsOpen(!isOpen);
+            return;
+          }
+        }}
         className={`flex items-center justify-between w-full px-4 py-2.5 text-sm rounded-md ${
           active
             ? 'bg-blue-600 text-white'
@@ -35,7 +59,7 @@ const NavItem: React.FC<NavItemProps> = ({
       >
         <div className="flex items-center space-x-3">
           <Icon size={18} />
-          <span>{label}</span>
+          <span>{t(itemKey)}</span>
         </div>
         {displayBadge && (
           <span
@@ -58,13 +82,13 @@ const NavItem: React.FC<NavItemProps> = ({
         <div className="flex flex-col">
           <NavItem
             icon={Package}
-            label="Sub Item 1"
+            itemKey="sub_item_1"
             isSub={true}
             active={false}
           />
           <NavItem
             icon={Package}
-            label="Sub Item 2"
+            itemKey="sub_item_2"
             isSub={true}
             active={false}
           />

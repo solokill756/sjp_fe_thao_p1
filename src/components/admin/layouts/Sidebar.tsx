@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
 import NavItem from '../common/NavItem';
+import { useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -19,28 +20,44 @@ interface SidebarProps {
 }
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   const { t } = useTranslation('dashboard');
+  const location = useLocation();
+
+  // Map itemKey to pathname
+  const routeMap: Record<string, string> = {
+    dashboard: '/admin',
+    orders: '/admin/orders',
+    products: '/admin/products',
+    buyer: '/admin/buyer',
+    customers: '/admin/customers',
+    invoices: '/admin/invoices',
+    profile: '/admin/profile',
+    users: '/admin/users',
+    authentication: '/admin/auth',
+    error_pages: '/admin/error',
+    settings: '/admin/settings',
+  };
 
   const navGroups = [
     {
       title: t('ecommerce'),
       items: [
-        { label: t('dashboard'), icon: LayoutDashboard, active: true },
-        { label: t('orders'), icon: ShoppingCart },
-        { label: t('products'), icon: Package },
-        { label: t('buyer'), icon: Users },
-        { label: t('customers'), icon: Users },
-        { label: t('invoices'), icon: CreditCard },
+        { itemKey: 'dashboard', icon: LayoutDashboard },
+        { itemKey: 'orders', icon: ShoppingCart },
+        { itemKey: 'products', icon: Package },
+        { itemKey: 'buyer', icon: Users },
+        { itemKey: 'customers', icon: Users },
+        { itemKey: 'invoices', icon: CreditCard },
       ],
     },
 
     {
       title: t('pages'),
       items: [
-        { label: t('profile'), icon: User },
-        { label: t('users'), icon: Users },
-        { label: t('authentication'), icon: LogIn },
-        { label: t('error_pages'), icon: AlertCircle },
-        { label: t('settings'), icon: Settings },
+        { itemKey: 'profile', icon: User },
+        { itemKey: 'users', icon: Users },
+        { itemKey: 'authentication', icon: LogIn },
+        { itemKey: 'error_pages', icon: AlertCircle },
+        { itemKey: 'settings', icon: Settings },
       ],
     },
   ];
@@ -69,14 +86,17 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 {group.title}
               </h3>
               <div className="space-y-1">
-                {group.items.map((item) => (
-                  <NavItem
-                    key={item.label}
-                    icon={item.icon}
-                    label={item.label}
-                    active={item.active}
-                  />
-                ))}
+                {group.items.map((item) => {
+                  const isActive = location.pathname === routeMap[item.itemKey];
+                  return (
+                    <NavItem
+                      key={item.itemKey}
+                      icon={item.icon}
+                      itemKey={item.itemKey}
+                      active={isActive}
+                    />
+                  );
+                })}
               </div>
             </div>
           ))}

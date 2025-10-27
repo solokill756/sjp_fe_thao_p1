@@ -27,5 +27,15 @@
   "users": "Users",
   "authentication": "Authentication",
   "error_pages": "Error Pages",
-  "settings": "Settings"
+  "settings": "Settings",
+  "products_added_today": "Products added today",
+  "photo": "Photo",
+  "name": "Name",
+  "stock": "Stock",
+  "price": "Price",
+  "actions": "Actions",
+  "in_stock": "In Stock",
+  "out_of_stock": "Out of Stock",
+  "recent_reviews": "Recent Reviews",
+  "over_last_month": "over last month"
 }

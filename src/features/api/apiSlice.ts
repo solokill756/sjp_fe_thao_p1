@@ -6,7 +6,7 @@ import type { Product } from '../../models/productModel';
 import type { Category } from '../../models/categoryModel';
 import type { CartItem, NewCartItem } from '../../models/CartModel';
 import type { Review } from '../../models/review';
-import type { Order } from '../../pages/checkoutModel';
+import type { Order } from '../../models/checkoutModel';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -317,9 +317,9 @@ export const apiSlice = createApi({
         result
           ? [
               ...result.map(({ id }) => ({ type: 'Order' as const, id })),
-              { type: 'Order', id: `LIST-${userId}` },
+              { type: 'Order', id: `LIST` },
             ]
-          : [{ type: 'Order', id: `LIST-${userId}` }],
+          : [{ type: 'Order', id: `LIST` }],
     }),
     getOrderById: builder.query<Order, number>({
       query: (orderId: number) => `/orders/${orderId}`,
@@ -328,7 +328,7 @@ export const apiSlice = createApi({
       ],
     }),
     getOrders: builder.query<Order[], void>({
-      query: () => `/orders`,
+      query: () => `/orders?_expand=user`,
       transformResponse: (response: Order[]) => {
         if (!Array.isArray(response)) {
           return [];
@@ -359,10 +359,19 @@ export const apiSlice = createApi({
             ]
           : [{ type: 'Review', id: 'LIST' }],
     }),
+    updateOrder: builder.mutation<Order, Partial<Order> & { id: number }>({
+      query: ({ id, ...body }) => ({
+        url: `/orders/${id}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Order', id }],
+    }),
   }),
 });
 
 export const {
+  useUpdateOrderMutation,
   useGetReviewsQuery,
   useGetOrdersQuery,
   useGetOrderByIdQuery,

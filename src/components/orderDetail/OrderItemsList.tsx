@@ -1,4 +1,4 @@
-import type { OrderItem } from '../../pages/checkoutModel';
+import type { OrderItem } from '../../models/checkoutModel';
 import { currencyFormatterUSD } from '../../utils/currencyFormatter';
 
 interface OrderItemsListProps {

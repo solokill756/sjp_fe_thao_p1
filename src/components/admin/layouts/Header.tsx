@@ -5,7 +5,11 @@ interface HeaderProps {
   setSidebarOpen: (open: boolean) => void;
 }
 const Header: React.FC<HeaderProps> = ({ setSidebarOpen }) => {
-  const { t } = useTranslation('dashboard');
+  const { t, i18n } = useTranslation('dashboard');
+
+  const handleLanguageChange = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <header className="flex-shrink-0 bg-white border-b shadow-sm">
@@ -23,6 +27,29 @@ const Header: React.FC<HeaderProps> = ({ setSidebarOpen }) => {
         </div>
 
         <div className="flex items-center space-x-4">
+          {/* Nút chuyển đổi ngôn ngữ */}
+          <div>
+            <button
+              className={`px-2 py-1 rounded-l border border-gray-300 text-sm font-medium ${
+                i18n.language === 'vi'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700'
+              }`}
+              onClick={() => handleLanguageChange('vi')}
+            >
+              VI
+            </button>
+            <button
+              className={`px-2 py-1 rounded-r border border-gray-300 text-sm font-medium ${
+                i18n.language === 'en'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700'
+              }`}
+              onClick={() => handleLanguageChange('en')}
+            >
+              EN
+            </button>
+          </div>
           <div className="relative hidden md:block">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
               <Search size={18} className="text-gray-400" />
