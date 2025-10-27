@@ -38,7 +38,7 @@
       "username": "admin",
       "email": "hosithao162200411@gmail.com",
       "password": "123456789",
-      "role": "customer"
+      "role": "admin"
     },
     {
       "firstName": "Hồ Sỹ ",
@@ -114,11 +114,9 @@
       "originalPrice": 12.99,
       "stockCurrent": 24,
       "categoryId": 8,
-      "tags": [
-        "featured",
-        "bestseller"
-      ],
-      "id": 1
+      "tags": ["featured", "bestseller"],
+      "id": 1,
+      "createdAt": "2025-10-20T10:00:00Z"
     },
     {
       "name": "Simple Kitchen Fit Sliced Strawberries - 10oz",
@@ -135,11 +133,9 @@
       "originalPrice": 24.99,
       "stockCurrent": 21,
       "categoryId": 1,
-      "tags": [
-        "featured",
-        "bestseller"
-      ],
-      "id": 2
+      "tags": ["featured", "bestseller"],
+      "id": 2,
+      "createdAt": "2025-10-21T11:30:00Z"
     },
     {
       "id": 3,
@@ -157,20 +153,13 @@
       "originalPrice": 18.99,
       "stockCurrent": 25,
       "categoryId": 8,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-22T14:15:00Z"
     },
     {
       "id": 4,
       "name": "100 Percent Apple Juice - 64 fl oz Bottle",
-      "imageUrls": [
-        "/413.png",
-        "/384.png",
-        "/404.png",
-        "/500.jpg"
-      ],
+      "imageUrls": ["/413.png", "/384.png", "/404.png", "/500.jpg"],
       "salePercentage": 92,
       "rating": 5,
       "reviewCount": 450,
@@ -178,20 +167,13 @@
       "originalPrice": 5.99,
       "stockCurrent": 30,
       "categoryId": 3,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-23T09:45:00Z"
     },
     {
       "id": 5,
       "name": "Angel Soft Toilet Paper, 9Mega Rolls",
-      "imageUrls": [
-        "/372.png",
-        "/396.png",
-        "/408.png",
-        "/432.png"
-      ],
+      "imageUrls": ["/372.png", "/396.png", "/408.png", "/432.png"],
       "salePercentage": 10,
       "rating": 5,
       "reviewCount": 320,
@@ -199,20 +181,13 @@
       "originalPrice": 9.99,
       "stockCurrent": 25,
       "categoryId": 9,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-24T08:20:00Z"
     },
     {
       "id": 6,
       "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
-      "imageUrls": [
-        "/357.png",
-        "/436.png",
-        "/444.png",
-        "/132.png"
-      ],
+      "imageUrls": ["/357.png", "/436.png", "/444.png", "/132.png"],
       "salePercentage": 17,
       "rating": 5,
       "reviewCount": 180,
@@ -220,20 +195,13 @@
       "originalPrice": 17.99,
       "stockCurrent": 25,
       "categoryId": 8,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-25T13:10:00Z"
     },
     {
       "id": 7,
       "name": "Cantaloupe Melon Fresh Organic Cut",
-      "imageUrls": [
-        "/365.png",
-        "/342.png",
-        "/388.png",
-        "/404.png"
-      ],
+      "imageUrls": ["/365.png", "/342.png", "/388.png", "/404.png"],
       "salePercentage": 42,
       "rating": 4,
       "reviewCount": 140,
@@ -241,20 +209,13 @@
       "originalPrice": 4.19,
       "stockCurrent": 25,
       "categoryId": 1,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-26T15:25:00Z"
     },
     {
       "id": 8,
       "name": "Alcohol Grapefruit Plasma Sparkling Vodka Cocktail",
-      "imageUrls": [
-        "/440.png",
-        "/349.png",
-        "/424.png",
-        "/403.png"
-      ],
+      "imageUrls": ["/440.png", "/349.png", "/424.png", "/403.png"],
       "salePercentage": 10,
       "rating": 5,
       "reviewCount": 95,
@@ -262,20 +223,13 @@
       "originalPrice": 9.99,
       "stockCurrent": 25,
       "categoryId": 9,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-27T10:40:00Z"
     },
     {
       "id": 9,
       "name": "Vitamineramic aam sugar lyopheat electroyte",
-      "imageUrls": [
-        "/444.png",
-        "/372.png",
-        "/365.png",
-        "/400.png"
-      ],
+      "imageUrls": ["/444.png", "/372.png", "/365.png", "/400.png"],
       "salePercentage": 44,
       "rating": 4,
       "reviewCount": 210,
@@ -283,10 +237,8 @@
       "originalPrice": 8.99,
       "stockCurrent": 25,
       "categoryId": 2,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-28T12:55:00Z"
     },
     {
       "id": 10,
@@ -304,10 +256,8 @@
       "originalPrice": 12.99,
       "stockCurrent": 25,
       "categoryId": 8,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-29T14:05:00Z"
     },
     {
       "id": 11,
@@ -325,10 +275,8 @@
       "originalPrice": 18.2,
       "stockCurrent": 25,
       "categoryId": 3,
-      "tags": [
-        "featured",
-        "bestseller"
-      ]
+      "tags": ["featured", "bestseller"],
+      "createdAt": "2025-10-30T16:20:00Z"
     }
   ],
   "reviews": [
@@ -493,10 +441,7 @@
   "chats": [
     {
       "id": 1,
-      "participants": [
-        1,
-        2
-      ],
+      "participants": [1, 2],
       "messages": [
         {
           "senderId": 2,
