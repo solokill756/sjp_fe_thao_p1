@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../app/store';
 import type { User } from '../models/userModel';
-import type { Order, OrderItem } from '../models/checkoutModel';
+import type { Order, OrderItem } from './checkoutModel';
 import {
   useAddOrderMutation,
   useClearCartMutation,

@@ -1,6 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import footerEn from './locales/en/footer.json';
+import adminCommonEn from './locales/en/adminCommon.json';
+import dashboardEn from './locales/en/dashboard.json';
 import cartEn from './locales/en/cart.json';
 import shopEn from './locales/en/shop.json';
 import headerEn from './locales/en/header.json';
@@ -13,6 +15,8 @@ import productDetailEn from './locales/en/productDetail.json';
 import orderDetailEn from './locales/en/orderDetail.json';
 import orderHistoryEn from './locales/en/orderHistory.json';
 import footerVi from './locales/vi/footer.json';
+import adminCommonVi from './locales/vi/adminCommon.json';
+import dashboardVi from './locales/vi/dashboard.json';
 import cartVi from './locales/vi/cart.json';
 import shopVi from './locales/vi/shop.json';
 import headerVi from './locales/vi/header.json';
@@ -53,6 +57,8 @@ i18n.use(initReactI18next).init({
       checkout: checkoutEn,
       orderDetail: orderDetailEn,
       orderHistory: orderHistoryEn,
+      dashboard: dashboardEn,
+      adminCommon: adminCommonEn,
     },
     vi: {
       header: headerVi,
@@ -68,6 +74,8 @@ i18n.use(initReactI18next).init({
       checkout: checkoutVi,
       orderDetail: orderDetailVi,
       orderHistory: orderHistoryVi,
+      dashboard: dashboardVi,
+      adminCommon: adminCommonVi,
     },
   },
   lng: defaultLanguage,

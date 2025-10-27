@@ -10,6 +10,9 @@ import Checkout from '../pages/Checkout';
 import OrderDetail from '../pages/OrderDetail';
 import OrderHistory from '../pages/OrderHistory';
 import Auth from '../pages/auth';
+import Dashboard from '../pages/admin/Dashboard';
+import AdminProtectedRoute from '../components/admin/common/AdminProtectedRoute';
+import AdminLayout from '../components/admin/layouts/AdminLayout';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +63,33 @@ const router = createBrowserRouter([
       {
         path: 'order-history/:orderId',
         element: <OrderDetail />,
+      },
+    ],
+  },
+  {
+    path: 'admin',
+    element: <AdminProtectedRoute />,
+    children: [
+      {
+        element: <AdminLayout />,
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          },
+          // {
+          //   path: 'users',
+          //   element: <ManageUsers />,
+          // },
+          // {
+          //   path: 'products',
+          //   element: <ManageProducts />,
+          // },
+          // {
+          //   path: 'orders',
+          //   element: <ManageOrders />,
+          // },
+        ],
       },
     ],
   },

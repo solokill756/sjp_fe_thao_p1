@@ -14,4 +14,5 @@ export interface Product {
   description?: string;
   categoryId: number;
   reviews?: Review[];
+  createdAt: string;
 }

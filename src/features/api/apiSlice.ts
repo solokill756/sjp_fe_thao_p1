@@ -5,7 +5,7 @@ import type { Product } from '../../models/productModel';
 import type { Category } from '../../models/categoryModel';
 import type { CartItem, NewCartItem } from '../../models/CartModel';
 import type { Review } from '../../models/review';
-import type { Order } from '../../models/checkoutModel';
+import type { Order } from '../../pages/checkoutModel';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -312,10 +312,44 @@ export const apiSlice = createApi({
         { type: 'Order', id: orderId },
       ],
     }),
+    getOrders: builder.query<Order[], void>({
+      query: () => `/orders`,
+      transformResponse: (response: Order[]) => {
+        if (!Array.isArray(response)) {
+          return [];
+        }
+        return response;
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Order' as const, id })),
+              { type: 'Order', id: 'LIST' },
+            ]
+          : [{ type: 'Order', id: 'LIST' }],
+    }),
+    getReviews: builder.query<Review[], void>({
+      query: () => `/reviews?_expand=user`,
+      transformResponse: (response: Review[]) => {
+        if (!Array.isArray(response)) {
+          return [];
+        }
+        return response;
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Review' as const, id })),
+              { type: 'Review', id: 'LIST' },
+            ]
+          : [{ type: 'Review', id: 'LIST' }],
+    }),
   }),
 });
 
 export const {
+  useGetReviewsQuery,
+  useGetOrdersQuery,
   useGetOrderByIdQuery,
   useUpdateProductMutation,
   useGetOrdersByUserQuery,
