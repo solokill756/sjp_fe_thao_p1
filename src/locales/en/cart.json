@@ -1,0 +1,16 @@
+{
+  "emptyCart": "YOUR CART IS CURRENTLY EMPTY.",
+  "returnToShop": "Return to shop",
+  "back": "Back",
+  "cartTotals": "Cart totals",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "total": "Total",
+  "checkout": "Proceed to checkout",
+  "product": "Product",
+  "price": "Price",
+  "quantity": "Quantity",
+  "remove": "Remove",
+  "decrease": "Decrease quantity",
+  "increase": "Increase quantity"
+}

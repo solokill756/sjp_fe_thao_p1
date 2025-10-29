@@ -1,0 +1,22 @@
+{
+  "title": "Cửa hàng",
+  "subtitle": "Tìm sản phẩm tốt nhất với giá tốt nhất.",
+  "filterResults": "Kết quả lọc",
+  "noProducts": "Không tìm thấy sản phẩm nào",
+  "tryAdjustingFilters": "Hãy điều chỉnh bộ lọc để tìm sản phẩm bạn muốn.",
+  "showingResults": "Hiển thị tất cả {{count}} kết quả",
+  "defaultSorting": "Sắp xếp mặc định",
+  "sortPriceAsc": "Sắp xếp giá tăng dần",
+  "sortPriceDesc": "Sắp xếp giá giảm dần",
+  "sortRatingDesc": "Sắp xếp theo đánh giá",
+  "showN": "Hiển thị {{count}}",
+  "filters": "Bộ lọc",
+  "filterByPrice": "Lọc theo giá",
+  "price": "Giá",
+  "productCategories": "Danh mục sản phẩm",
+  "productStatus": "Trạng thái sản phẩm",
+  "inStock": "Còn hàng",
+  "onSale": "Đang giảm giá",
+  "previous": "Trước",
+  "next": "Sau"
+}

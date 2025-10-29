@@ -9,7 +9,7 @@ import {
 } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import type { RootState, AppDispatch } from '../../app/store';
@@ -20,7 +20,7 @@ import {
 } from '../../config/Header/mainHeaderConfig';
 import toast from 'react-hot-toast';
 import { logOut } from '../../features/auth/authSlice';
-
+import { useGetCartsQuery } from '../../features/api/apiSlice';
 interface MenuItem {
   label: string;
   onClick: () => void;
@@ -36,6 +36,13 @@ export default function MainHeader() {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated
   );
+  const {
+    data: cartItems,
+    isLoading: isLoadingCart,
+    isError: isErrorCart,
+  } = useGetCartsQuery(user?.id!, {
+    skip: !user?.id,
+  });
 
   const handleLogout = () => {
     if (!isAuthenticated) return;
@@ -74,9 +81,12 @@ export default function MainHeader() {
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex items-center mr-6">
-              <div className="bg-orange-500 p-2 rounded-lg mr-2">
-                <HiShoppingBag className="w-6 h-6 text-white" />
-              </div>
+              <Link to="/" className="text-decoration-none cursor-pointer">
+                {' '}
+                <div className="bg-orange-500 p-2 rounded-lg mr-2">
+                  <HiShoppingBag className="w-6 h-6 text-white" />
+                </div>
+              </Link>
               <span className="text-2xl font-bold text-gray-800">
                 {t('mainHeader.logo')}
               </span>
@@ -161,19 +171,30 @@ export default function MainHeader() {
               </Transition>
             </Menu>
 
-            <button className="relative">
-              <HiHeart className="w-6 h-6" />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            {isAuthenticated && (
+              <button className="relative">
+                <HiHeart className="w-6 h-6" />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  0
+                </span>
+              </button>
+            )}
 
-            <button className="relative">
-              <HiShoppingCart className="w-6 h-6" />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            {isAuthenticated && (
+              <button className="relative">
+                <HiShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {isLoadingCart
+                    ? '...'
+                    : isErrorCart
+                    ? '!'
+                    : cartItems?.reduce(
+                        (total, item) => total + item.quantity,
+                        0
+                      ) ?? 0}
+                </span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -234,19 +255,30 @@ export default function MainHeader() {
                 </Transition>
               </Menu>
 
-              <button className="relative">
-                <HiHeart className="w-5 h-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  0
-                </span>
-              </button>
+              {isAuthenticated && (
+                <button className="relative">
+                  <HiHeart className="w-5 h-5 text-gray-600" />
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    0
+                  </span>
+                </button>
+              )}
 
-              <button className="relative">
-                <HiShoppingCart className="w-5 h-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  0
-                </span>
-              </button>
+              {isAuthenticated && (
+                <button className="relative">
+                  <HiShoppingCart className="w-5 h-5 text-gray-600" />
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    {isLoadingCart
+                      ? '...'
+                      : isErrorCart
+                      ? '!'
+                      : cartItems?.reduce(
+                          (total, item) => total + item.quantity,
+                          0
+                        ) ?? 0}
+                  </span>
+                </button>
+              )}
             </div>
           </div>
           {/* Search Bar */}

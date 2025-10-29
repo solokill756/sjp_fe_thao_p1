@@ -1,0 +1,19 @@
+{
+  "loading": "Đang tải chi tiết đơn hàng...",
+  "back_to_orders": "Quay lại danh sách đơn hàng",
+  "order": "Đơn hàng",
+  "order_date": "Ngày đặt hàng",
+  "item": "Sản phẩm",
+  "price": "Giá",
+  "quantity": "Số lượng",
+  "total": "Tổng tiền",
+  "order_summary": "Tóm tắt đơn hàng",
+  "subtotal": "Tạm tính",
+  "shipping": "Phí vận chuyển",
+  "customer_info": "Thông tin khách hàng",
+  "anonymous": "Ẩn danh",
+  "phone": "Số điện thoại",
+  "shipping_address": "Địa chỉ nhận hàng",
+  "billing_address": "Địa chỉ thanh toán",
+  "out_of_stock": "Hết hàng"
+}

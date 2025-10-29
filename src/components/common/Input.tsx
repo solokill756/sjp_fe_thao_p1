@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 interface RadioOption {
   value: string;
   label: string;
@@ -5,7 +7,7 @@ interface RadioOption {
 }
 
 interface InputProps {
-  label: string;
+  label: string | JSX.Element;
   type?: string;
   name: string;
   value?: string | boolean;
@@ -27,6 +29,7 @@ export default function Input({
   required = false,
   options = [],
   defaultValue,
+  checked = false,
 }: InputProps) {
   if (
     onchange == undefined &&
@@ -81,6 +84,25 @@ export default function Input({
             </div>
           ))}
         </div>
+      </div>
+    );
+  }
+
+  if (type === 'radio' && options.length === 0) {
+    return (
+      <div className="flex items-center">
+        <input
+          type="radio"
+          id={name}
+          name={name}
+          value={value as string}
+          checked={checked}
+          onChange={onChange}
+          className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300"
+        />
+        <label htmlFor={name} className="ml-2 block text-sm text-gray-900">
+          {label}
+        </label>
       </div>
     );
   }

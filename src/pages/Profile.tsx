@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function Profile() {
   const { t } = useTranslation('profile');
+
   return (
     <ProtectedRoute>
       <div className="bg-white min-h-screen">

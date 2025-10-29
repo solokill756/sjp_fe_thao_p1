@@ -1,4 +1,89 @@
 {
-  "title": "Home Page",
-  "description": "This is the home page of your new React Router app."
+  "promotionalBanners": {
+    "1": {
+      "preTitle": "Only This Week",
+      "title": "We provide you the best quality products",
+      "subtitle": "A family place for grocery"
+    },
+    "2": {
+      "preTitle": "Only This Week",
+      "title": "We make your grocery shopping more exciting",
+      "subtitle": "Shine the morning..."
+    },
+    "3": {
+      "preTitle": "Only This Week",
+      "title": "The one supermarket that saves your money",
+      "subtitle": "Breakfast made better"
+    }
+  },
+  "bannerCard": {
+    "grocery": {
+      "preTitle": "Only This Week",
+      "title": "Make your grocery shopping easy with us",
+      "subtitle": "Feed your family the best"
+    },
+    "needs": {
+      "preTitle": "Only This Week",
+      "title": "Get your everyday needs here with us",
+      "subtitle": "A different kind of grocery store"
+    },
+    "preTitle": "Only This Week",
+    "subtitle": "A family place for grocery"
+  },
+  "heroSection": {
+    "slide1": {
+      "preTitle": "Weekend Discount",
+      "title": "Shopping with us for better quality and the best price",
+      "subtitle": "We have prepared special discounts for you on grocery products. Don't miss these opportunities..."
+    },
+    "slide2": {
+      "preTitle": "Fresh Groceries",
+      "title": "Get your daily essentials delivered right to you",
+      "subtitle": "The best quality, sourced daily for your family."
+    }
+  },
+  "featuredProducts": "Featured Products",
+  "bestSellers": "Best Sellers",
+  "editorsPick": "Editor's Pick",
+  "viewAll": "View all",
+  "shopNow": "Shop Now",
+  "healthSafety": "In store or online your health & safety is our top priority",
+  "healthSafetyDesc": "Every employee has been paid extra for their safety in our store working during coronavirus time",
+  "dontMiss": "Don't miss the current offers until the end of March.",
+  "getSomeProducts": "Get some products with created offers",
+  "loading": "Loading...",
+  "error": "Error",
+  "categoryProducts": "Category Products",
+  "specialDiscount": "Special Discount",
+  "heroTitle": "Shopping with us for\nbetter quality and the\nbest price",
+  "heroSubtitle": "We have prepared special discounts for you on grocery products. Don't miss these opportunities...",
+  "sale": "SALE",
+  "organic": "Organic",
+  "addToCart": "Add to cart",
+  "available": "Available",
+  "ourNews": "Our News",
+  "latestNews": "Get some of the latest news and deals",
+  "bannerTag": "Only This Week",
+  "bannerTitle": "We provide you the best quality products",
+  "bannerSubtitle": "A family place for grocery",
+  "category": {
+    "1": "Fruits & Vegetables",
+    "2": "Dairy & Pregnancy",
+    "3": "Beverages",
+    "4": "Meats & Seafood",
+    "5": "Biscuits & Snacks",
+    "6": "Breads & Bakery",
+    "7": "Breakfast & Dairy",
+    "8": "Frozen Foods",
+    "9": "Grocery & Staples"
+  },
+  "salePercentage": "{{sale}}% OFF",
+  "reviewCount": "{{count}} reviews",
+  "price": "$ {{price}}",
+  "originalPrice": "$ {{price}}",
+  "inStock": "IN STOCK",
+  "outOfStock": "OUT OF STOCK",
+  "bestSellersSubTitle": "Our best selling products this week",
+  "editorsPickSubTitle": "Products handpicked by our editors",
+  "featuredProductsSubTitle": "Check out our featured products"
 }

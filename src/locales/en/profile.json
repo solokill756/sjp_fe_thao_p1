@@ -23,5 +23,15 @@
   "register": {
     "fillAllFields": "Please fill in all fields"
   },
-  "guest": "Guest"
+  "guest": "Guest",
+  "phone_number_invalid": "Phone number is invalid",
+  "update_success": "Profile updated successfully",
+  "update_failed": "Failed to update profile",
+  "updating_profile": "Updating profile...",
+  "loading_profile": "Loading profile...",
+  "profile_information": "Profile Information",
+  "personal_details": "Personal Details",
+  "contact_information": "Contact Information",
+  "save_changes": "Save Changes",
+  "cancel": "Cancel"
 }

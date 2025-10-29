@@ -15,14 +15,14 @@ export const getDropdownMenus = (t: any): DropdownMenuConfig[] => [
   {
     key: 'home',
     selectedValue: t('navigation.home'),
-    values: ['Cart', 'Checkout', 'Shop', 'My Account'],
-    links: ['#', '#', '#', '#'],
+    values: ['History', 'Cart', 'My Account'],
+    links: ['/order-history', '/cart', '/profile'],
   },
   {
     key: 'shop',
     selectedValue: t('navigation.shop'),
-    values: ['All Products', 'Featured Items', 'New Arrivals'],
-    links: ['#', '#', '#'],
+    values: ['All Products', 'Featured Items', 'Best Sellers'],
+    links: ['/shop', '/shop?tag=featured', '/shop?tag=bestseller'],
   },
 ];
 
