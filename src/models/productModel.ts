@@ -15,4 +15,5 @@ export interface Product {
   categoryId: number;
   reviews?: Review[];
   createdAt: string;
+  isDeleted?: boolean;
 }

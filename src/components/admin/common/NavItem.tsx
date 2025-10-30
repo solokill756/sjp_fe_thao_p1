@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '../../../app/store';
 import { logOut } from '../../../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../common/Button';
 
 interface NavItemProps {
   icon: React.ElementType;
@@ -25,30 +26,42 @@ const NavItem: React.FC<NavItemProps> = ({
 
   const displayBadge = badge === 'New' ? t('new') : badge;
 
-  const hasSub = !isSub && (itemKey === 'products' || itemKey === 'buyer');
+  const hasSub = !isSub && itemKey === 'buyer';
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   return (
     <>
-      <button
+      <Button
+        type="button"
+        variant="custom"
         onClick={() => {
-          if (itemKey === 'authentication') {
-            dispatch(logOut());
-            console.log('Logging out user');
-            hasSub && setIsOpen(!isOpen);
-            return;
-          }
-          if (itemKey === 'orders') {
-            console.log('Navigating to orders page');
-            navigate('/admin/orders');
-            hasSub && setIsOpen(!isOpen);
-            return;
-          }
-          if (itemKey === 'dashboard') {
-            console.log('Navigating to dashboard page');
-            navigate('/admin');
-            hasSub && setIsOpen(!isOpen);
-            return;
+          switch (itemKey) {
+            case 'authentication':
+              dispatch(logOut());
+              break;
+            case 'buyer':
+              setIsOpen(!isOpen);
+              break;
+            case 'dashboard':
+              navigate('/admin/');
+              break;
+            case 'products':
+              navigate('/admin/products');
+              break;
+            case 'orders':
+              navigate('/admin/orders');
+              break;
+            case 'customers':
+              navigate('/admin/customers');
+              break;
+            case 'reports':
+              navigate('/admin/reports');
+              break;
+            case 'settings':
+              navigate('/admin/settings');
+              break;
+            default:
+              break;
           }
         }}
         className={`flex items-center justify-between w-full px-4 py-2.5 text-sm rounded-md ${
@@ -77,7 +90,7 @@ const NavItem: React.FC<NavItemProps> = ({
             {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
           </span>
         )}
-      </button>
+      </Button>
       {hasSub && isOpen && (
         <div className="flex flex-col">
           <NavItem

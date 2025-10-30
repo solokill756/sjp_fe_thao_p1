@@ -54,14 +54,18 @@ const CartItemsList: React.FC<CartItemsListProps> = ({
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {items.map((item) => (
-              <CartItemRow
-                key={item.id}
-                item={item}
-                onQuantityChange={onQuantityChange}
-                onRemove={onRemove}
-              />
-            ))}
+            {items
+              .filter(
+                (item) => item.product && item.product.isDeleted === false
+              )
+              .map((item) => (
+                <CartItemRow
+                  key={item.id}
+                  item={item}
+                  onQuantityChange={onQuantityChange}
+                  onRemove={onRemove}
+                />
+              ))}
           </tbody>
         </table>
       </div>

@@ -31,15 +31,32 @@ export const apiSlice = createApi({
     }),
 
     postUser: builder.mutation<User, Partial<User>>({
-      query: (body) => ({
-        url: '/users',
-        method: 'POST',
-        body,
-      }),
+      query: (body) => {
+        // Validation
+        if (!body || typeof body !== 'object') {
+          throw new Error('Invalid user data');
+        }
+        if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+          throw new Error('Invalid email format');
+        }
+        if (!body.username || typeof body.username !== 'string') {
+          throw new Error('Username is required');
+        }
+        return {
+          url: '/users',
+          method: 'POST',
+          body,
+        };
+      },
       invalidatesTags: [{ type: 'User', id: 'LIST' }],
     }),
     getUserByEmail: builder.query<User | null, string>({
-      query: (email: string) => `/users?email=${email}`,
+      query: (email: string) => {
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          throw new Error('Invalid email format');
+        }
+        return `/users?email=${email}`;
+      },
       transformResponse: (response: User[]) => {
         return response.length > 0 ? response[0] : null;
       },
@@ -81,11 +98,20 @@ export const apiSlice = createApi({
       },
     }),
     putUser: builder.mutation<User | null, Partial<User> & { id: number }>({
-      query: ({ id, ...body }) => ({
-        url: `/users/${id}`,
-        method: 'PUT',
-        body,
-      }),
+      query: ({ id, ...body }) => {
+        // Validation
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid user id');
+        }
+        if (body.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+          throw new Error('Invalid email format');
+        }
+        return {
+          url: `/users/${id}`,
+          method: 'PUT',
+          body,
+        };
+      },
 
       async onQueryStarted({ id, ...patch }, { queryFulfilled, dispatch }) {
         try {
@@ -113,6 +139,9 @@ export const apiSlice = createApi({
     }),
     getProducts: builder.query<Product[], { tag: string | undefined }>({
       query: ({ tag }) => {
+        if (tag && typeof tag !== 'string') {
+          throw new Error('Invalid tag');
+        }
         const params: { tags_like?: string } = {};
         if (tag) {
           params.tags_like = tag;
@@ -157,19 +186,37 @@ export const apiSlice = createApi({
       },
     }),
     getProductById: builder.query<Product, number>({
-      query: (id: number) => `/products/${id}`,
+      query: (id: number) => {
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid product id');
+        }
+        return `/products/${id}`;
+      },
       providesTags: (_result, _error, id) => [{ type: 'Product', id }],
     }),
     getProductsByCategory: builder.query<Product[], number>({
-      query: (categoryId: number) => `/products?categoryId=${categoryId}`,
+      query: (categoryId: number) => {
+        if (!categoryId || typeof categoryId !== 'number') {
+          throw new Error('Invalid category id');
+        }
+        return `/products?categoryId=${categoryId}`;
+      },
     }),
     updateProduct: builder.mutation<Product, Partial<Product> & { id: number }>(
       {
-        query: ({ id, ...body }) => ({
-          url: `/products/${id}`,
-          method: 'PUT',
-          body,
-        }),
+        query: ({ id, ...body }) => {
+          if (!id || typeof id !== 'number') {
+            throw new Error('Invalid product id');
+          }
+          if (body.name && typeof body.name !== 'string') {
+            throw new Error('Invalid product name');
+          }
+          return {
+            url: `/products/${id}`,
+            method: 'PUT',
+            body,
+          };
+        },
         invalidatesTags: (_result, _error, { id }) => [{ type: 'Product', id }],
       }
     ),
@@ -177,7 +224,12 @@ export const apiSlice = createApi({
       query: () => '/categories',
     }),
     getCarts: builder.query<CartItem[], number>({
-      query: (userId) => `/cartItems?userId=${userId}&_expand=product`,
+      query: (userId) => {
+        if (!userId || typeof userId !== 'number') {
+          throw new Error('Invalid user id');
+        }
+        return `/cartItems?userId=${userId}&_expand=product`;
+      },
       transformResponse: (response: CartItem[]) => {
         if (!Array.isArray(response)) {
           return [];
@@ -193,10 +245,18 @@ export const apiSlice = createApi({
           : [{ type: 'Cart', id: `LIST-${userId}` }],
     }),
     deleteCartItem: builder.mutation<void, { id: number; userId: number }>({
-      query: ({ id }) => ({
-        url: `/cartItems/${id}`,
-        method: 'DELETE',
-      }),
+      query: ({ id, userId }) => {
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid cart item id');
+        }
+        if (!userId || typeof userId !== 'number') {
+          throw new Error('Invalid user id');
+        }
+        return {
+          url: `/cartItems/${id}`,
+          method: 'DELETE',
+        };
+      },
 
       invalidatesTags: (_result, _error, { id, userId }) => [
         { type: 'Cart', id },
@@ -204,11 +264,25 @@ export const apiSlice = createApi({
       ],
     }),
     addCartItem: builder.mutation<CartItem, Partial<NewCartItem>>({
-      query: (body) => ({
-        url: '/cartItems',
-        method: 'POST',
-        body,
-      }),
+      query: (body) => {
+        if (!body || typeof body !== 'object') {
+          throw new Error('Invalid cart item data');
+        }
+        if (!body.userId || typeof body.userId !== 'number') {
+          throw new Error('Invalid user id');
+        }
+        if (!body.productId || typeof body.productId !== 'number') {
+          throw new Error('Invalid product id');
+        }
+        if (!body.quantity || typeof body.quantity !== 'number') {
+          throw new Error('Invalid quantity');
+        }
+        return {
+          url: '/cartItems',
+          method: 'POST',
+          body,
+        };
+      },
       transformResponse: (response: CartItem) => {
         if (!response || typeof response !== 'object') {
           throw new Error('Invalid response format');
@@ -228,11 +302,19 @@ export const apiSlice = createApi({
       CartItem,
       Partial<NewCartItem> & { id: number }
     >({
-      query: ({ id, ...body }) => ({
-        url: `/cartItems/${id}`,
-        method: 'PUT',
-        body,
-      }),
+      query: ({ id, ...body }) => {
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid cart item id');
+        }
+        if (body.quantity && typeof body.quantity !== 'number') {
+          throw new Error('Invalid quantity');
+        }
+        return {
+          url: `/cartItems/${id}`,
+          method: 'PUT',
+          body,
+        };
+      },
       transformResponse: (response: CartItem) => {
         if (!response || typeof response !== 'object') {
           throw new Error('Invalid response format');
@@ -248,41 +330,44 @@ export const apiSlice = createApi({
 
     clearCart: builder.mutation<void, number>({
       async queryFn(userId, _queryApi, _extraOptions, fetchWithBQ) {
-        try {
-          if (!userId) {
-            return { error: undefined, data: undefined };
-          }
-          const cartItemsResponse = await fetchWithBQ(
-            `/cartItems?userId=${userId}`
-          );
-          if (cartItemsResponse.error) {
-            return { error: cartItemsResponse.error, data: undefined };
-          }
-
-          const cartItems: CartItem[] = cartItemsResponse.data as CartItem[];
-
-          for (const item of cartItems) {
-            const deleteResponse = await fetchWithBQ({
-              url: `/cartItems/${item.id}`,
-              method: 'DELETE',
-            });
-            if (deleteResponse.error) {
-              return { error: deleteResponse.error, data: undefined };
-            }
-          }
-
-          return { data: undefined };
-        } catch (error) {
-          return { error: undefined, data: undefined };
+        if (!userId || typeof userId !== 'number') {
+          return {
+            data: undefined,
+            error: { status: 400, data: 'Invalid user id' },
+          };
         }
+        const cartItemsResponse = await fetchWithBQ(
+          `/cartItems?userId=${userId}`
+        );
+        if (cartItemsResponse.error) {
+          return { data: undefined, error: cartItemsResponse.error };
+        }
+
+        const cartItems: CartItem[] = cartItemsResponse.data as CartItem[];
+
+        for (const item of cartItems) {
+          const deleteResponse = await fetchWithBQ({
+            url: `/cartItems/${item.id}`,
+            method: 'DELETE',
+          });
+          if (deleteResponse.error) {
+            return { data: undefined, error: deleteResponse.error };
+          }
+        }
+
+        return { data: undefined };
       },
       invalidatesTags: (_result, _error, userId) => [
         { type: 'Cart', id: `LIST-${userId}` },
       ],
     }),
     getReviewsByProduct: builder.query<Review[], number>({
-      query: (productId: number) =>
-        `/reviews?productId=${productId}&_expand=user`,
+      query: (productId: number) => {
+        if (!productId || typeof productId !== 'number') {
+          throw new Error('Invalid product id');
+        }
+        return `/reviews?productId=${productId}&_expand=user`;
+      },
       transformResponse: (response: Review[]) => {
         if (!Array.isArray(response)) {
           return [];
@@ -298,22 +383,35 @@ export const apiSlice = createApi({
           : [{ type: 'Review', id: `LIST-${productId}` }],
     }),
     addOrder: builder.mutation<void, Partial<Order>>({
-      query: (body) => ({
-        url: '/orders',
-        method: 'POST',
-        body,
-      }),
+      query: (body) => {
+        if (!body || typeof body !== 'object') {
+          throw new Error('Invalid order data');
+        }
+        if (!body.userId || typeof body.userId !== 'number') {
+          throw new Error('Invalid user id');
+        }
+        return {
+          url: '/orders',
+          method: 'POST',
+          body,
+        };
+      },
       invalidatesTags: [{ type: 'Order', id: 'LIST' }],
     }),
     getOrdersByUser: builder.query<Order[], number>({
-      query: (userId: number) => `/orders?userId=${userId}`,
+      query: (userId: number) => {
+        if (!userId || typeof userId !== 'number') {
+          throw new Error('Invalid user id');
+        }
+        return `/orders?userId=${userId}`;
+      },
       transformResponse: (response: Order[]) => {
         if (!Array.isArray(response)) {
           return [];
         }
         return response;
       },
-      providesTags: (result, _error, userId) =>
+      providesTags: (result, _error, _userId) =>
         result
           ? [
               ...result.map(({ id }) => ({ type: 'Order' as const, id })),
@@ -322,7 +420,12 @@ export const apiSlice = createApi({
           : [{ type: 'Order', id: `LIST` }],
     }),
     getOrderById: builder.query<Order, number>({
-      query: (orderId: number) => `/orders/${orderId}`,
+      query: (orderId: number) => {
+        if (!orderId || typeof orderId !== 'number') {
+          throw new Error('Invalid order id');
+        }
+        return `/orders/${orderId}`;
+      },
       providesTags: (_result, _error, orderId) => [
         { type: 'Order', id: orderId },
       ],
@@ -360,17 +463,81 @@ export const apiSlice = createApi({
           : [{ type: 'Review', id: 'LIST' }],
     }),
     updateOrder: builder.mutation<Order, Partial<Order> & { id: number }>({
-      query: ({ id, ...body }) => ({
-        url: `/orders/${id}`,
-        method: 'PUT',
-        body,
-      }),
+      query: ({ id, ...body }) => {
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid order id');
+        }
+        return {
+          url: `/orders/${id}`,
+          method: 'PUT',
+          body,
+        };
+      },
       invalidatesTags: (_result, _error, { id }) => [{ type: 'Order', id }],
+    }),
+    deleteProduct: builder.mutation<void, number>({
+      query: (id: number) => {
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid product id');
+        }
+        return {
+          url: `/products/${id}`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: (_result, _error, id) => [{ type: 'Product', id }],
+    }),
+    addProduct: builder.mutation<Product, Partial<Product>>({
+      query: (body) => {
+        if (!body || typeof body !== 'object') {
+          throw new Error('Invalid product data');
+        }
+        if (!body.name || typeof body.name !== 'string') {
+          throw new Error('Product name is required');
+        }
+        return {
+          url: '/products',
+          method: 'POST',
+          body,
+        };
+      },
+      invalidatesTags: [{ type: 'Product', id: 'LIST' }],
+    }),
+    editProduct: builder.mutation<Product, Partial<Product> & { id: number }>({
+      query: ({ id, ...body }) => {
+        if (!id || typeof id !== 'number') {
+          throw new Error('Invalid product id');
+        }
+        if (body.name && typeof body.name !== 'string') {
+          throw new Error('Invalid product name');
+        }
+        if (body.price && typeof body.price !== 'number') {
+          throw new Error('Invalid product price');
+        }
+        if (body.originalPrice && typeof body.originalPrice !== 'number') {
+          throw new Error('Invalid product original price');
+        }
+        if (body.salePercentage && typeof body.salePercentage !== 'number') {
+          throw new Error('Invalid product sale percentage');
+        }
+        if (body.imageUrls && !Array.isArray(body.imageUrls)) {
+          throw new Error('Invalid product image URLs');
+        }
+        return {
+          url: `/products/${id}`,
+          method: 'PUT',
+          body,
+        };
+      },
+      invalidatesTags: (_result, _error, { id }) => [{ type: 'Product', id }],
     }),
   }),
 });
 
 export const {
+  useEditProductMutation,
+  useAddProductMutation,
+  useDeleteProductMutation,
   useUpdateOrderMutation,
   useGetReviewsQuery,
   useGetOrdersQuery,

@@ -1,5 +1,3 @@
-import type { User } from './userModel';
-
 interface OrderItem {
   productId: string | number;
   name: string;

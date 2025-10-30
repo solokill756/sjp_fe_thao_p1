@@ -17,7 +17,16 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
   inStock,
 }) => {
   const { t } = useTranslation('productDetail');
-  const [mainImage, setMainImage] = useState<string>(images[0]);
+  function getRandomImages(arr: string[], count: number) {
+    const shuffled = arr.slice().sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+  const [randomImages, setRandomImages] = useState<string[]>(
+    getRandomImages(images, Math.min(3, images.length))
+  );
+  const [mainImage, setMainImage] = useState<string>(
+    randomImages[0] || images[0]
+  );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const handleFullScreen = () => {
     setIsModalOpen(true);
@@ -26,7 +35,9 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
     setIsModalOpen(false);
   };
   useEffect(() => {
-    setMainImage(images[0]);
+    const newRandomImages = getRandomImages(images, Math.min(3, images.length));
+    setRandomImages(newRandomImages);
+    setMainImage(newRandomImages[0] || images[0]);
   }, [images]);
   return (
     <div className="flex flex-col gap-4">
@@ -68,7 +79,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
       </div>
 
       <div className="flex gap-3">
-        {images.map((img, index) => (
+        {randomImages.map((img, index) => (
           <div
             key={index}
             className={`w-20 h-20 border rounded-md cursor-pointer overflow-hidden ${

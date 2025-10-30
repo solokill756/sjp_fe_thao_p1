@@ -107,18 +107,19 @@
         "/372.png",
         "/349.png"
       ],
-      "salePercentage": 31,
+      "salePercentage": 20,
       "rating": 5,
       "reviewCount": 120,
-      "price": 8.99,
-      "originalPrice": 12.99,
+      "price": 40,
+      "originalPrice": 50,
       "stockCurrent": 24,
-      "categoryId": 8,
+      "categoryId": 2,
       "tags": [
-        "featured",
-        "bestseller"
+        "featured"
       ],
       "createdAt": "2025-10-20T10:00:00Z",
+      "description": "",
+      "isDeleted": true,
       "id": 1
     },
     {
@@ -126,14 +127,13 @@
       "imageUrls": [
         "/Simple Kitchen Fit Sliced Strawberries - 10oz.jpeg",
         "/353.png",
-        "/400.png",
-        "/424.png"
+        "https://res.cloudinary.com/doycdzvf6/image/upload/v1761803760/ae20emalhi1h8h0tyzyk.png"
       ],
-      "salePercentage": 12,
+      "salePercentage": 20,
       "rating": 5,
       "reviewCount": 85,
-      "price": 21.9,
-      "originalPrice": 24.99,
+      "price": 40,
+      "originalPrice": 50,
       "stockCurrent": 22,
       "categoryId": 1,
       "tags": [
@@ -141,7 +141,9 @@
         "bestseller"
       ],
       "createdAt": "2025-10-21T11:30:00Z",
-      "id": 2
+      "description": "Đây là một món ngon buổi sáng",
+      "id": 2,
+      "isDeleted": false
     },
     {
       "name": "Red Baron Frozen Hand Tossed 4-Meat Pizza",
@@ -154,16 +156,17 @@
       "salePercentage": 21,
       "rating": 5,
       "reviewCount": 95,
-      "price": 14.99,
+      "price": 15,
       "originalPrice": 18.99,
       "stockCurrent": 21,
-      "categoryId": 8,
+      "categoryId": 1,
       "tags": [
         "featured",
         "bestseller"
       ],
       "createdAt": "2025-10-22T14:15:00Z",
-      "id": 3
+      "id": 3,
+      "isDeleted": false
     },
     {
       "name": "100 Percent Apple Juice - 64 fl oz Bottle",
@@ -176,16 +179,17 @@
       "salePercentage": 92,
       "rating": 5,
       "reviewCount": 450,
-      "price": 0.5,
-      "originalPrice": 5.99,
+      "price": 0.8,
+      "originalPrice": 10,
       "stockCurrent": 25,
-      "categoryId": 3,
+      "categoryId": 8,
       "tags": [
         "featured",
         "bestseller"
       ],
       "createdAt": "2025-10-23T09:45:00Z",
-      "id": 4
+      "id": 4,
+      "isDeleted": false
     },
     {
       "name": "Angel Soft Toilet Paper, 9Mega Rolls",
@@ -207,7 +211,8 @@
         "bestseller"
       ],
       "createdAt": "2025-10-24T08:20:00Z",
-      "id": 5
+      "id": 5,
+      "isDeleted": false
     },
     {
       "name": "California Pizza Kitchen Margherita, Crispy Thin Crust",
@@ -229,7 +234,8 @@
         "bestseller"
       ],
       "createdAt": "2025-10-25T13:10:00Z",
-      "id": 6
+      "id": 6,
+      "isDeleted": false
     },
     {
       "name": "Cantaloupe Melon Fresh Organic Cut",
@@ -251,29 +257,8 @@
         "bestseller"
       ],
       "createdAt": "2025-10-26T15:25:00Z",
-      "id": 7
-    },
-    {
-      "name": "Alcohol Grapefruit Plasma Sparkling Vodka Cocktail",
-      "imageUrls": [
-        "/440.png",
-        "/349.png",
-        "/424.png",
-        "/403.png"
-      ],
-      "salePercentage": 10,
-      "rating": 5,
-      "reviewCount": 95,
-      "price": 8.99,
-      "originalPrice": 9.99,
-      "stockCurrent": 25,
-      "categoryId": 9,
-      "tags": [
-        "featured",
-        "bestseller"
-      ],
-      "createdAt": "2025-10-27T10:40:00Z",
-      "id": 8
+      "id": 7,
+      "isDeleted": false
     },
     {
       "name": "Vitamineramic aam sugar lyopheat electroyte",
@@ -286,16 +271,17 @@
       "salePercentage": 44,
       "rating": 4,
       "reviewCount": 210,
-      "price": 4.99,
+      "price": 5,
       "originalPrice": 8.99,
       "stockCurrent": 25,
-      "categoryId": 2,
+      "categoryId": "2",
       "tags": [
         "featured",
         "bestseller"
       ],
       "createdAt": "2025-10-28T12:55:00Z",
-      "id": 9
+      "id": 9,
+      "isDeleted": false
     },
     {
       "name": "Great Value Rising Crust Frozen Pizza, Supreme",
@@ -308,15 +294,16 @@
       "salePercentage": 31,
       "rating": 5,
       "reviewCount": 75,
-      "price": 8.99,
+      "price": 9,
       "originalPrice": 12.99,
       "stockCurrent": 25,
-      "categoryId": 8,
+      "categoryId": "1",
       "tags": [
         "featured",
         "bestseller"
       ],
       "createdAt": "2025-10-29T14:05:00Z",
+      "isDeleted": true,
       "id": 10
     },
     {
@@ -339,7 +326,8 @@
         "bestseller"
       ],
       "createdAt": "2025-10-30T16:20:00Z",
-      "id": 11
+      "id": 11,
+      "isDeleted": false
     }
   ],
   "reviews": [
@@ -395,7 +383,7 @@
     },
     {
       "productId": 2,
-      "quantity": 1,
+      "quantity": 2,
       "userId": 4,
       "id": 8
     },
@@ -704,7 +692,7 @@
     {
       "userId": 4,
       "createdAt": "2025-10-27T07:43:28.083Z",
-      "status": "Processing",
+      "status": "Shipping",
       "subtotal": 59.96,
       "shippingCost": 15,
       "total": 74.96000000000001,
@@ -732,6 +720,16 @@
         }
       ],
       "orderNotes": "",
+      "user": {
+        "firstName": "Hồ Sỹ ",
+        "lastName": "Thảo",
+        "phoneNumber": "0838664246",
+        "username": "hồ Sỹ Thảo",
+        "email": "hosithao1622004111@gmail.com",
+        "password": "123456789",
+        "role": "customer",
+        "id": 4
+      },
       "id": 7
     },
     {

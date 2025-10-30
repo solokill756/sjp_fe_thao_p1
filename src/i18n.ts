@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import footerEn from './locales/en/footer.json';
+import adminProductDetailEn from './locales/en/admin-product_detail.json';
 import adminCommonEn from './locales/en/adminCommon.json';
 import dashboardEn from './locales/en/dashboard.json';
 import cartEn from './locales/en/cart.json';
@@ -15,7 +16,9 @@ import orderDetailEn from './locales/en/orderDetail.json';
 import orderHistoryEn from './locales/en/orderHistory.json';
 import adminOrdersEn from './locales/en/adminOrders.json';
 import adminOrderDetailEn from './locales/en/adminOrderDetail.json';
+import adminProductsEn from './locales/en/admin-products.json';
 import footerVi from './locales/vi/footer.json';
+import adminProductDetailVi from './locales/vi/admin-product_detail.json';
 import adminCommonVi from './locales/vi/adminCommon.json';
 import dashboardVi from './locales/vi/dashboard.json';
 import cartVi from './locales/vi/cart.json';
@@ -34,6 +37,7 @@ import adminOrdersVi from './locales/vi/adminOrders.json';
 import adminOrderDetailVi from './locales/vi/adminOrderDetail.json';
 import checkoutEn from './locales/en/checkout.json';
 import checkoutVi from './locales/vi/checkout.json';
+import adminProductsVi from './locales/vi/admin-products.json';
 
 // Detect language from localStorage or browser
 const savedLanguage =
@@ -66,6 +70,8 @@ i18n.use(initReactI18next).init({
       adminCommon: adminCommonEn,
       adminOrders: adminOrdersEn,
       adminOrderDetail: adminOrderDetailEn,
+      adminProductDetail: adminProductDetailEn,
+      adminProducts: adminProductsEn,
     },
     vi: {
       header: headerVi,
@@ -86,6 +92,8 @@ i18n.use(initReactI18next).init({
       adminCommon: adminCommonVi,
       adminOrders: adminOrdersVi,
       adminOrderDetail: adminOrderDetailVi,
+      adminProductDetail: adminProductDetailVi,
+      adminProducts: adminProductsVi,
     },
   },
   lng: defaultLanguage,

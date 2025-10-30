@@ -53,7 +53,6 @@ export default function Shop() {
     products && products.length > 0 ? Math.floor(Math.min(...allPrices)) : 0;
   const PRICE_MAX =
     products && products.length > 0 ? Math.ceil(Math.max(...allPrices)) : 0;
-
   const filterMin =
     filters.price?.min !== null && filters.price?.min !== undefined
       ? Number(filters.price.min)
@@ -62,6 +61,7 @@ export default function Shop() {
     filters.price?.max !== null && filters.price?.max !== undefined
       ? Number(filters.price.max)
       : null;
+
   const filteredAndSortedProducts = useMemo(() => {
     let processedProducts = products ? [...products] : [];
 
@@ -73,7 +73,7 @@ export default function Shop() {
         : p.originalPrice
         ? p.originalPrice
         : 0;
-
+      if (p.isDeleted) return false;
       if (filterMin !== null && productPrice < filterMin) return false;
       if (filterMax !== null && productPrice > filterMax) return false;
       if (

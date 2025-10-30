@@ -15,6 +15,8 @@ import AdminProtectedRoute from '../components/admin/common/AdminProtectedRoute'
 import AdminLayout from '../components/admin/layouts/AdminLayout';
 import Orders from '../pages/admin/Orders';
 import AdminOrderDetail from '../pages/admin/OrderDetail';
+import Product from '../pages/admin/Product';
+import ProductDetailAdmin from '../pages/admin/ProductDetail';
 
 const router = createBrowserRouter([
   {
@@ -87,18 +89,18 @@ const router = createBrowserRouter([
             path: 'orders/:orderId',
             element: <AdminOrderDetail />,
           },
-          // {
-          //   path: 'users',
-          //   element: <ManageUsers />,
-          // },
-          // {
-          //   path: 'products',
-          //   element: <ManageProducts />,
-          // },
-          // {
-          //   path: 'orders',
-          //   element: <ManageOrders />,
-          // },
+          {
+            path: 'products',
+            element: <Product />,
+          },
+          {
+            path: 'products/:id/edit',
+            element: <ProductDetailAdmin />,
+          },
+          {
+            path: 'products/add',
+            element: <ProductDetailAdmin />,
+          },
         ],
       },
     ],

@@ -39,16 +39,20 @@ export default function Home() {
     return <ServerErrorPage />;
   }
 
-  const featuredProducts = productsData
-    ? productsData.filter((product) => product.tags?.includes('featured'))
+  const products = productsData?.filter(
+    (product) => product.isDeleted === false
+  );
+
+  const featuredProducts = products
+    ? products.filter((product) => product.tags?.includes('featured'))
     : [];
 
-  const bestSellerProducts = productsData
-    ? productsData.filter((product) => product.tags?.includes('bestseller'))
+  const bestSellerProducts = products
+    ? products.filter((product) => product.tags?.includes('bestseller'))
     : [];
 
-  const editorPickProducts = productsData
-    ? productsData.filter((product) => product.tags?.includes('editorPicks'))
+  const editorPickProducts = products
+    ? products.filter((product) => product.tags?.includes('editorPicks'))
     : [];
   console.log('productsData:', editorPickProducts);
   return (
